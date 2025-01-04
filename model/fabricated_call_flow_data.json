@@ -1,0 +1,122 @@
+{
+  "company": {
+    "name": "Contoso",
+    "departments": [
+      {
+        "name": "Sales",
+        "phone_number": "+448001234567",
+        "auto_attendant": {
+          "name": "Sales Auto Attendant",
+          "greeting": "Thank you for calling Sales. Please choose an option 1 For Sales Enquires, 2 For Sales Survey",
+          "business_hours": {
+            "start": "09:00 AM",
+            "end": "05:00 PM",
+            "greeting": "Sales team is available from 9 AM to 5 PM, Monday to Friday."
+          },
+          "voicemail": {
+            "group_name": "Sales Voicemail Group",
+            "group_owner": "Sales Manager",
+            "business_hours": {
+              "start": "09:00 AM",
+              "end": "05:00 PM",
+              "greeting": "You have reached the voicemail for Sales. Please leave a message after the tone."
+            },
+            "call_queues": [
+              {
+                "queue_name": "Sales Enqueries",
+                "routing_type": "Longest Idle",
+                "max_calls": 10,
+                "answer_timeout_seconds": 20,
+                "group": {
+                  "name": "Sales Team 1",
+                  "group_owner": "Sales Manager",
+                  "members": ["Alice", "Bob", "Charlie"]
+                }
+              },
+              {
+                "queue_name": "Sales Surveys",
+                "routing_type": "Round Robin",
+                "max_calls": 8,
+                "answer_timeout_seconds": 25,
+                "group": {
+                  "name": "Sales Team 2",
+                  "group_owner": "Sales Supervisor",
+                  "members": ["Diana", "Eve", "Frank"]
+                }
+              }
+            ]
+          }
+        },
+        "call_metrics": [
+          {
+            "call_id": 1,
+            "wait_time": 40,
+            "abandoned": false
+          },
+          {
+            "call_id": 2,
+            "wait_time": 55,
+            "abandoned": true
+          },
+          {
+            "call_id": 3,
+            "wait_time": 30,
+            "abandoned": false
+          }
+        ]
+      },
+      {
+        "name": "Support",
+        "phone_number": "+1-800-987-6543",
+        "auto_attendant": {
+          "name": "Support Auto Attendant",
+          "greeting": "Thank you for calling Support.",
+          "business_hours": {
+            "start": "08:00 AM",
+            "end": "06:00 PM",
+            "greeting": "Support is available from 8 AM to 6 PM, Monday to Friday."
+          },
+          "voicemail": {
+            "group_name": "Support Voicemail Group",
+            "group_owner": "Support Manager",
+            "business_hours": {
+              "start": "08:00 AM",
+              "end": "06:00 PM",
+              "greeting": "You have reached the voicemail for Support. Please leave a message after the tone."
+            },
+            "call_queues": [
+              {
+                "queue_name": "Support Call Queue",
+                "routing_type": "Round Robin",
+                "max_calls": 5,
+                "answer_timeout_seconds": 30,
+                "group": {
+                  "name": "Support Team 1",
+                  "group_owner": "Support Manager",
+                  "members": ["David", "Eva", "Frank"]
+                }
+              }
+            ]
+          }
+        },
+        "call_metrics": [
+          {
+            "call_id": 1,
+            "wait_time": 35,
+            "abandoned": false
+          },
+          {
+            "call_id": 2,
+            "wait_time": 25,
+            "abandoned": false
+          },
+          {
+            "call_id": 3,
+            "wait_time": 45,
+            "abandoned": true
+          }
+        ]
+      }
+    ]
+  }
+}
