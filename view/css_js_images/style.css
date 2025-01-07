@@ -5,8 +5,9 @@
 }
 
 html, body {
-    height: 100%;
+    min-height: 100vh;
     font-family: 'Lato', sans-serif;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -18,8 +19,115 @@ body {
 }
 
 
-html {
-    scroll-behavior: smooth;
+#top-bar {
+    background-color: #16324F;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 10px;
+    height: 80px;
+    position: relative;
+}
+
+#menu-icon {
+    height: 60px;
+    width: 60px;
+}
+
+/* burger button container */
+#hamburger-container {
+    position: absolute; 
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+}
+
+.hamburger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
 }
 
 
+h1 {
+    margin: 0 auto; 
+    text-align: center;
+    color: white;
+}
+
+/* side menu initially hidden */
+
+#backbutton-icon{
+    width: 60px;
+    height: 60px;
+}
+
+
+.backButton {
+    background: transparent; 
+    border: none; 
+}
+
+#side-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #13293D;
+    padding-top: 20px;
+    z-index: 9999;
+}
+
+#unordered-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list-items {
+    padding: 15px;
+    border-bottom: 1px solid #444;
+}
+
+.departmentButtons {
+    width: 100%;
+    background: none;
+    color: white;
+    text-align: left;
+    border: none;
+    font-size: 18px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.departmentButtons:hover {
+    background-color: #444;
+}
+
+#side-menu.active {
+    display: block;
+}
+
+
+#myCanvas {
+    cursor: grab;
+    background-color: #1F2123;
+    width: 100%; 
+    height: 500px; 
+    border: 1px solid #8A8275; 
+    overflow: hidden;
+    top: 100px;
+    left: 75px;
+    
+}
+
+#myCanvas:active {
+    cursor: grabbing;
+}
