@@ -11,8 +11,8 @@
         <title>Index</title>
     </head>
 
-    <body id="indexView">
-        <!-- top bar of the screen -->
+    <body id="editCallFlowView">
+
         <section id='top-bar'>
 
             <div id="hamburger-container">
@@ -21,7 +21,7 @@
                 </button>
             </div>
 
-            <h1><?= $departmentName ?> </h1>
+            <h1>Editing <?= $departmentName ?>'s Call Flow </h1>
         
             <div id="side-menu">
                 <ul id="unordered-list">
@@ -43,7 +43,7 @@
                     <?php endforeach; ?>
                 </ul>
             </div>
-        </section>        
+        </section>   
 
         <div id="smallCanvas" onclick="fullView()"></div>
 
@@ -51,10 +51,6 @@
             <div id="bigCanvas">
             </div>
             <button id="close-modal" onclick="closeBigCanvas()">Close</button>
-        </div>
-
-        <div>   
-            <a href="../controller/editCallFlow.php"><button>Edit Call Flow</button></a>
         </div>
     </body>
 

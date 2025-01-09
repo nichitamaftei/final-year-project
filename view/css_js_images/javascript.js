@@ -281,11 +281,23 @@ function initiatilse(){
 
     // ---- setting up the view within the small canvas ---
 
+    let width = 0
+    let height = 0;
+
+    if ($('body').attr('id') === 'indexView') {
+        width = window.innerWidth * 0.6; // 80% of the window width
+        height = window.innerHeight * 0.4; // 40% of the window height
+
+    } else if ($('body').attr('id') === 'editCallFlowView'){
+        width = window.innerWidth * 0.9; // 80% of the window width
+        height = window.innerHeight * 0.5; // 40% of the window height
+    }
+
     const paper = new joint.dia.Paper({ // 'paper' renders the view
         el: document.getElementById('smallCanvas'), // target the canvas div
         model: graph,
-        width: 700, 
-        height: 300, 
+        width: width,
+        height: height,
         gridSize: 10, 
         drawGrid: true, 
         interactive: false, 
@@ -336,6 +348,8 @@ function fullView() { // when the smallCanvas is clicked:
         } else {
             delta = -0.1; // prepare to zoom out
         }
+
+        let currentPosition = fullPaper.translate()
 
         initialScale = Math.max(0.44, Math.min(2, initialScale + delta)); // limits the zoom between 0.44 and 2
         fullPaper.scale(initialScale, initialScale); // apply scale
