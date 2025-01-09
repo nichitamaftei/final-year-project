@@ -1,0 +1,177 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    min-height: 100vh;
+    font-family: 'Lato', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body{
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(../css_js_images/background.jpg); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    min-height: 100vh;
+}
+
+
+/* indexView Page styling */
+
+
+#top-bar{
+    background-color: #16324F;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 10px;
+    height: 80px;
+    position: relative;
+}
+
+#menu-icon{
+    height: 60px;
+    width: 60px;
+}
+
+/* burger button container */
+#hamburger-container{
+    position: absolute; 
+    top: 10px;
+    left: 10px;
+
+}
+
+.hamburger{
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+}
+
+
+h1{
+    margin: 0 auto; 
+    text-align: center;
+    color: white;
+}
+
+/* side menu initially hidden */
+
+#backbutton-icon{
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+
+
+.backButton{
+    background: transparent; 
+    border: none; 
+}
+
+#side-menu{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #13293D;
+    padding-top: 20px;
+    z-index: 9999;
+}
+
+#unordered-list{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list-items{
+    padding: 15px;
+}
+
+.departmentButtons{
+    width: 100%;
+    background: none;
+    color: white;
+    text-align: left;
+    border: none;
+    font-size: 18px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.departmentButtons:hover{
+    background-color: #444;
+}
+
+
+#smallCanvas{
+    cursor: pointer;
+    background-color: #1F2123;
+    width: 100%; 
+    height: 500px; 
+    border: 1px solid #8A8275; 
+    overflow: hidden;
+    top: 100px;
+    left: 75px;
+}
+
+#canvas-modal{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+#canvas-modal.show{
+    display: flex;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+#bigCanvas{
+    cursor: grab;
+    background-color: #1F2123;
+    width: 90%;
+    height: 86%;
+    border: 1px solid #8A8275; 
+    overflow: hidden;
+    z-index: 9999;
+}
+
+#close-modal{
+    position: absolute;
+    top: 10px;
+    right: 100px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+
+/* editCallFlow View styling */
+
+#editingCanvas{
+    cursor: pointer;
+    background-color: #1F2123;
+    width: 100%; 
+    height: 500px; 
+    border: 1px solid #8A8275; 
+    overflow: hidden;
+    top: 100px;
+    left: 75px;
+}
