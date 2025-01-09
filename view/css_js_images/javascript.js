@@ -1,11 +1,13 @@
 $(document).ready(initiatilse);
 
-function initiatilse() {
+let graph = new joint.dia.Graph(); // 'graph' holds the data
+
+function initiatilse(){
 
     $.ajax({ // get the department json data 
         url: 'fetchDepartmentData.php', // specificying which php file
         method: 'POST', // fetch type
-        success: function(data) {
+        success: function(data){
 
             console.log(data); // debugging department data
 
@@ -195,7 +197,7 @@ function initiatilse() {
 
     // --- defining specific shapes --- 
 
-    function createShape(type, text, x, y, width, height, stroke, fontsize) {
+    function createShape(type, text, x, y, width, height, stroke, fontsize){
         const shape = new joint.shapes.standard[type](); // instantiate the specified shape
         shape.position(x, y); // set the position of the shape
         shape.resize(width, height);  // set the size of the shape
@@ -208,7 +210,7 @@ function initiatilse() {
                 style: {fontSize: fontsize + 'px', textAnchor: 'middle'}
             };
         }
-        shape.attr({ 
+        shape.attr({ // styling the shape
             body:{
                 fill: 'white',       
                 stroke: stroke,         
@@ -219,13 +221,13 @@ function initiatilse() {
         return shape;
     }
 
-    function createDecision(x, y, width, height, stroke) {
+    function createDecision(x, y, width, height, stroke){
         const decision = new joint.shapes.standard.Rectangle(); // instantiate the rectangle
         decision.position(x, y); // position of the rectangle within the canvas
         decision.resize(width, height);   // size of the rectangle
         decision.rotate(45);   // rotate the rectangle by 45 degrees
         decision.attr({ // styling the rectangle
-            body: {
+            body:{
                 fill: 'white',       
                 stroke: stroke,         
                 strokeWidth: 2,    
@@ -234,15 +236,15 @@ function initiatilse() {
         return decision;
     }
 
-    function createTextBlock(text, x, y, width, height, fontsize) {
+    function createTextBlock(text, x, y, width, height, fontsize){
         const textBlock = new joint.shapes.standard.TextBlock(); // instantiate the specified text
         textBlock.position(x, y); // set the position of the text 
         textBlock.resize(width, height);  // set the size of the text
-        textBlock.attr({ // style the text
-            body: {
+        textBlock.attr({ // styling the text
+            body:{
                 stroke: 'none',
             },
-            label: {
+            label:{
                 text: text,              
                 style: {'font-size': fontsize + 'px'}, 
                 background: 'none'       
@@ -251,7 +253,7 @@ function initiatilse() {
         return textBlock; // return the created text block
     }
 
-    function createLink(source, target, text, fontsize) {
+    function createLink(source, target, text, fontsize){
         const link = new joint.shapes.standard.Link();
         link.source(source);
         link.target(target);
@@ -268,7 +270,7 @@ function initiatilse() {
             });
         }
         link.attr({ // styling the link
-            line: { 
+            line:{ 
                 stroke: 'white',
                 strokeWidth: 2,
             },
@@ -277,12 +279,10 @@ function initiatilse() {
     }
     
 
-    // ---- setting up the view within the canvas ---
+    // ---- setting up the view within the small canvas ---
 
-    const graph = new joint.dia.Graph(); // 'graph' and 'paper' is creating the view
-
-    const paper = new joint.dia.Paper({
-        el: document.getElementById('myCanvas'), // target the canvas div
+    const paper = new joint.dia.Paper({ // 'paper' renders the view
+        el: document.getElementById('smallCanvas'), // target the canvas div
         model: graph,
         width: 700, 
         height: 300, 
@@ -291,26 +291,54 @@ function initiatilse() {
         interactive: false, 
     });
 
-    // --- zooming and panning functionality ---
+    // setting and applying the default scale and position for the smallCanvas
+    let defaultScale = 0.2; 
+    paper.scale(defaultScale, defaultScale); // apply default scale
 
-    // zooming and panning
-    let scale = 0.2; // setting default scale
-    paper.scale(scale, scale); // apply the initial scale
+    let defaulttX = 50; 
+    let defaultY = 100; 
+    paper.translate(defaulttX, defaultY); // apply default position
+};
 
-    let offsetX = 50; // setting default x view position
-    let offsetY = 100; // setting default y view position
-    paper.translate(offsetX, offsetY); // apply the positions
+function fullView() { // when the smallCanvas is clicked:
 
-    let panX = 0, panY = 0; 
+    const modal = document.getElementById('canvas-modal'); // grabbing the hidden modal
+    modal.style.display = 'flex' // enabling it to be shown
 
-    const canvas = document.getElementById('myCanvas');
+    const bigCanvas = document.getElementById('bigCanvas'); // grabbing the 'bigCanvas'
 
+    const fullPaper = new joint.dia.Paper({ // creating a new paper to render the data in a bigger view
+        el: bigCanvas, // displaying it within the now visible bigCanvas
+        model: graph, // using the same data
+        width: bigCanvas.offsetWidth, // the new view will use the bigCanvas's width
+        height: bigCanvas.offsetHeight,  // the new view will use the bigCanvas's hegiht
+        gridSize: 10,
+        drawGrid: true,
+        interactive: false, // doesn't allow the user to move the flow chart
+    });
+
+    // setting and applying the default scale and position for the bigCanvas
+    let initialScale = 0.43;
+    fullPaper.scale(initialScale, initialScale); // apply default scale
+
+    let initialX = 30;
+    let initialY = 200;
+    fullPaper.translate(initialX, initialY); // apply default position
+    
     // handle zooming
-    canvas.addEventListener('wheel', (event) => {
-        event.preventDefault();
-        const delta = event.deltaY > 0 ? -0.1 : 0.1; // zoom in or out
-        scale = Math.max(0.1, Math.min(2, scale + delta)); // limit zoom between 0.5x and 2x
-        paper.scale(scale, scale); // apply scale
+    bigCanvas.addEventListener('wheel', (event) =>{
+        event.preventDefault(); // ensures only the canvas scrolls, not the website itself
+
+        let delta = 0;
+
+        if (event.deltaY < 0){ // if the event scroll is positive
+            delta = 0.1; // prepare to zoom in
+        } else {
+            delta = -0.1; // prepare to zoom out
+        }
+
+        initialScale = Math.max(0.44, Math.min(2, initialScale + delta)); // limits the zoom between 0.44 and 2
+        fullPaper.scale(initialScale, initialScale); // apply scale
     });
 
     // handle panning
@@ -318,36 +346,52 @@ function initiatilse() {
     let lastX = 0;
     let lastY = 0;
 
-    canvas.addEventListener('mousedown', (event) => {
-        isPanning = true;
-        lastX = event.clientX;
-        lastY = event.clientY;
+    bigCanvas.addEventListener('mousedown', (event) =>{ // when the user presses down on the canvas
+        isPanning = true; // set panning to true
+
+        // store the click events' axis position
+        lastX = event.clientX; 
+        lastY = event.clientY; 
     });
 
-    canvas.addEventListener('mousemove', (event) => {
-        if (!isPanning) return;
-        const dx = event.clientX - lastX;
-        const dy = event.clientY - lastY;
-        lastX = event.clientX;
-        lastY = event.clientY;
-        panX += dx;
-        panY += dy;
-        paper.translate(panX, panY); 
+    bigCanvas.addEventListener('mousemove', (event) =>{ // when the user moves the mouse within the canvas
+        if (isPanning){ // if the user has clicked onto the canvas
+
+            // calculate the axis change from the click event to the last known value
+            let dx = event.clientX - lastX;
+            let dy = event.clientY - lastY;
+
+            // update the last known axis change from the click event
+            lastX = event.clientX;
+            lastY = event.clientY;
+
+            // update the change
+            initialX += dx;
+            initialY += dy;
+            fullPaper.translate(initialX, initialY); // pan to the change
+        } else{
+            return false;
+        }
     });
 
-    canvas.addEventListener('mouseup', () => isPanning = false);
-    canvas.addEventListener('mouseleave', () => isPanning = false);
-};
-
-
-function showMenu() {
-    const sideMenu = document.getElementById('side-menu');
-    sideMenu.classList.toggle('active');
+    bigCanvas.addEventListener('mouseup', () => isPanning = false); // when the user releases their mouse click, set the panning flag to false
 }
 
-function hideMenu() {
-    const menu = document.getElementById('side-menu');
-    menu.classList.remove('active');
+
+
+function closeBigCanvas(){
+    const modal = document.getElementById('canvas-modal'); // grabbing the hidden modal
+    modal.style.display = 'none' // enabling it to be hidden
+}
+
+function showMenu(){
+    const sideMenu = document.getElementById('side-menu'); // grabbing the side bar
+    sideMenu.style.display = 'block' // enabling it to be shown
+}
+
+function hideMenu(){
+    const menu = document.getElementById('side-menu'); // grabbing the side bar
+    menu.style.display = 'none' // hiding the side bar
 }
 
 

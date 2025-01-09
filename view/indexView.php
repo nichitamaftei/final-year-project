@@ -45,7 +45,13 @@
             </div>
         </section>        
 
-        <div id="myCanvas"></div>
+        <div id="smallCanvas" onclick="fullView()"></div>
+
+        <div id="canvas-modal">
+            <div id="bigCanvas">
+            </div>
+            <button id="close-modal" onclick="closeBigCanvas()">Close</button>
+        </div>
 
     </body>
 
