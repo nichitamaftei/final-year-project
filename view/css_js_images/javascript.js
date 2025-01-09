@@ -39,7 +39,7 @@ function initiatilse() {
             const businesshours_decision = createDecision(800, 160, 130, 130);
             businesshours_decision.addTo(graph);
 
-            const bussinesshours_text = createTextBlock('During Business \n hours?', 815, 182, 100, 80, 10);
+            const bussinesshours_text = createTextBlock('During Business \n hours?', 815, 182, 100, 80, 18);
             bussinesshours_text.addTo(graph);
 
             const greeting_to_businesshours = createLink(aa_greeting_square, businesshours_decision, null);
@@ -48,7 +48,7 @@ function initiatilse() {
             const bankholiday_decision = createDecision(1100, 160, 130, 130);
             bankholiday_decision.addTo(graph);
 
-            const bankholiday_text = createTextBlock('During Bank \n Holiday?', 1115, 182, 100, 80, 10);
+            const bankholiday_text = createTextBlock('During Bank \n Holiday?', 1115, 182, 100, 80, 18);
             bankholiday_text.addTo(graph);
 
             const businesshours_to_bankholiday = createLink(businesshours_decision, bankholiday_decision, 'Yes', 25);
@@ -61,7 +61,7 @@ function initiatilse() {
             const options_square = createShape('Rectangle', 'Greeting: \n \n' + options_wrapped_text, 1400, 140, 170, 170, 14);
             options_square.addTo(graph);
 
-            const bankholidays_to_options_square = createLink(bankholiday_decision, options_square, 'Yes', 25);
+            const bankholidays_to_options_square = createLink(bankholiday_decision, options_square, 'No', 25);
             bankholidays_to_options_square.addTo(graph); // display in the view
 
             var business_hoursgreeting_wrapped_text = joint.util.breakText(data.auto_attendant.business_hours.greeting, {
@@ -73,7 +73,7 @@ function initiatilse() {
             businesshours_greeting_square.addTo(graph);
 
 
-            const businesshours_decision_to_businesshours_greeting_square = createLink(businesshours_decision, businesshours_greeting_square, 'Yes', 22);
+            const businesshours_decision_to_businesshours_greeting_square = createLink(businesshours_decision, businesshours_greeting_square, 'No', 22);
             businesshours_decision_to_businesshours_greeting_square.addTo(graph); // display in the view
 
 
@@ -118,7 +118,7 @@ function initiatilse() {
                 options_square_to_call_queue_name.addTo(graph); // display in the view
 
 
-                const routing_type = createShape('Rectangle', data.auto_attendant.call_queues[index].routing_type, 1985, (190 + valueYtoAdd), 150, 70, 'black', 14);
+                const routing_type = createShape('Rectangle', data.auto_attendant.call_queues[index].routing_type, 1985, (188 + valueYtoAdd), 150, 70, 'black', 14);
                 routing_type.addTo(graph);
 
                 const call_queue_name_to_routing_type = createLink(callqueue_name, routing_type, null);
@@ -128,7 +128,7 @@ function initiatilse() {
                 const maximum_decision = createDecision(2250, (170 + valueYtoAdd), 120, 120);
                 maximum_decision.addTo(graph);
 
-                const maximum_text = createTextBlock('Has the call queue reached its maximum (' + data.auto_attendant.call_queues[index].max_calls +') ?', 2250, (190 + valueYtoAdd), 130, 80, 13);
+                const maximum_text = createTextBlock('Has the call queue reached its maximum (' + data.auto_attendant.call_queues[index].max_calls +') ?', 2260, (195 + valueYtoAdd), 100, 70, 11);
                 maximum_text.addTo(graph);
 
                 const routing_type_to_maximum_decision = createLink(routing_type, maximum_decision, null);
@@ -138,7 +138,7 @@ function initiatilse() {
                 const answertime_decision = createDecision(2520, (170 + valueYtoAdd), 120, 120);
                 answertime_decision.addTo(graph);
 
-                const answertime_text = createTextBlock('Did someone answer in ' + data.auto_attendant.call_queues[index].answer_timeout_seconds + ' seconds?', 2520, (190 + valueYtoAdd), 130, 80, 13);
+                const answertime_text = createTextBlock('Did someone answer in ' + data.auto_attendant.call_queues[index].answer_timeout_seconds + ' seconds?', 2530, (195 + valueYtoAdd), 100, 70, 11);
                 answertime_text.addTo(graph);
 
                 const maximum_decisione_to_answertime_decision = createLink(maximum_decision, answertime_decision, "No", 20);
@@ -205,8 +205,7 @@ function initiatilse() {
             labelAttrs = { // add attributes, otherwise leave undefined
                 text: text,
                 fill: 'black',
-                fontsize: fontsize,
-          
+                style: {fontSize: fontsize + 'px', textAnchor: 'middle'}
             };
         }
         shape.attr({ 
@@ -245,7 +244,7 @@ function initiatilse() {
             },
             label: {
                 text: text,              
-                fontSize: fontsize,            
+                style: {'font-size': fontsize + 'px'}, 
                 background: 'none'       
             }
         });
@@ -254,27 +253,29 @@ function initiatilse() {
 
     function createLink(source, target, text, fontsize) {
         const link = new joint.shapes.standard.Link();
-        link.source(source); 
-        link.target(target); 
-
+        link.source(source);
+        link.target(target);
+    
         if (text) { // if text is supplied
-            link.appendLabel({ attrs: { // append label with text and fontsize
+            link.appendLabel({
+                attrs: { // append label with text and fontsize
                     text: {
                         text: text,
                         fill: 'black',
-                        fontsize: fontsize,
-                        textAnchor: 'middle',    
+                        style: {fontSize: fontsize + 'px', textAnchor: 'middle'}
                     }
                 }
-            })
+            });
         }
-        link.attr({ line: { // styling the link
-                stroke: 'white',           
-                strokeWidth: 2,           
-            }
-        });        
+        link.attr({ // styling the link
+            line: { 
+                stroke: 'white',
+                strokeWidth: 2,
+            },
+        });
         return link;
     }
+    
 
     // ---- setting up the view within the canvas ---
 
