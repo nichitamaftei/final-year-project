@@ -52,14 +52,5 @@
             </div>
             <button id="close-modal" onclick="closeBigCanvas()">Close</button>
         </div>
-
-
-
-
     </body>
-
-
-
-
-
 </html>
