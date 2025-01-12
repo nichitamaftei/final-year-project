@@ -281,20 +281,35 @@ function initiatilse(){
 
     // ---- setting up the view within the small canvas ---
 
-    let width = 0
+    let width = 0;
     let height = 0;
 
-    if ($('body').attr('id') === 'indexView') {
+    let defaultX = 0;
+    let defaultY = 0;
+
+    let canvas = null;
+
+    if ($('body').attr('id') === 'indexView'){
         width = window.innerWidth * 0.6; // 80% of the window width
         height = window.innerHeight * 0.4; // 40% of the window height
 
+        defaultX = 50; 
+        defaultY = 100; 
+
+        canvas = document.getElementById('smallCanvas')
+
     } else if ($('body').attr('id') === 'editCallFlowView'){
-        width = window.innerWidth * 0.9; // 80% of the window width
-        height = window.innerHeight * 0.5; // 40% of the window height
+        width = window.innerWidth * 0.5; // 80% of the window width      
+        height = window.innerHeight * 0.4; // 40% of the window height
+        
+        defaultX = 80; 
+        defaultY = 100; 
+
+        canvas = document.getElementById('editingCanvas')
     }
 
     const paper = new joint.dia.Paper({ // 'paper' renders the view
-        el: document.getElementById('smallCanvas'), // target the canvas div
+        el: canvas, // target the canvas div
         model: graph,
         width: width,
         height: height,
@@ -307,9 +322,8 @@ function initiatilse(){
     let defaultScale = 0.2; 
     paper.scale(defaultScale, defaultScale); // apply default scale
 
-    let defaulttX = 50; 
-    let defaultY = 100; 
-    paper.translate(defaulttX, defaultY); // apply default position
+    
+    paper.translate(defaultX, defaultY); // apply default position
 };
 
 function fullView() { // when the smallCanvas is clicked:
@@ -348,8 +362,6 @@ function fullView() { // when the smallCanvas is clicked:
         } else {
             delta = -0.1; // prepare to zoom out
         }
-
-        let currentPosition = fullPaper.translate()
 
         initialScale = Math.max(0.44, Math.min(2, initialScale + delta)); // limits the zoom between 0.44 and 2
         fullPaper.scale(initialScale, initialScale); // apply scale

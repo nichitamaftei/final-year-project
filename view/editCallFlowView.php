@@ -21,7 +21,7 @@
                 </button>
             </div>
 
-            <h1>Editing <?= $departmentName ?>'s Call Flow </h1>
+            <h1 id="editingMainTitle">Editing <?= $departmentName ?>'s Call Flow </h1>
         
             <div id="side-menu">
                 <ul id="unordered-list">
@@ -45,12 +45,133 @@
             </div>
         </section>   
 
-        <div id="smallCanvas" onclick="fullView()"></div>
-
+        <div id="editingCanvasContainer">
+            <div id="editingCanvas" onclick="fullView()"></div>
+        </div>
+        
         <div id="canvas-modal"> <!-- initially hidden -->
             <div id="bigCanvas">
             </div>
             <button id="close-modal" onclick="closeBigCanvas()">Close</button>
         </div>
+
+        <form id="callQueueSelectorForm" method="post" action="editCallFlow.php"></form>
+
+        <form id="editingCallFlowForm"  method="post" action="editCallFlow.php"></form>
+
+        <div id="everything">
+
+            <div class="topLevelContainer">
+
+                <div class="title">
+                    <p><b> Auto-Attendant Details: </b></p>
+                </div>
+
+                <div class="subLevelContainer">
+                    <p class="editingTitle"> <b> Voicemail Members: </b> </p>
+                    <textarea name="voicemailMember" rows="4" cols="50" class="textArea" form="editingCallFlowForm"><?= $voicemailMembers ?> </textarea>
+                </div>
+
+                <div class="subLevelContainer">
+                    <p class="editingTitle"> <b> Greeting Meessage: </b> </p>
+                    <textarea name="greetingMessage" rows="4" cols="50" class="textArea" form="editingCallFlowForm"> <?=$auto_attendantGreeting ?> </textarea>
+                </div>
+
+                <div class="subLevelContainer">
+
+                    <p class="editingTitle"><b>Business Hours:</b> </p>
+
+                    <div class="businessHoursTopContainer">
+                        <div class="businessHoursSubContainer">
+                            <label for="businessStartDay">From:</label>
+                            <select name="dayStart" class="selectionStyling" form="editingCallFlowForm">
+                                <?php foreach ($optionDayStartArray as $option): ?>
+                                    <?= $option ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="businessHoursSubContainer">
+                            <label for="startTime">Start Time:</label>
+                            <input type="time" name="fromTimeStart" id="startTime" value="<?= $fromTimeStart ?>" class="selectionStyling" form="editingCallFlowForm">
+                        </div>
+
+                        <div class="businessHoursSubContainer">
+                            <label for="endTime">End Time:</label>
+                            <input type="time" name="fromTimeEnd" id="endTime" value="<?= $fromTimeEnd ?>" class="selectionStyling" form="editingCallFlowForm">
+                        </div>
+                    </div>
+
+                    <div class="businessHoursTopContainer">
+                        <div class="businessHoursSubContainer">
+                            <label for="businessEndDay">To:</label>
+                            <select name="dayEnd" class="selectionStyling" form="editingCallFlowForm">
+                                <?php foreach ($optionDayEndArray as $option): ?>
+                                        <?= $option ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="businessHoursSubContainer">
+                            <label for="endStartTime">Start Time:</label>
+                            <input type="time" name="toTimeStart" id="endStartTime" value="<?= $toTimeStart ?>" class="selectionStyling" form="editingCallFlowForm">
+                        </div>
+
+                        <div class="businessHoursSubContainer">
+                            <label for="endEndTime">End Time:</label>
+                            <input type="time" name="toTimeEnd" id="endEndTime" value="<?= $toTimeEnd ?>" class="selectionStyling" form="editingCallFlowForm">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="topLevelContainer">
+
+                <div class="title">
+                    <p><b> Call Queue Details: </b></p>
+                </div>
+
+                <div class="subLevelContainer">
+
+                    <p class="editingTitle"><b>Currently Viewing <?= $callQueueName ?> CQ</b> </p>
+
+                    <select name="indexCallQueueSelection" form="callQueueSelectorForm">
+                        <option value="To be Calculated" form="callQueueSelectorForm"> Select which Call Queue you'd like to view </option>
+                        <?php foreach ($arrayOfCurrentCallQueues as $index => $callQueue): ?>   <!-- for every call queue in the current department, create selection -->
+                                <option form="callQueueSelectorForm" value=<?= $index ?>> <?= $callQueue["queue_name"] ?> </option>                
+                        <?php endforeach; ?>
+                    </select>
+                    <button type="submit" form="callQueueSelectorForm"> Select </button>
+                    
+                </div>
+
+                <div class="subLevelContainer">
+
+                    <p class="editingTitle"><b>Call Queue Members</b> </p>
+
+                    <textarea name="callQueueMembers" rows="2" cols="50"  class="textArea" form="editingCallFlowForm"><?= $callQueueMembers ?></textarea>
+                </div>
+                
+                <div class="subLevelContainer">
+                    <p class="editingTitle"> <b> Maximum Waiting Time for a Call: </b></p>
+                    <input name="waitingTimeAmount" class="subLevelTextArea" placeholder="<?= $waitingTimeAmount ?>" form="editingCallFlowForm">  </input>
+                </div>
+                
+                <div class="subLevelContainer">
+                    <p class="editingTitle"> <b> Maximum Call Queue Limit: </b></p>
+                    <input name="maximumCallQueueLimit" class="subLevelTextArea" placeholder="<?=$maxCallsAmount?>" form="editingCallFlowForm">  </input>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div id="editButtons">
+                <button class="button"> Cancel </button>
+
+                <button class="button" name="save" type="submit" form="editingCallFlowForm"> Save </button>
+            </div>
+        </div>
+        
     </body>
 </html>
