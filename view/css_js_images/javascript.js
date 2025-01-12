@@ -299,10 +299,10 @@ function initiatilse(){
         canvas = document.getElementById('smallCanvas')
 
     } else if ($('body').attr('id') === 'editCallFlowView'){
-        width = window.innerWidth * 0.5; // 80% of the window width      
+        width = window.innerWidth * 0.7; // 80% of the window width      
         height = window.innerHeight * 0.4; // 40% of the window height
         
-        defaultX = 80; 
+        defaultX = 200; 
         defaultY = 100; 
 
         canvas = document.getElementById('editingCanvas')
@@ -319,7 +319,7 @@ function initiatilse(){
     });
 
     // setting and applying the default scale and position for the smallCanvas
-    let defaultScale = 0.2; 
+    let defaultScale = 0.22; 
     paper.scale(defaultScale, defaultScale); // apply default scale
 
     

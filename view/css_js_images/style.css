@@ -162,6 +162,11 @@ h1{
 
 /* editCallFlow View styling */
 
+#editingMainTitle{
+    background-color: red;
+    padding: 10px;
+}
+
 #editingCanvas{
     cursor: pointer;
     background-color: #1F2123;
@@ -169,17 +174,15 @@ h1{
     overflow: hidden;
     margin-bottom: 100px;
     top: 30px;
-    left: 75px;
 }
 
 #editButtons{
-    position: fixed;
     display: flex;
-    justify-content: center;   
-    bottom: 3%;  
-    left: 0%;
-    right: 0%;
+    justify-content: center;
     gap: 50px;
+    margin-top: 20px;
+    margin-bottom: 80px;
+    
    
 }
 
@@ -187,6 +190,19 @@ h1{
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;   
+}
+
+#cancelEditButton{
+    background-color: #2A628F;
+    color: white;
+    border: none; 
+}
+
+#saveEditButton{
+    background-color: red;
+    color: white;
+    border: none; 
+    width: 80px;
 }
 
 #everything{
@@ -197,7 +213,7 @@ h1{
 }
 
 .topLevelContainer{
-    width: 60%; 
+    width: 80%; 
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -213,7 +229,25 @@ h1{
     color: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.selectionContainer{
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+}
+
+#selectStyle{
+    font-size: 16px; 
+    padding: 5px;
+}
+
+#buttonStyle{
+    font-size: 14px; 
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
 }
 
 .editingTitle{
@@ -248,3 +282,22 @@ h1{
     font-size: 17px;
 }
 
+#editingCanvasContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.inputStyling{
+    font-size: 18px;
+    max-width: 40px;
+}
+
+.inputContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;  
+}
+.inputText {
+    font-size: 18px;  
+    margin: 0; 
+}

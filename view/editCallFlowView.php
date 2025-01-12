@@ -69,12 +69,12 @@
 
                 <div class="subLevelContainer">
                     <p class="editingTitle"> <b> Voicemail Members: </b> </p>
-                    <textarea name="voicemailMember" rows="4" cols="50" class="textArea" form="editingCallFlowForm"><?= $voicemailMembers ?> </textarea>
+                    <textarea name="voicemailMember" rows="4" cols="50" class="textArea" form="editingCallFlowForm"><?= $voicemailMembers ?></textarea>
                 </div>
 
                 <div class="subLevelContainer">
                     <p class="editingTitle"> <b> Greeting Meessage: </b> </p>
-                    <textarea name="greetingMessage" rows="4" cols="50" class="textArea" form="editingCallFlowForm"> <?=$auto_attendantGreeting ?> </textarea>
+                    <textarea name="greetingMessage" rows="4" cols="50" class="textArea" form="editingCallFlowForm"><?=$auto_attendantGreeting ?></textarea>
                 </div>
 
                 <div class="subLevelContainer">
@@ -84,7 +84,7 @@
                     <div class="businessHoursTopContainer">
                         <div class="businessHoursSubContainer">
                             <label for="businessStartDay">From:</label>
-                            <select name="dayStart" class="selectionStyling" form="editingCallFlowForm">
+                            <select id="selectStyle" name="dayStart" class="selectionStyling" form="editingCallFlowForm">
                                 <?php foreach ($optionDayStartArray as $option): ?>
                                     <?= $option ?>
                                 <?php endforeach; ?>
@@ -105,7 +105,7 @@
                     <div class="businessHoursTopContainer">
                         <div class="businessHoursSubContainer">
                             <label for="businessEndDay">To:</label>
-                            <select name="dayEnd" class="selectionStyling" form="editingCallFlowForm">
+                            <select id="selectStyle" name="dayEnd" class="selectionStyling" form="editingCallFlowForm">
                                 <?php foreach ($optionDayEndArray as $option): ?>
                                         <?= $option ?>
                                 <?php endforeach; ?>
@@ -136,40 +136,51 @@
 
                     <p class="editingTitle"><b>Currently Viewing <?= $callQueueName ?> CQ</b> </p>
 
-                    <select name="indexCallQueueSelection" form="callQueueSelectorForm">
-                        <option value="To be Calculated" form="callQueueSelectorForm"> Select which Call Queue you'd like to view </option>
-                        <?php foreach ($arrayOfCurrentCallQueues as $index => $callQueue): ?>   <!-- for every call queue in the current department, create selection -->
-                                <option form="callQueueSelectorForm" value=<?= $index ?>> <?= $callQueue["queue_name"] ?> </option>                
-                        <?php endforeach; ?>
-                    </select>
-                    <button type="submit" form="callQueueSelectorForm"> Select </button>
+                    <p class="editingTitle"> Select which Call Queue you'd like to view </p>
+                    
+                    <div class="selectionContainer">
+                        <select id="selectStyle" name="indexCallQueueSelection" form="callQueueSelectorForm">
+                            <?php foreach ($optionCallQueueArray as $callQueue): ?>   <!-- for every call queue in the current department, create selection -->
+                                    <?= $callQueue ?>   
+                                    
+                            <?php endforeach; ?>
+                        </select>
+                        <button id="buttonStyle" type="submit" form="callQueueSelectorForm"> Select </button>
+                    </div>
                     
                 </div>
 
                 <div class="subLevelContainer">
 
-                    <p class="editingTitle"><b>Call Queue Members</b> </p>
+                    <p class="editingTitle"><b><?= $callQueueName ?> CQ Members:</b> </p>
 
                     <textarea name="callQueueMembers" rows="2" cols="50"  class="textArea" form="editingCallFlowForm"><?= $callQueueMembers ?></textarea>
                 </div>
                 
                 <div class="subLevelContainer">
                     <p class="editingTitle"> <b> Maximum Waiting Time for a Call: </b></p>
-                    <input name="waitingTimeAmount" class="subLevelTextArea" placeholder="<?= $waitingTimeAmount ?>" form="editingCallFlowForm">  </input>
+                    <div class="inputContainer">
+                        <input name="waitingTimeAmount" class="inputStyling" value="<?= $waitingTimeAmount ?>" form="editingCallFlowForm">  </input>
+                        <p class="inputText"> seconds </p>
+                    </div>
                 </div>
                 
                 <div class="subLevelContainer">
                     <p class="editingTitle"> <b> Maximum Call Queue Limit: </b></p>
-                    <input name="maximumCallQueueLimit" class="subLevelTextArea" placeholder="<?=$maxCallsAmount?>" form="editingCallFlowForm">  </input>
+                    <div class="inputContainer">
+                        <input name="maximumCallQueueLimit" class="inputStyling" value="<?=$maxCallsAmount?>" form="editingCallFlowForm">  </input>
+                        <p class="inputText"> calls </p>
+                    </div>
+                    
                 </div>
             </div>
         </div>
 
         <div>
             <div id="editButtons">
-                <button class="button"> Cancel </button>
+                <button id="cancelEditButton" class="button" name="cancel" type="submit" form="editingCallFlowForm" > Cancel </button>
 
-                <button class="button" name="save" type="submit" form="editingCallFlowForm"> Save </button>
+                <button id="saveEditButton" class="button" name="save" type="submit" form="editingCallFlowForm"> Save </button>
             </div>
         </div>
         
