@@ -7,7 +7,7 @@
                 "auto_attendant": {
                     "name": "Sales Auto Attendant",
                     "phone_number": "+448001234567",
-                    "aa_greeting": "Welcome to the Sales... Please hold, and someone will be with you shortly. Testing",
+                    "aa_greeting": "Welcome to the Sales... Please hold, and someone will be with you shortly.",
                     "business_hours": {
                         "from_day_start": "Monday",
                         "from_time_start": "09:30",
@@ -34,17 +34,18 @@
                         {
                             "queue_name": "Sales Enquiries",
                             "routing_type": "Longest Idle",
-                            "max_calls": "10",
+                            "max_calls": "32",
                             "max_calls_exceeeded": "disconnect",
-                            "answer_timeout_seconds": "21",
+                            "answer_timeout_seconds": "32",
                             "answer_timeout_seconds_exceeded": "Sales Surveys",
                             "group": {
                                 "group_name": "Sales Team 1",
                                 "group_owner": "Alice",
                                 "members": [
-                                    "Dave",
-                                    "Tom",
-                                    "Charles"
+                                    "Eve",
+                                    "Jeff",
+                                    "Tommy",
+                                    "Angel"
                                 ]
                             }
                         },
@@ -70,16 +71,19 @@
                 "call_metrics": [
                     {
                         "call_id": 1,
+                        "number": "7492847582",
                         "wait_time": 40,
                         "abandoned": false
                     },
                     {
                         "call_id": 2,
+                        "number": "7492131143",
                         "wait_time": 55,
                         "abandoned": true
                     },
                     {
                         "call_id": 3,
+                        "number": "7211214354",
                         "wait_time": 30,
                         "abandoned": false
                     }
@@ -138,16 +142,19 @@
                 "call_metrics": [
                     {
                         "call_id": 1,
+                        "number": "723958092",
                         "wait_time": 33,
                         "abandoned": false
                     },
                     {
                         "call_id": 2,
+                        "number": "742342364",
                         "wait_time": 78,
                         "abandoned": false
                     },
                     {
                         "call_id": 3,
+                        "number": "742345141",
                         "wait_time": 30,
                         "abandoned": false
                     }
@@ -234,16 +241,19 @@
                 "call_metrics": [
                     {
                         "call_id": 1,
+                        "number": "79234801",
                         "wait_time": 23,
                         "abandoned": false
                     },
                     {
                         "call_id": 2,
+                        "number": "723490821",
                         "wait_time": 12,
                         "abandoned": false
                     },
                     {
                         "call_id": 3,
+                        "number": "754509220",
                         "wait_time": 30,
                         "abandoned": true
                     }
@@ -317,16 +327,19 @@
                 "call_metrics": [
                     {
                         "call_id": 1,
+                        "number": "723535632",
                         "wait_time": 15,
                         "abandoned": false
                     },
                     {
                         "call_id": 2,
+                        "number": "7429034802",
                         "wait_time": 4,
                         "abandoned": true
                     },
                     {
                         "call_id": 3,
+                        "number": "7892374810",
                         "wait_time": 37,
                         "abandoned": true
                     }
@@ -430,16 +443,19 @@
                 "call_metrics": [
                     {
                         "call_id": 1,
+                        "number": "7238940291",
                         "wait_time": 77,
                         "abandoned": false
                     },
                     {
                         "call_id": 2,
+                        "number": "9248092809",
                         "wait_time": 23,
                         "abandoned": true
                     },
                     {
                         "call_id": 3,
+                        "number": "7398099322",
                         "wait_time": 11,
                         "abandoned": true
                     }

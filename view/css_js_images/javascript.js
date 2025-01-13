@@ -1,13 +1,14 @@
-$(document).ready(initiatilse);
+$(document).ready(initialise);
 
 let graph = new joint.dia.Graph(); // 'graph' holds the data
 
-function initiatilse(){
+function initialise(){
 
     $.ajax({ // get the department json data 
         url: 'fetchDepartmentData.php', // specificying which php file
         method: 'POST', // fetch type
         success: function(data){
+            
 
             console.log(data); // debugging department data
 
@@ -18,7 +19,7 @@ function initiatilse(){
             const number_circle = createShape('Circle', null, 100, 200, 50, 50, 12);
             number_circle.addTo(graph);
 
-            const number_text = createTextBlock('Calling '+ data.auto_attendant.phone_number, 20, 260, 200, 30, 12);
+            const number_text = createTextBlock('Calling'+ data.auto_attendant.phone_number, 20, 260, 200, 30, 12);
             number_text.addTo(graph);
 
             const aa_name_ellipse = createShape('Ellipse', data.auto_attendant.name, 250, 185, 180, 80, 14);
@@ -324,6 +325,7 @@ function initiatilse(){
 
     
     paper.translate(defaultX, defaultY); // apply default position
+
 };
 
 function fullView() { // when the smallCanvas is clicked:

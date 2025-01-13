@@ -21,7 +21,7 @@
                 </button>
             </div>
 
-            <h1><?= $departmentName ?> </h1>
+            <h1 id="top-bar-title"><?= $departmentName ?> </h1>
         
             <div id="side-menu">
                 <ul id="unordered-list">
@@ -43,19 +43,24 @@
                     <?php endforeach; ?>
                 </ul>
             </div>
-        </section>        
+        </section>   
+        
+        <div id="smallCanvasContainer">
 
-        <div id="smallCanvas" onclick="fullView()"></div>
+            <div id="callFlowTitleContainer">
+                <h3 id="callFlowDiagramTitle"> <?= $departmentName . " Call Flow Diagram:" ?> </h3>
+                <div id="smallCanvas" onclick="fullView()"></div>
+            </div>
+
+            <div>   
+                <a href="../controller/editCallFlow.php"><button id="editButton">Edit Call Flow</button></a>
+            </div>
+        </div>
 
         <div id="canvas-modal"> <!-- initially hidden -->
             <div id="bigCanvas">
             </div>
             <button id="close-modal" onclick="closeBigCanvas()">Close</button>
         </div>
-
-        <div>   
-            <a href="../controller/editCallFlow.php"><button>Edit Call Flow</button></a>
-        </div>
     </body>
-
 </html>

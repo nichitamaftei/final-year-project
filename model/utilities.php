@@ -63,8 +63,6 @@ function doLogicAndCallEditView(){
             $voicemailMembers = implode("\n", $_SESSION["department"]["auto_attendant"]["voicemail"]["members"]);
 
             $auto_attendantGreeting =  $_SESSION["department"]["auto_attendant"]["aa_greeting"];
-
-
             $businessHoursFromStartDay =  $_SESSION["currentCallQueue"]["queue_name"];
 
             $fromTimeStart = $_SESSION["department"]["auto_attendant"]["business_hours"]["from_time_start"];
