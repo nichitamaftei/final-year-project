@@ -56,7 +56,6 @@
         </div>
 
         <form id="callQueueSelectorForm" method="post" action="editCallFlow.php"></form>
-
         <form id="editingCallFlowForm"  method="post" action="editCallFlow.php"></form>
 
         <div id="everything">
@@ -142,7 +141,6 @@
                         <select id="selectStyle" name="indexCallQueueSelection" form="callQueueSelectorForm">
                             <?php foreach ($optionCallQueueArray as $callQueue): ?>   <!-- for every call queue in the current department, create selection -->
                                     <?= $callQueue ?>   
-                                    
                             <?php endforeach; ?>
                         </select>
                         <button id="buttonStyle" type="submit" form="callQueueSelectorForm"> Select </button>
@@ -183,6 +181,5 @@
                 <button id="saveEditButton" class="button" name="save" type="submit" form="editingCallFlowForm"> Save </button>
             </div>
         </div>
-        
     </body>
 </html>

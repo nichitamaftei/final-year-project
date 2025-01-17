@@ -27,7 +27,8 @@
                         "members": [
                             "Jeff",
                             "Tommy",
-                            "Angel"
+                            "Angel",
+                            "Denis"
                         ]
                     },
                     "call_queues": [
@@ -43,9 +44,8 @@
                                 "group_owner": "Alice",
                                 "members": [
                                     "Eve",
-                                    "Jeff",
-                                    "Tommy",
-                                    "Angel"
+                                    "Thomas",
+                                    "Aidan"
                                 ]
                             }
                         },
@@ -291,17 +291,18 @@
                         {
                             "queue_name": "Billing Enquiries",
                             "routing_type": "Longest Idle",
-                            "max_calls": "15",
+                            "max_calls": "10",
                             "max_calls_exceeeded": "disconnect",
-                            "answer_timeout_seconds": "23",
+                            "answer_timeout_seconds": "20",
                             "answer_timeout_seconds_exceeded": "Account Support",
                             "group": {
                                 "group_name": "Billing Team",
                                 "group_owner": "No Owner",
                                 "members": [
-                                    "Olivia",
-                                    "Jack",
-                                    "Sophia"
+                                    "Liam",
+                                    "Mia",
+                                    "Noah",
+                                    "Heather"
                                 ]
                             }
                         },
@@ -377,16 +378,16 @@
                         {
                             "queue_name": "Recruitment",
                             "routing_type": "Longest Idle",
-                            "max_calls": "5",
+                            "max_calls": "12",
                             "max_calls_exceeeded": "disconnect",
-                            "answer_timeout_seconds": "25",
+                            "answer_timeout_seconds": "18",
                             "answer_timeout_seconds_exceeded": "Employee Relations",
                             "group": {
                                 "group_name": "Recruitment Team",
                                 "group_owner": "No Owner",
                                 "members": [
-                                    "Lucas",
-                                    "Grace"
+                                    "Isabella",
+                                    "Daniel"
                                 ]
                             }
                         },
