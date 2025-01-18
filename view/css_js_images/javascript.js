@@ -1,13 +1,144 @@
-$(document).ready(initiatilse);
+$(document).ready(initialise);
 
 let graph = new joint.dia.Graph(); // 'graph' holds the data
 
-function initiatilse(){
+function initialise(){
+
+
+     // --- defining specific shapes --- 
+
+     function createShape(type, text, x, y, width, height, stroke, fontsize){
+        const shape = new joint.shapes.standard[type](); // instantiate the specified shape
+        shape.position(x, y); // set the position of the shape
+        shape.resize(width, height);  // set the size of the shape
+
+        let labelAttrs = undefined;
+        if (text) { // if text is supplied
+            labelAttrs = { // add attributes, otherwise leave undefined
+                text: text,
+                fill: 'black',
+                style: {fontSize: fontsize + 'px', textAnchor: 'middle'}
+            };
+        }
+        shape.attr({ // styling the shape
+            body:{
+                fill: 'white',       
+                stroke: stroke,         
+                strokeWidth: 2,    
+            },
+            label: labelAttrs
+        });
+        return shape;
+    }
+
+    function createDecision(x, y, width, height, stroke){
+        const decision = new joint.shapes.standard.Rectangle(); // instantiate the rectangle
+        decision.position(x, y); // position of the rectangle within the canvas
+        decision.resize(width, height);   // size of the rectangle
+        decision.rotate(45);   // rotate the rectangle by 45 degrees
+        decision.attr({ // styling the rectangle
+            body:{
+                fill: 'white',       
+                stroke: stroke,         
+                strokeWidth: 2,    
+            },
+        });
+        return decision;
+    }
+
+    function createTextBlock(text, x, y, width, height, fontsize){
+        const textBlock = new joint.shapes.standard.TextBlock(); // instantiate the specified text
+        textBlock.position(x, y); // set the position of the text 
+        textBlock.resize(width, height);  // set the size of the text
+        textBlock.attr({ // styling the text
+            body:{
+                stroke: 'none',
+            },
+            label:{
+                text: text,              
+                style: {'font-size': fontsize + 'px'}, 
+                background: 'none'       
+            }
+        });
+        return textBlock; // return the created text block
+    }
+
+    function createLink(source, target, text, fontsize){
+        const link = new joint.shapes.standard.Link();
+        link.source(source);
+        link.target(target);
+    
+        if (text) { // if text is supplied
+            link.appendLabel({
+                attrs: { // append label with text and fontsize
+                    text: {
+                        text: text,
+                        fill: 'black',
+                        style: {fontSize: fontsize + 'px', textAnchor: 'middle'}
+                    }
+                }
+            });
+        }
+        link.attr({ // styling the link
+            line:{ 
+                stroke: 'white',
+                strokeWidth: 2,
+            },
+        });
+        return link;
+    }
+    
+
+    // ---- setting up the initial variables for the canvas ---
+
+    let width = 0;
+    let height = 0;
+
+    let defaultX = 0;
+    let defaultY = 0;
+
+    let canvas = null;
+
+    if ($('body').attr('id') === 'indexView'){
+        width = window.innerWidth * 0.6; // 80% of the window width
+        height = window.innerHeight * 0.4; // 40% of the window height
+
+        defaultX = 120; 
+        defaultY = 110; 
+
+        canvas = document.getElementById('smallCanvas')
+
+    } else if ($('body').attr('id') === 'editCallFlowView'){
+        width = window.innerWidth * 0.7; // 80% of the window width      
+        height = window.innerHeight * 0.4; // 40% of the window height
+        
+        defaultX = 200; 
+        defaultY = 100; 
+
+        canvas = document.getElementById('editingCanvas')
+    }
+
+    const paper = new joint.dia.Paper({ // 'paper' renders the view
+        el: canvas, // target the canvas div
+        model: graph,
+        width: width,
+        height: height,
+        gridSize: 10, 
+        drawGrid: true, 
+        interactive: false, 
+    });
+
+    // setting and applying the default scale and position for the smallCanvas
+    let defaultScale = 0.22; 
+    paper.scale(defaultScale, defaultScale); // apply default scale
+    paper.translate(defaultX, defaultY); // apply default position
+
 
     $.ajax({ // get the department json data 
         url: 'fetchDepartmentData.php', // specificying which php file
         method: 'POST', // fetch type
         success: function(data){
+            
 
             console.log(data); // debugging department data
 
@@ -18,7 +149,7 @@ function initiatilse(){
             const number_circle = createShape('Circle', null, 100, 200, 50, 50, 12);
             number_circle.addTo(graph);
 
-            const number_text = createTextBlock('Calling '+ data.auto_attendant.phone_number, 20, 260, 200, 30, 12);
+            const number_text = createTextBlock('Calling'+ data.auto_attendant.phone_number, 20, 260, 200, 30, 12);
             number_text.addTo(graph);
 
             const aa_name_ellipse = createShape('Ellipse', data.auto_attendant.name, 250, 185, 180, 80, 14);
@@ -195,121 +326,8 @@ function initiatilse(){
         }
     });
 
-    // --- defining specific shapes --- 
+   
 
-    function createShape(type, text, x, y, width, height, stroke, fontsize){
-        const shape = new joint.shapes.standard[type](); // instantiate the specified shape
-        shape.position(x, y); // set the position of the shape
-        shape.resize(width, height);  // set the size of the shape
-
-        let labelAttrs = undefined;
-        if (text) { // if text is supplied
-            labelAttrs = { // add attributes, otherwise leave undefined
-                text: text,
-                fill: 'black',
-                style: {fontSize: fontsize + 'px', textAnchor: 'middle'}
-            };
-        }
-        shape.attr({ // styling the shape
-            body:{
-                fill: 'white',       
-                stroke: stroke,         
-                strokeWidth: 2,    
-            },
-            label: labelAttrs
-        });
-        return shape;
-    }
-
-    function createDecision(x, y, width, height, stroke){
-        const decision = new joint.shapes.standard.Rectangle(); // instantiate the rectangle
-        decision.position(x, y); // position of the rectangle within the canvas
-        decision.resize(width, height);   // size of the rectangle
-        decision.rotate(45);   // rotate the rectangle by 45 degrees
-        decision.attr({ // styling the rectangle
-            body:{
-                fill: 'white',       
-                stroke: stroke,         
-                strokeWidth: 2,    
-            },
-        });
-        return decision;
-    }
-
-    function createTextBlock(text, x, y, width, height, fontsize){
-        const textBlock = new joint.shapes.standard.TextBlock(); // instantiate the specified text
-        textBlock.position(x, y); // set the position of the text 
-        textBlock.resize(width, height);  // set the size of the text
-        textBlock.attr({ // styling the text
-            body:{
-                stroke: 'none',
-            },
-            label:{
-                text: text,              
-                style: {'font-size': fontsize + 'px'}, 
-                background: 'none'       
-            }
-        });
-        return textBlock; // return the created text block
-    }
-
-    function createLink(source, target, text, fontsize){
-        const link = new joint.shapes.standard.Link();
-        link.source(source);
-        link.target(target);
-    
-        if (text) { // if text is supplied
-            link.appendLabel({
-                attrs: { // append label with text and fontsize
-                    text: {
-                        text: text,
-                        fill: 'black',
-                        style: {fontSize: fontsize + 'px', textAnchor: 'middle'}
-                    }
-                }
-            });
-        }
-        link.attr({ // styling the link
-            line:{ 
-                stroke: 'white',
-                strokeWidth: 2,
-            },
-        });
-        return link;
-    }
-    
-
-    // ---- setting up the view within the small canvas ---
-
-    let width = 0
-    let height = 0;
-
-    if ($('body').attr('id') === 'indexView') {
-        width = window.innerWidth * 0.6; // 80% of the window width
-        height = window.innerHeight * 0.4; // 40% of the window height
-
-    } else if ($('body').attr('id') === 'editCallFlowView'){
-        width = window.innerWidth * 0.9; // 80% of the window width
-        height = window.innerHeight * 0.5; // 40% of the window height
-    }
-
-    const paper = new joint.dia.Paper({ // 'paper' renders the view
-        el: document.getElementById('smallCanvas'), // target the canvas div
-        model: graph,
-        width: width,
-        height: height,
-        gridSize: 10, 
-        drawGrid: true, 
-        interactive: false, 
-    });
-
-    // setting and applying the default scale and position for the smallCanvas
-    let defaultScale = 0.2; 
-    paper.scale(defaultScale, defaultScale); // apply default scale
-
-    let defaulttX = 50; 
-    let defaultY = 100; 
-    paper.translate(defaulttX, defaultY); // apply default position
 };
 
 function fullView() { // when the smallCanvas is clicked:
@@ -348,8 +366,6 @@ function fullView() { // when the smallCanvas is clicked:
         } else {
             delta = -0.1; // prepare to zoom out
         }
-
-        let currentPosition = fullPaper.translate()
 
         initialScale = Math.max(0.44, Math.min(2, initialScale + delta)); // limits the zoom between 0.44 and 2
         fullPaper.scale(initialScale, initialScale); // apply scale
@@ -391,8 +407,6 @@ function fullView() { // when the smallCanvas is clicked:
     bigCanvas.addEventListener('mouseup', () => isPanning = false); // when the user releases their mouse click, set the panning flag to false
 }
 
-
-
 function closeBigCanvas(){
     const modal = document.getElementById('canvas-modal'); // grabbing the hidden modal
     modal.style.display = 'none' // enabling it to be hidden
@@ -407,6 +421,3 @@ function hideMenu(){
     const menu = document.getElementById('side-menu'); // grabbing the side bar
     menu.style.display = 'none' // hiding the side bar
 }
-
-
-

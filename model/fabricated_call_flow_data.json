@@ -1,22 +1,24 @@
 {
-  "company": {
-      "name": "Contoso",
-      "departments": [
-          {
-              "name": "Sales",
-              "auto_attendant": {
-                  "name": "Sales Auto Attendant",
-                  "phone_number": "+448001234567",
-                  "aa_greeting": "Welcome to the Sales... Please hold, and someone will be with you shortly.",
-                  "business_hours": {
-                      "time_start": "09:00 AM",
-                      "time_end": "05:00 PM",
-                      "date_start": "Monday",
-                      "date_end": "Friday",
-                      "greeting": "We are currently closed. Please leave a message or call back during business hours."
-                  },
-                  "bank_holiday": {
-                        "greeting": "Thank you for your call. We are currently closed. Please leave your name, number and a brief message, or call back during opening hours, Monday – Friday 09:00 – 17:00."
+    "company": {
+        "name": "Contoso",
+        "departments": [
+            {
+                "name": "Sales",
+                "auto_attendant": {
+                    "name": "Sales Auto Attendant",
+                    "phone_number": "+448001234567",
+                    "aa_greeting": "Welcome to the Sales... Please hold, and someone will be with you shortly.",
+                    "business_hours": {
+                        "from_day_start": "Monday",
+                        "from_time_start": "09:30",
+                        "from_time_end": "14:30",
+                        "to_day_end": "Friday",
+                        "to_time_start": "09:30",
+                        "to_time_end": "14:30",
+                        "greeting": "We are currently closed. Please leave a message or call back during business hours."
+                    },
+                    "bank_holiday": {
+                        "greeting": "Thank you for your call. We are currently closed. Please leave your name, number and a brief message, or call back during opening hours, Monday \u2013 Friday 09:00 \u2013 17:00."
                     },
                     "options_greeting": "Thank you for calling Sales. Please choose an option 1 For Sales Enquires, 2 For Sales Survey",
                     "voicemail": {
@@ -25,72 +27,85 @@
                         "members": [
                             "Jeff",
                             "Tommy",
-                            "Angel"
+                            "Angel",
+                            "Denis"
                         ]
                     },
-                  "call_queues": [
-                      {
-                          "queue_name": "Sales Enquiries",
-                          "routing_type": "Longest Idle",
-                          "max_calls": 10,
-                          "max_calls_exceeeded": "disconnect",
-                          "answer_timeout_seconds": 20,
-                          "answer_timeout_seconds_exceeded": "Sales Surveys",
-                          "group": {
-                              "group_name": "Sales Team 1",
-                              "group_owner": "Alice",
-                              "members": ["Alice", "Bob", "Charlie"]
-                          }
-                      },
-                      {
-                          "queue_name": "Sales Surveys",
-                          "routing_type": "Round Robin",
-                          "max_calls": 8,
-                          "max_calls_exceeeded": "Sales Enquries",
-                          "answer_timeout_seconds": 25,
-                          "answer_timeout_seconds_exceeded": "disconnect",
-                          "group": {
-                              "group_name": "Sales Team 2",
-                              "group_owner": "Eve",
-                              "members": ["Diana", "Eve", "Frank"]
-                          }
-                      }
-                  ]
-              },
-              
-              "call_metrics": [
-                  {
-                      "call_id": 1,
-                      "wait_time": 40,
-                      "abandoned": false
-                  },
-                  {
-                      "call_id": 2,
-                      "wait_time": 55,
-                      "abandoned": true
-                  },
-                  {
-                      "call_id": 3,
-                      "wait_time": 30,
-                      "abandoned": false
-                  }
-              ]
-          },
-          {
-              "name": "Support",
-              "auto_attendant": {
-                  "name": "Support Auto Attendant",
-                  "phone_number": "+448002345678",
-                  "aa_greeting": "Welcome to Support... Please hold, and someone will assist you shortly.",
-                  "business_hours": {
-                      "time_start": "08:00 AM",
-                      "time_end": "06:00 PM",
-                      "date_start": "Monday",
-                      "date_end": "Friday",
-                      "greeting": "We are currently closed. Please leave a message."
-                  },
-                  "bank_holiday": {
-                        "greeting": "Thank you for your call. We are currently closed. Please leave your name, number and a brief message, or call back during opening hours, Monday – Friday 09:00 – 17:00."
+                    "call_queues": [
+                        {
+                            "queue_name": "Sales Enquiries",
+                            "routing_type": "Longest Idle",
+                            "max_calls": "32",
+                            "max_calls_exceeeded": "disconnect",
+                            "answer_timeout_seconds": "32",
+                            "answer_timeout_seconds_exceeded": "Sales Surveys",
+                            "group": {
+                                "group_name": "Sales Team 1",
+                                "group_owner": "Alice",
+                                "members": [
+                                    "Eve",
+                                    "Thomas",
+                                    "Aidan"
+                                ]
+                            }
+                        },
+                        {
+                            "queue_name": "Sales Surveys",
+                            "routing_type": "Round Robin",
+                            "max_calls": "32",
+                            "max_calls_exceeeded": "Sales Enquries",
+                            "answer_timeout_seconds": "32",
+                            "answer_timeout_seconds_exceeded": "disconnect",
+                            "group": {
+                                "group_name": "Sales Team 2",
+                                "group_owner": "Eve",
+                                "members": [
+                                    "Eve",
+                                    "Thomas",
+                                    "Aidan"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "call_metrics": [
+                    {
+                        "call_id": 1,
+                        "number": "7492847582",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "call_id": 2,
+                        "number": "7492131143",
+                        "wait_time": 55,
+                        "abandoned": true
+                    },
+                    {
+                        "call_id": 3,
+                        "number": "7211214354",
+                        "wait_time": 30,
+                        "abandoned": false
+                    }
+                ]
+            },
+            {
+                "name": "Support",
+                "auto_attendant": {
+                    "name": "Support Auto Attendant",
+                    "phone_number": "+448002345678",
+                    "aa_greeting": "Welcome to Support... Please hold, and someone will assist you shortly.",
+                    "business_hours": {
+                        "from_day_start": "Monday",
+                        "from_time_start": "09:30",
+                        "from_time_end": "14:30",
+                        "to_day_end": "Friday",
+                        "to_time_start": "09:30",
+                        "to_time_end": "14:30",
+                        "greeting": "We are currently closed. Please leave a message."
+                    },
+                    "bank_holiday": {
+                        "greeting": "Thank you for your call. We are currently closed. Please leave your name, number and a brief message, or call back during opening hours, Monday \u2013 Friday 09:00 \u2013 17:00."
                     },
                     "options_greeting": "Thank you for calling Support. Please choose an option 1 For Support",
                     "voicemail": {
@@ -99,58 +114,69 @@
                         "members": [
                             "Kyle",
                             "Linda",
-                            "Steve"
+                            "Steve",
+                            "Test"
                         ]
                     },
-                  "call_queues": [
-                      {
-                          "queue_name": "Technical Support",
-                          "routing_type": "Longest Idle",
-                          "max_calls": 12,
-                          "max_calls_exceeeded": "disconnect",
-                          "answer_timeout_seconds": 30,
-                          "answer_timeout_seconds_exceeded": "disconnect",
-                          "group": {
-                              "group_name": "Tech Team",
-                              "group_owner": "No Owner",
-                              "members": ["Kyle", "Linda", "Steve"]
-                          }
-                      }
-                  ]
-              },
-              "call_metrics": [
+                    "call_queues": [
+                        {
+                            "queue_name": "Technical Support",
+                            "routing_type": "Longest Idle",
+                            "max_calls": "12",
+                            "max_calls_exceeeded": "disconnect",
+                            "answer_timeout_seconds": "31",
+                            "answer_timeout_seconds_exceeded": "disconnect",
+                            "group": {
+                                "group_name": "Tech Team",
+                                "group_owner": "No Owner",
+                                "members": [
+                                    "Kyle",
+                                    "Linda",
+                                    "Steve",
+                                    "Test"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "call_metrics": [
                     {
                         "call_id": 1,
+                        "number": "723958092",
                         "wait_time": 33,
                         "abandoned": false
                     },
                     {
                         "call_id": 2,
+                        "number": "742342364",
                         "wait_time": 78,
                         "abandoned": false
                     },
                     {
                         "call_id": 3,
+                        "number": "742345141",
                         "wait_time": 30,
                         "abandoned": false
                     }
                 ]
-          },
-          {
-              "name": "Marketing",
-              "auto_attendant": {
-                  "name": "Marketing Auto Attendant",
-                  "phone_number": "+448003456789",
-                  "aa_greeting": "Welcome to Marketing... Please hold, and someone will assist you shortly.",
-                  "business_hours": {
-                      "time_start": "09:30 AM",
-                      "time_end": "04:30 PM",
-                      "date_start": "Monday",
-                      "date_end": "Friday",
-                      "greeting": "We are currently closed. Please leave a message or call back during business hours."
-                  },
-                  "bank_holiday": {
-                        "greeting": "Thank you for your call. We are currently closed. Please leave your name, number and a brief message, or call back during opening hours, Monday – Friday 09:00 – 17:00."
+            },
+            {
+                "name": "Marketing",
+                "auto_attendant": {
+                    "name": "Marketing Auto Attendant",
+                    "phone_number": "+448003456789",
+                    "aa_greeting": "Welcome to Marketing... Please hold, and someone will assist you shortly.",
+                    "business_hours": {
+                        "from_day_start": "Monday",
+                        "from_time_start": "09:30",
+                        "from_time_end": "14:30",
+                        "to_day_end": "Friday",
+                        "to_time_start": "09:30",
+                        "to_time_end": "14:30",
+                        "greeting": "We are currently closed. Please leave a message or call back during business hours."
+                    },
+                    "bank_holiday": {
+                        "greeting": "Thank you for your call. We are currently closed. Please leave your name, number and a brief message, or call back during opening hours, Monday \u2013 Friday 09:00 \u2013 17:00."
                     },
                     "options_greeting": "Thank you for calling Marketing. Please choose an option 1 For Campaign Enquirie, 2 For Media Relations",
                     "voicemail": {
@@ -158,85 +184,98 @@
                         "group_owner": "John Smith",
                         "members": [
                             "Jeff",
-                            "Sarah",
-                            "Paul"
+                            "Sarah"
                         ]
                     },
-                  "call_queues": [
-                      {
-                          "queue_name": "Campaign Enquiries",
-                          "routing_type": "Round Robin",
-                          "max_calls": 12,
-                          "max_calls_exceeeded": "Media Relations",
-                          "answer_timeout_seconds": 20,
-                          "answer_timeout_seconds_exceeded": "Media Relations",
-                          "group": {
-                              "group_name": "Campaign Team",
-                              "group_owner": "Paul",
-                              "members": ["Sarah", "Paul"]
-                          }
-                      },
-                      {
-                          "queue_name": "Media Relations",
-                          "routing_type": "Longest Idle",
-                          "max_calls": 10,
-                          "max_calls_exceeeded": "Public Relations",
-                          "answer_timeout_seconds": 15,
-                          "answer_timeout_seconds_exceeded": "Public Relations",
-                          "group": {
-                              "group_name": "Media Team",
-                              "group_owner": "David",
-                              "members": ["David", "Emma"]
-                          }
-                      },
-                      {
-                          "queue_name": "Public Relations",
-                          "routing_type": "Round Robin",
-                          "max_calls": 8,
-                          "max_calls_exceeeded": "disconnect",
-                          "answer_timeout_seconds": 18,
-                          "answer_timeout_seconds_exceeded": "Media Relations",
-                          "group": {
-                              "group_name": "PR Team",
-                              "group_owner": "No group owner",
-                              "members": ["Jessica", "Adam"]
-                          }
-                      }
-                  ]
-              },
-              "call_metrics": [
+                    "call_queues": [
+                        {
+                            "queue_name": "Campaign Enquiries",
+                            "routing_type": "Round Robin",
+                            "max_calls": "12",
+                            "max_calls_exceeeded": "Media Relations",
+                            "answer_timeout_seconds": "20",
+                            "answer_timeout_seconds_exceeded": "Media Relations",
+                            "group": {
+                                "group_name": "Campaign Team",
+                                "group_owner": "Paul",
+                                "members": [
+                                    "Sarah",
+                                    "Paul"
+                                ]
+                            }
+                        },
+                        {
+                            "queue_name": "Media Relations",
+                            "routing_type": "Longest Idle",
+                            "max_calls": 10,
+                            "max_calls_exceeeded": "Public Relations",
+                            "answer_timeout_seconds": 15,
+                            "answer_timeout_seconds_exceeded": "Public Relations",
+                            "group": {
+                                "group_name": "Media Team",
+                                "group_owner": "David",
+                                "members": [
+                                    "David",
+                                    "Emma"
+                                ]
+                            }
+                        },
+                        {
+                            "queue_name": "Public Relations",
+                            "routing_type": "Round Robin",
+                            "max_calls": 8,
+                            "max_calls_exceeeded": "disconnect",
+                            "answer_timeout_seconds": 18,
+                            "answer_timeout_seconds_exceeded": "Media Relations",
+                            "group": {
+                                "group_name": "PR Team",
+                                "group_owner": "No group owner",
+                                "members": [
+                                    "Jessica",
+                                    "Adam"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "call_metrics": [
                     {
                         "call_id": 1,
+                        "number": "79234801",
                         "wait_time": 23,
                         "abandoned": false
                     },
                     {
                         "call_id": 2,
+                        "number": "723490821",
                         "wait_time": 12,
                         "abandoned": false
                     },
                     {
                         "call_id": 3,
+                        "number": "754509220",
                         "wait_time": 30,
                         "abandoned": true
                     }
                 ]
-          },
-          {
-              "name": "Finance",
-              "auto_attendant": {
-                  "name": "Finance Auto Attendant",
-                  "phone_number": "+448004567890",
-                  "aa_greeting": "Welcome to Finance... Please hold, and someone will assist you shortly.",
-                  "business_hours": {
-                      "time_start": "09:00 AM",
-                      "time_end": "05:00 PM",
-                      "date_start": "Monday",
-                      "date_end": "Friday",
-                      "greeting": "We are currently closed. Please leave a message."
-                  },
-                  "bank_holiday": {
-                        "greeting": "Thank you for your call. We are currently closed. Please leave your name, number and a brief message, or call back during opening hours, Monday – Friday 09:00 – 17:00."
+            },
+            {
+                "name": "Finance",
+                "auto_attendant": {
+                    "name": "Finance Auto Attendant",
+                    "phone_number": "+448004567890",
+                    "aa_greeting": "Welcome to Finance... Please hold, and someone will assist you shortly.",
+                    "business_hours": {
+                        "from_day_start": "Monday",
+                        "from_time_start": "09:30",
+                        "from_time_end": "14:30",
+                        "to_day_end": "Friday",
+                        "to_time_start": "09:30",
+                        "to_time_end": "14:30",
+                        "greeting": "We are currently closed. Please leave a message."
+                    },
+                    "bank_holiday": {
+                        "greeting": "Thank you for your call. We are currently closed. Please leave your name, number and a brief message, or call back during opening hours, Monday \u2013 Friday 09:00 \u2013 17:00."
                     },
                     "options_greeting": "Thank you for calling Finance. Please choose an option 1 For Billing Enquiries, 2 For Account Support",
                     "voicemail": {
@@ -248,68 +287,82 @@
                             "Tom"
                         ]
                     },
-                  "call_queues": [
-                      {
-                          "queue_name": "Billing Enquiries",
-                          "routing_type": "Longest Idle",
-                          "max_calls": 15,
-                          "max_calls_exceeeded": "disconnect",
-                          "answer_timeout_seconds": 25,
-                          "answer_timeout_seconds_exceeded": "Account Support",
-                          "group": {
-                              "group_name": "Billing Team",
-                              "group_owner": "No Owner",
-                              "members": ["Olivia", "Jack", "Sophia"]
-                          }
-                      },
-                      {
-                          "queue_name": "Account Support",
-                          "routing_type": "Round Robin",
-                          "max_calls": 10,
-                          "max_calls_exceeeded": "disconnect",
-                          "answer_timeout_seconds": 20,
-                          "answer_timeout_seconds_exceeded": "disconnect",
-                          "group": {
-                              "group_name": "Accounts Team",
-                              "group_owner": "No Owner",
-                              "members": ["Liam", "Mia", "Noah"]
-                          }
-                      }
-                  ]
-              },
-              "call_metrics": [
+                    "call_queues": [
+                        {
+                            "queue_name": "Billing Enquiries",
+                            "routing_type": "Longest Idle",
+                            "max_calls": "10",
+                            "max_calls_exceeeded": "disconnect",
+                            "answer_timeout_seconds": "20",
+                            "answer_timeout_seconds_exceeded": "Account Support",
+                            "group": {
+                                "group_name": "Billing Team",
+                                "group_owner": "No Owner",
+                                "members": [
+                                    "Liam",
+                                    "Mia",
+                                    "Noah",
+                                    "Heather"
+                                ]
+                            }
+                        },
+                        {
+                            "queue_name": "Account Support",
+                            "routing_type": "Round Robin",
+                            "max_calls": 10,
+                            "max_calls_exceeeded": "disconnect",
+                            "answer_timeout_seconds": 20,
+                            "answer_timeout_seconds_exceeded": "disconnect",
+                            "group": {
+                                "group_name": "Accounts Team",
+                                "group_owner": "No Owner",
+                                "members": [
+                                    "Liam",
+                                    "Mia",
+                                    "Noah"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "call_metrics": [
                     {
                         "call_id": 1,
+                        "number": "723535632",
                         "wait_time": 15,
                         "abandoned": false
                     },
                     {
                         "call_id": 2,
+                        "number": "7429034802",
                         "wait_time": 4,
                         "abandoned": true
                     },
                     {
                         "call_id": 3,
+                        "number": "7892374810",
                         "wait_time": 37,
                         "abandoned": true
                     }
                 ]
-          },
-          {
-              "name": "Human Resources",
-              "auto_attendant": {
-                  "name": "HR Auto Attendant",
-                  "phone_number": "+448005678901",
-                  "aa_greeting": "Welcome to HR... Please hold, and someone will assist you shortly.",
-                  "business_hours": {
-                      "time_start": "09:00 AM",
-                      "time_end": "05:00 PM",
-                      "date_start": "Monday",
-                      "date_end": "Friday",
-                      "greeting": "We are currently closed. Please leave a message."
-                  },
-                  "bank_holiday": {
-                        "greeting": "Thank you for your call. We are currently closed. Please leave your name, number and a brief message, or call back during opening hours, Monday – Friday 09:00 – 17:00."
+            },
+            {
+                "name": "Human Resources",
+                "auto_attendant": {
+                    "name": "HR Auto Attendant",
+                    "phone_number": "+448005678901",
+                    "aa_greeting": "Welcome to HR... Please hold, and someone will assist you shortly.",
+                    "business_hours": {
+                        "from_day_start": "Monday",
+                        "from_time_start": "09:30",
+                        "from_time_end": "14:30",
+                        "to_day_end": "Friday",
+                        "to_time_start": "09:30",
+                        "to_time_end": "14:30",
+                        "greeting": "We are currently closed. Please leave a message."
+                    },
+                    "bank_holiday": {
+                        "greeting": "Thank you for your call. We are currently closed. Please leave your name, number and a brief message, or call back during opening hours, Monday \u2013 Friday 09:00 \u2013 17:00."
                     },
                     "options_greeting": "Thank you for calling HR. Please choose an option 1 For Recruitment, 2 For Employee Relations, 3 For HR Support, 4 For Compensation Queries",
                     "voicemail": {
@@ -321,79 +374,94 @@
                             "James"
                         ]
                     },
-                  "call_queues": [
-                      {
-                          "queue_name": "Recruitment",
-                          "routing_type": "Longest Idle",
-                          "max_calls": 10,
-                          "max_calls_exceeeded": "disconnect",
-                          "answer_timeout_seconds": 20,
-                          "answer_timeout_seconds_exceeded": "Employee Relations",
-                          "group": {
-                              "group_name": "Recruitment Team",
-                              "group_owner": "No Owner",
-                              "members": ["Henry", "Ella"]
-                          }
-                      },
-                      {
-                          "queue_name": "Employee Relations",
-                          "routing_type": "Round Robin",
-                          "max_calls": 8,
-                          "max_calls_exceeeded": "HR Support",
-                          "answer_timeout_seconds": 15,
-                          "answer_timeout_seconds_exceeded": "disconnect",
-                          "group": {
-                              "group_name": "ER Team",
-                              "group_owner": "No Owner",
-                              "members": ["James", "Lily"]
-                          }
-                      },
-                      {
-                          "queue_name": "HR Support",
-                          "routing_type": "Longest Idle",
-                          "max_calls": 12,
-                          "max_calls_exceeeded": "disconnect",
-                          "answer_timeout_seconds": 18,
-                          "answer_timeout_seconds_exceeded": "Compensation Queries",
-                          "group": {
-                              "group_name": "HR Team",
-                              "group_owner": "Daniel",
-                              "members": ["Isabella", "Daniel"]
-                          }
-                      },
-                      {
-                          "queue_name": "Compensation Queries",
-                          "routing_type": "Round Robin",
-                          "max_calls": 5,
-                          "max_calls_exceeeded": "disconnect",
-                          "answer_timeout_seconds": 25,
-                          "answer_timeout_seconds_exceeded": "Compensation Queries",
-                          "group": {
-                              "group_name": "Compensation Team",
-                              "group_owner": "Lucas",
-                              "members": ["Lucas", "Grace"]
-                          }
-                      }
-                  ]
-              },
-              "call_metrics": [
+                    "call_queues": [
+                        {
+                            "queue_name": "Recruitment",
+                            "routing_type": "Longest Idle",
+                            "max_calls": "12",
+                            "max_calls_exceeeded": "disconnect",
+                            "answer_timeout_seconds": "18",
+                            "answer_timeout_seconds_exceeded": "Employee Relations",
+                            "group": {
+                                "group_name": "Recruitment Team",
+                                "group_owner": "No Owner",
+                                "members": [
+                                    "Isabella",
+                                    "Daniel"
+                                ]
+                            }
+                        },
+                        {
+                            "queue_name": "Employee Relations",
+                            "routing_type": "Round Robin",
+                            "max_calls": 8,
+                            "max_calls_exceeeded": "HR Support",
+                            "answer_timeout_seconds": 15,
+                            "answer_timeout_seconds_exceeded": "disconnect",
+                            "group": {
+                                "group_name": "ER Team",
+                                "group_owner": "No Owner",
+                                "members": [
+                                    "James",
+                                    "Lily"
+                                ]
+                            }
+                        },
+                        {
+                            "queue_name": "HR Support",
+                            "routing_type": "Longest Idle",
+                            "max_calls": 12,
+                            "max_calls_exceeeded": "disconnect",
+                            "answer_timeout_seconds": 18,
+                            "answer_timeout_seconds_exceeded": "Compensation Queries",
+                            "group": {
+                                "group_name": "HR Team",
+                                "group_owner": "Daniel",
+                                "members": [
+                                    "Isabella",
+                                    "Daniel"
+                                ]
+                            }
+                        },
+                        {
+                            "queue_name": "Compensation Queries",
+                            "routing_type": "Round Robin",
+                            "max_calls": 5,
+                            "max_calls_exceeeded": "disconnect",
+                            "answer_timeout_seconds": 25,
+                            "answer_timeout_seconds_exceeded": "Compensation Queries",
+                            "group": {
+                                "group_name": "Compensation Team",
+                                "group_owner": "Lucas",
+                                "members": [
+                                    "Lucas",
+                                    "Grace"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "call_metrics": [
                     {
                         "call_id": 1,
+                        "number": "7238940291",
                         "wait_time": 77,
                         "abandoned": false
                     },
                     {
                         "call_id": 2,
+                        "number": "9248092809",
                         "wait_time": 23,
                         "abandoned": true
                     },
                     {
                         "call_id": 3,
+                        "number": "7398099322",
                         "wait_time": 11,
                         "abandoned": true
                     }
                 ]
-          }
-      ]
-  }
+            }
+        ]
+    }
 }
