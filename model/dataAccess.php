@@ -37,6 +37,12 @@ class pdoSingleton{
         return $results;
     }
 
+    public function updateLastLogInByID($employeeID){
+        $pdo = $this->pdo;
+        $statement = $pdo->prepare("UPDATE Employees SET LastLogIn = NOW() WHERE EmployeeID = ?");
+        $statement->execute([$employeeID]);
+    }
+
     // role access
 
     public function getAllRoles(){
@@ -47,6 +53,14 @@ class pdoSingleton{
         return $results;
     }
 
+    public function getRoleByID($roleID){
+        $pdo = $this->pdo;
+        $statement = $pdo->prepare("SELECT * FROM Roles WHERE RoleID = ?");
+        $statement->execute([$roleID]);
+        $results = $statement->fetch(PDO::FETCH_OBJ);
+        return $results;
+    }
+
     public function addNewRole($role){
         $pdo = $this->pdo;
         $statement = $pdo->prepare("INSERT INTO Roles (RoleName) VALUES (?)");
@@ -54,11 +68,23 @@ class pdoSingleton{
         return $pdo->lastInsertId();
     }
 
-    public function deleteRoleById($roleId) {
+    public function deleteRoleById($roleID){
         $pdo = $this->pdo;
         $statement = $pdo->prepare("DELETE FROM Roles WHERE RoleID = ?");
-        $statement->execute([$roleId]);
+        $statement->execute([$roleID]);
     }
+
+
+    // employeeRole access
+
+    public function getAllEmployeeRole(){
+        $pdo = $this->pdo;
+        $statement = $pdo->prepare("SELECT * FROM EmployeeRole");
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "EmployeeRole");
+        return $results;
+    }
+
 }
 
 ?>

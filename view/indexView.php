@@ -43,6 +43,10 @@
                     <?php endforeach; ?>
                 </ul>
             </div>
+
+            <?php if ($_SESSION['loggedInEmployee']->isAdmin == 1):   ?>
+                <a href="../controller/admin.php" id="admin_link">Admin Area</a>
+            <?php endif; ?>
         </section>   
         
         <div id="smallCanvasContainer">

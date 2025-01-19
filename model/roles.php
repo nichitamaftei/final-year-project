@@ -12,4 +12,5 @@ class Roles {
         $this->$name = $value;
     }
 }
+
 ?>

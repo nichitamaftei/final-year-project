@@ -22,44 +22,95 @@ function doLogicAndCallIndexView() {
 
         $arrayOfDepartments = $jsonData['company']['departments']; // puts the array of departments into a variable
 
+        
 
-        $databaseRoles = $pdoSingleton->getAllRoles();
+        if ($_SESSION["loggedInEmployee"]->isAdmin == 0) { // if the logged in employee isn't an admin
 
-        foreach ($arrayOfDepartments as $department){
+            // if there are new departments in the json file that are not in the database as a role, add them
 
-            $databaseRoleExists = false;
+            $databaseRoles = $pdoSingleton->getAllRoles();
 
-            foreach ($databaseRoles as $databaseRole){
+            foreach ($arrayOfDepartments as $department){
 
-                if ($department['name'] == $databaseRole->RoleName) {
-                    $databaseRoleExists = true;
-                    break;
+                $databaseRoleExists = false;
+
+                foreach ($databaseRoles as $databaseRole){
+
+                    if ($department['name'] == $databaseRole->RoleName) {
+                        $databaseRoleExists = true;
+                        break;
+                    }
+                }
+
+                if (!$databaseRoleExists){
+                    $role = new Roles();
+                    $role->RoleName = $department['name'];
+                    $pdoSingleton->addNewRole($role); 
                 }
             }
 
-            if (!$databaseRoleExists){
-                $role = new Roles();
-                $role->RoleName = $department['name'];
-                $pdoSingleton->addNewRole($role); 
+            // if a department is deleted from the json file, delete it from the database
 
-            }
-        }
-
-        foreach ($databaseRoles as $databaseRole) {
-            $roleFound = false;
-        
-            foreach ($arrayOfDepartments as $department) {
-                if ($department['name'] == $databaseRole->RoleName) {
-                    $roleFound = true;
-                    break; 
-                }
-            }
-        
-            if (!$roleFound) {
-                $pdoSingleton->deleteRoleById($databaseRole->RoleID); 
-            }
-        }
+            foreach ($databaseRoles as $databaseRole) {
+                $roleFound = false;
             
+                foreach ($arrayOfDepartments as $department) {
+                    if ($department['name'] == $databaseRole->RoleName) {
+                        $roleFound = true;
+                        break; 
+                    }
+                }
+            
+                if (!$roleFound) {
+                    $pdoSingleton->deleteRoleById($databaseRole->RoleID); 
+                }
+            }
+
+            // get a list of the department names the loggedin employee has access to
+
+            $arrayOfEmployeeRole = $pdoSingleton->getAllEmployeeRole(); 
+
+            $allowedToViewDepartments = [];
+
+
+            foreach ($arrayOfEmployeeRole as $allowed) {
+
+                if ($_SESSION['loggedInEmployee']->EmployeeID == $allowed->EmployeeID){
+                    $allowedRole = $pdoSingleton->getRoleByID($allowed->RoleID); 
+
+                    if ($allowedRole) {
+                        $allowedToViewDepartments[] = $allowedRole->RoleName;
+                    }
+                }
+            }
+
+            // in the arrayOfDepartments, remove departments which are not on the list
+
+
+            foreach ($arrayOfDepartments as $key => $department) {
+
+                $roleFound = false;
+
+                foreach ($allowedToViewDepartments as $allowed) {
+                    if ($department['name'] == $allowed) {
+                        $roleFound = true;
+                        break; 
+                    }
+                }
+            
+                if (!$roleFound) {
+                    unset($arrayOfDepartments[$key]); 
+                }
+            }
+
+            // set the removed departments to it's self
+            
+            $arrayOfDepartments = array_values($arrayOfDepartments);
+
+        }
+
+        
+
         if (!isset($_SESSION["department"])) {
             $_SESSION["department"] = $arrayOfDepartments[0]; // default to the first department
         }
@@ -75,8 +126,6 @@ function doLogicAndCallIndexView() {
         }
 
         $results = $pdoSingleton->getAllEmployees();
-
-        print_r($results);
         
         $departmentName = $_SESSION["department"]['name']; // displays the currently selected department for debugging purposes
 
@@ -106,6 +155,7 @@ function doLogicAndCallLoginView(){
 
         if ($found == true){
             $_SESSION["loggedInEmployee"] = $foundEmployee;
+            $pdoSingleton->updateLastLogInByID($_SESSION["loggedInEmployee"]->EmployeeID);
             //$_SESSION["signOut"] = "Logged in as: " . $foundUser->email . " (Click here to log out)";
         }
     }

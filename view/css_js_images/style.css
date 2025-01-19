@@ -341,3 +341,10 @@ body{
     font-size: 18px;  
     margin: 0; 
 }
+
+
+/* Styling the admin view */
+
+#listOfEmployeesTable{
+    color: white;
+}

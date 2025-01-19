@@ -1,13 +1,9 @@
 <?php 
 
-class Employees {
+class EmployeeRole {
+    private $EmployeeRoleID;
     private $EmployeeID;
-    private $FirstName;
-    private $LastName;
-    private $Email;
-    private $Password;
-    private $LastLogIn;
-    private $isAdmin;
+    private $RoleID;
 
     function __get($name) {
         return $this->$name;
