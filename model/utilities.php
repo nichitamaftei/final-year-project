@@ -5,24 +5,29 @@ function doLogicAndCallIndexView() {
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
-    if (!isset($_SESSION["loggedInEmployee"])){
-        $_SESSION["loggedInEmployee"] = null;
+    if (!isset($_SESSION["loggedInEmployee"])){ // if an employee isn't logged in 
+        $_SESSION["loggedInEmployee"] = null; // set the session variable 'loggedInEmployee' to null
     }
     
-    if ($_SESSION["loggedInEmployee"] == null){
+    if ($_SESSION["loggedInEmployee"] == null){ // if the session variable 'loggedInEmployee' is null
 
-        doLogicAndCallLoginView();
+        doLogicAndCallLoginView(); // go to the log in view
         require_once("../view/loginView.php");
     
-    } else{
+    } else if (isset($_POST['signOut'])) { // if the employee clicked the 'sign out' button
+
+        $_SESSION["loggedInEmployee"] = null;
+
+        doLogicAndCallLoginView(); // go to the log in view
+        require_once("../view/loginView.php");
+    
+    } else{ // otherwise
 
         $pdoSingleton = pdoSingleton::getInstance();
 
         $jsonData = getCallData();
 
         $arrayOfDepartments = $jsonData['company']['departments']; // puts the array of departments into a variable
-
-        
 
         if ($_SESSION["loggedInEmployee"]->isAdmin == 0) { // if the logged in employee isn't an admin
 
@@ -109,27 +114,34 @@ function doLogicAndCallIndexView() {
 
         }
 
-        
+        if (empty($arrayOfDepartments)) { // if the employee has access to no departments
+            
+            $departmentName = "You do not have access to any departments.";
+            require_once("../view/indexView.php");
 
-        if (!isset($_SESSION["department"])) {
-            $_SESSION["department"] = $arrayOfDepartments[0]; // default to the first department
+        } else{ // otherwise
+
+            if (!isset($_SESSION["department"])){ // if the session variable 'department' isn't set, set it to the first index of $arrayOfDepartments variable
+                $_SESSION["department"] = $arrayOfDepartments[0]; // default to the first department
+            }
+    
+            if (isset($_POST['dept'])){ // if the employee navigated to a different department
+                $deptIndex = (int)$_REQUEST['dept']; // obtains the index of the selected department
+                $_SESSION["department"] = $arrayOfDepartments[$deptIndex]; // uses the index to select the department
+                $_SESSION["deptIndex"] = $deptIndex;
+            } else{
+                $deptIndex = 0; // obtains the index of the selected department
+                $_SESSION["department"] = $arrayOfDepartments[$deptIndex]; // uses the index to select the department
+                $_SESSION["deptIndex"] = $deptIndex;
+            }
+    
+            $results = $pdoSingleton->getAllEmployees();
+            
+            $departmentName = $_SESSION["department"]['name']; // displays the currently selected department for debugging purposes
+    
+            require_once("../view/indexView.php");
+
         }
-
-        if (isset($_POST['dept'])) {
-            $deptIndex = (int)$_REQUEST['dept']; // obtains the index of the selected department
-            $_SESSION["department"] = $arrayOfDepartments[$deptIndex]; // uses the index to select the department
-            $_SESSION["deptIndex"] = $deptIndex;
-        } else {
-            $deptIndex = 0; // obtains the index of the selected department
-            $_SESSION["department"] = $arrayOfDepartments[$deptIndex]; // uses the index to select the department
-            $_SESSION["deptIndex"] = $deptIndex;
-        }
-
-        $results = $pdoSingleton->getAllEmployees();
-        
-        $departmentName = $_SESSION["department"]['name']; // displays the currently selected department for debugging purposes
-
-        require_once("../view/indexView.php");
     }
 }
 
@@ -137,7 +149,7 @@ function doLogicAndCallLoginView(){
 
     $pdoSingleton = pdoSingleton::getInstance(); // getting the pdoSingleton in order to access methods that speak to the database
 
-    if (!isset($_REQUEST["logInEmail"]) && !isset($_REQUEST["logInPassword"])){
+    if (!isset($_REQUEST["logInEmail"]) && !isset($_REQUEST["logInPassword"])){ // if nothing was input, set default values
         $_REQUEST["logInEmail"] = "";
         $_REQUEST["logInPassword"] = "";
     }
@@ -156,11 +168,10 @@ function doLogicAndCallLoginView(){
         if ($found == true){
             $_SESSION["loggedInEmployee"] = $foundEmployee;
             $pdoSingleton->updateLastLogInByID($_SESSION["loggedInEmployee"]->EmployeeID);
-            //$_SESSION["signOut"] = "Logged in as: " . $foundUser->email . " (Click here to log out)";
         }
     }
 
-    if ($_SESSION["loggedInEmployee"] != null){
+    if (isset($_SESSION["loggedInEmployee"])){
     
         doLogicAndCallIndexView();
     }

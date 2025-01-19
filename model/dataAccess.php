@@ -43,6 +43,31 @@ class pdoSingleton{
         $statement->execute([$employeeID]);
     }
 
+    public function deleteEmployeeFromID($employeeID){
+        $pdo = $this->pdo;
+        $statement = $pdo->prepare("DELETE FROM Employees WHERE EmployeeID = ?");
+        $statement->execute([$employeeID]);
+    }
+
+    public function removeAdminFromID($employeeID){
+        $pdo = $this->pdo;
+        $statement = $pdo->prepare("UPDATE Employees SET isAdmin = 0 WHERE EmployeeID = ?");
+        $statement->execute([$employeeID]);
+    }
+
+    public function addAdminFromID($employeeID){
+        $pdo = $this->pdo;
+        $statement = $pdo->prepare("UPDATE Employees SET isAdmin = 1 WHERE EmployeeID = ?");
+        $statement->execute([$employeeID]);
+    }
+
+    public function addEmployee($employee){
+        $pdo = $this->pdo;
+        $statement = $pdo->prepare("INSERT INTO Employees (FirstName, LastName, Email, Password) VALUES (?,?,?,?)");
+        $statement->execute([$employee->FirstName, $employee->LastName, $employee->Email, $employee->Password]);
+        return $pdo->lastInsertId();
+    }
+
     // role access
 
     public function getAllRoles(){
@@ -85,6 +110,25 @@ class pdoSingleton{
         return $results;
     }
 
+    public function removeRoleFromEmployee($employeeID, $roleID){
+        $pdo = $this->pdo;
+        $statement = $pdo->prepare("DELETE FROM EmployeeRole WHERE EmployeeID = ? AND RoleID = ?");
+        $statement->execute([$employeeID, $roleID]);
+    }
+
+    public function addRoleToEmployee($employeeID, $roleID){
+        $pdo = $this->pdo;
+        $statement = $pdo->prepare("INSERT INTO EmployeeRole (EmployeeID, RoleID) VALUES (?, ?)");
+        $statement->execute([$employeeID, $roleID]);
+    }
+
+    public function removeAllInEmployeeRoleByID($employeeID){
+        $pdo = $this->pdo;
+        $statement = $pdo->prepare("DELETE FROM EmployeeRole WHERE EmployeeID = ?");
+        $statement->execute([$employeeID]);
+    }
+
+    
 }
 
 ?>
