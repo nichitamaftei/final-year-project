@@ -22,6 +22,12 @@
             </div>
 
             <h1 id="top-bar-title"><?= $departmentName ?> </h1>
+
+            <form method="post" action="index.php"> 
+                <input type="hidden" name="signOut" value="true">
+                <button type="submit" id="signOut"> Sign Out </button>
+            </form>
+
         
             <div id="side-menu">
                 <ul id="unordered-list">
@@ -43,6 +49,10 @@
                     <?php endforeach; ?>
                 </ul>
             </div>
+
+            <?php if ($_SESSION['loggedInEmployee']->isAdmin == 1):   ?>
+                <a href="../controller/admin.php" id="admin_link">Admin Area</a>
+            <?php endif; ?>
         </section>   
         
         <div id="smallCanvasContainer">
@@ -52,9 +62,11 @@
                 <div id="smallCanvas" onclick="fullView()"></div>
             </div>
 
-            <div>   
-                <a href="../controller/editCallFlow.php"><button id="editButton">Edit Call Flow</button></a>
-            </div>
+            <?php if ($_SESSION['loggedInEmployee']->isAdmin == 1): ?>
+                <div>   
+                    <a href="../controller/editCallFlow.php"><button id="editButton">Edit Call Flow</button></a>
+                </div>
+            <?php endif; ?>            
         </div>
 
         <div id="canvas-modal"> <!-- initially hidden -->
