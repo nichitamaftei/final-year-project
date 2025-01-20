@@ -14,7 +14,7 @@
     <body id="loginView">
         <!-- top bar of the screen -->
         <section id='top-bar'>
-            <h1 id="top-bar-title"> Login </h1>
+            <h1 id="topBarTitle"> Login </h1>
         </section>   
         
         

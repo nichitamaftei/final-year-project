@@ -13,7 +13,7 @@
 
     <body id="indexView">
         <!-- top bar of the screen -->
-        <section id='top-bar'>
+        <section id='topBar'>
 
             <div id="hamburger-container">
                 <button class="hamburger" onclick="showMenu()">
@@ -21,7 +21,7 @@
                 </button>
             </div>
 
-            <h1 id="top-bar-title"><?= $departmentName ?> </h1>
+            <h1 id="topBarTitle"><?= $departmentName ?> </h1>
 
             <form method="post" action="index.php"> 
                 <input type="hidden" name="signOut" value="true">
@@ -33,7 +33,7 @@
                 <ul id="unordered-list">
                     
                     <li class="list-items">
-                        <button class="backButton" onclick="hideMenu()">
+                        <button id="sideMenuBackButton" onclick="hideMenu()">
                             <img id="backbutton-icon"src="../view/css_js_images/backButtonIcon.png" alt="">
                         </button>
                     </li>

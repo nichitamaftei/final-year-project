@@ -114,7 +114,7 @@ function doLogicAndCallIndexView() {
 
         }
 
-        if (empty($arrayOfDepartments)) { // if the employee has access to no departments
+        if (empty($arrayOfDepartments)) { // if the employee has access to no department
             
             $departmentName = "You do not have access to any departments.";
             require_once("../view/indexView.php");
@@ -146,6 +146,9 @@ function doLogicAndCallIndexView() {
 }
 
 function doLogicAndCallLoginView(){
+
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
 
     $pdoSingleton = pdoSingleton::getInstance(); // getting the pdoSingleton in order to access methods that speak to the database
 
@@ -192,7 +195,7 @@ function doLogicAndCallLoginView(){
     }
 
     if (isset($_SESSION["loggedInEmployee"])){
-    
+
         doLogicAndCallIndexView();
     }
     else{
