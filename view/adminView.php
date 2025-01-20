@@ -142,8 +142,28 @@
 
             <div id="logs" class="content">
 
-                <p> Logs </p>
-
+                <table id="listOfEmployeesTable">
+                    <thead>
+                        <tr class="tableRow">
+                            <th> <p> Date </p> </th>
+                            <th> <p> Time </p> </th>
+                            <th> <p> Name </p> </th>
+                            <th> <p> Event Type </p> </th>
+                            <th> <p> Details </p> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($auditLogs as $auditLog): ?>
+                            <tr class="tableRow"> 
+                                <th> <p> <?= $auditLog->Date ?> </th>
+                                <th> <p> <?= $auditLog->Time ?> </p> </th>
+                                <th> <?= $auditLog->FirstName ?> <?= $auditLog->LastName ?></th>
+                                <th> <p> <?= $auditLog->ActionPerformed ?> </p> </th>
+                                <th> <p> <?= $auditLog->Details ?> </p> </th>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </body>

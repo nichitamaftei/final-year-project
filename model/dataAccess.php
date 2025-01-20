@@ -18,7 +18,7 @@ class pdoSingleton{
                                                        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     }
 
-    // singleton setup, calls the constructor if it hasn't been initialised once before. If it has then return itself.
+    // singleton setup: calls the constructor if it hasn't been initialised once before. If it has, then return itself
 
     public static function getInstance() {
         if (!self::$instance) {
@@ -27,7 +27,7 @@ class pdoSingleton{
         return self::$instance;
     }
 
-    // employee access
+    // Employee access
 
     public function getAllEmployees(){
         $pdo = $this->pdo;
@@ -68,7 +68,17 @@ class pdoSingleton{
         return $pdo->lastInsertId();
     }
 
-    // role access
+    public function getEmployeeByID($employeeID){
+        $pdo = $this->pdo;
+        $statement = $pdo->prepare("SELECT * FROM Employees WHERE EmployeeID = ?");
+        $statement->execute([$employeeID]);
+        $results = $statement->fetch(PDO::FETCH_OBJ);
+        return $results;
+    }
+
+
+
+    // Role access
 
     public function getAllRoles(){
         $pdo = $this->pdo;
@@ -100,7 +110,7 @@ class pdoSingleton{
     }
 
 
-    // employeeRole access
+    // EmployeeRole access
 
     public function getAllEmployeeRole(){
         $pdo = $this->pdo;
@@ -128,7 +138,26 @@ class pdoSingleton{
         $statement->execute([$employeeID]);
     }
 
+    // AuditLogs access
+
+    public function getAllAuditLogsWithEmployeeNames(){
+        $pdo = $this->pdo;        
+        $statement = $pdo->prepare("SELECT AuditLogs.*, Employees.FirstName, Employees.LastName 
+                                    FROM AuditLogs 
+                                    JOIN Employees 
+                                    ON AuditLogs.EmployeeID = Employees.EmployeeID");
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_OBJ);
+    }
     
+
+    public function addNewAuditLog($auditLog){
+        $pdo = $this->pdo;
+        $statement = $pdo->prepare("INSERT INTO AuditLogs (EmployeeID, Date, Time, ActionPerformed, Details) VALUES (?,?,?,?,?)");
+        $statement->execute([$auditLog->EmployeeID, $auditLog->Date, $auditLog->Time, $auditLog->ActionPerformed, $auditLog->Details]);
+        return $pdo->lastInsertId();
+    }
+
 }
 
 ?>

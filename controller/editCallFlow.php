@@ -151,6 +151,18 @@ if (isset($_POST['cancel'])){
 
         $toPutInFile = json_encode($jsonData, JSON_PRETTY_PRINT);
         file_put_contents($filePath, $toPutInFile);
+
+        $auditLog = new AuditLog();
+        $auditLog->EmployeeID = $_SESSION['loggedInEmployee']->EmployeeID;
+        $auditLog->Date = date('Y-m-d');
+        $auditLog->Time = date('H:i:s');
+        $auditLog->ActionPerformed = $departmentName . "Call Flow Updated";
+        $auditLog->Details = "Admin updated new User " . $departmentName . "'s Call Flow";
+
+        $auditLogID = $pdoSingleton->addNewAuditLog($auditLog);
+        $auditLog->AuditLogID = $auditLogID;
+
+
         
         doLogicAndCallIndexView();
         require_once("../view/indexView.php");

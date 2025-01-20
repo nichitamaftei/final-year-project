@@ -168,6 +168,26 @@ function doLogicAndCallLoginView(){
         if ($found == true){
             $_SESSION["loggedInEmployee"] = $foundEmployee;
             $pdoSingleton->updateLastLogInByID($_SESSION["loggedInEmployee"]->EmployeeID);
+
+            $auditLog = new AuditLog();
+            $auditLog->EmployeeID = $_SESSION['loggedInEmployee']->EmployeeID;
+            $auditLog->Date = date('Y-m-d');
+            $auditLog->Time = date('H:i:s');
+
+            if ($_SESSION["loggedInEmployee"]->isAdmin == 0){
+
+                $auditLog->ActionPerformed = "User Logged in";
+                $auditLog->Details = "User Logged in";
+
+            } else{
+
+                $auditLog->ActionPerformed = "Admin Logged in";
+                $auditLog->Details = "Admin Logged in";
+
+            }
+
+            $auditLogID = $pdoSingleton->addNewAuditLog($auditLog);
+            $auditLog->AuditLogID = $auditLogID;   
         }
     }
 
