@@ -29,47 +29,49 @@ function doLogicAndCallIndexView() {
 
         $arrayOfDepartments = $jsonData['company']['departments']; // puts the array of departments into a variable
 
+        // if there are new departments in the json file that are not in the database as a role, add them
+
+        $databaseRoles = $pdoSingleton->getAllRoles();
+
+        foreach ($arrayOfDepartments as $department){
+
+            $databaseRoleExists = false;
+
+            foreach ($databaseRoles as $databaseRole){
+
+                if ($department['name'] == $databaseRole->RoleName) {
+                    $databaseRoleExists = true;
+                    break;
+                }
+            }
+
+            if (!$databaseRoleExists){
+                $role = new Roles();
+                $role->RoleName = $department['name'];
+                $pdoSingleton->addNewRole($role); 
+            }
+        }
+
+        // if a department is deleted from the json file, delete it from the database
+
+        foreach ($databaseRoles as $databaseRole) {
+            $roleFound = false;
+        
+            foreach ($arrayOfDepartments as $department) {
+                if ($department['name'] == $databaseRole->RoleName) {
+                    $roleFound = true;
+                    break; 
+                }
+            }
+        
+            if (!$roleFound) {
+                $pdoSingleton->deleteRoleById($databaseRole->RoleID); 
+            }
+        }
+
         if ($_SESSION["loggedInEmployee"]->isAdmin == 0) { // if the logged in employee isn't an admin
 
-            // if there are new departments in the json file that are not in the database as a role, add them
-
-            $databaseRoles = $pdoSingleton->getAllRoles();
-
-            foreach ($arrayOfDepartments as $department){
-
-                $databaseRoleExists = false;
-
-                foreach ($databaseRoles as $databaseRole){
-
-                    if ($department['name'] == $databaseRole->RoleName) {
-                        $databaseRoleExists = true;
-                        break;
-                    }
-                }
-
-                if (!$databaseRoleExists){
-                    $role = new Roles();
-                    $role->RoleName = $department['name'];
-                    $pdoSingleton->addNewRole($role); 
-                }
-            }
-
-            // if a department is deleted from the json file, delete it from the database
-
-            foreach ($databaseRoles as $databaseRole) {
-                $roleFound = false;
             
-                foreach ($arrayOfDepartments as $department) {
-                    if ($department['name'] == $databaseRole->RoleName) {
-                        $roleFound = true;
-                        break; 
-                    }
-                }
-            
-                if (!$roleFound) {
-                    $pdoSingleton->deleteRoleById($databaseRole->RoleID); 
-                }
-            }
 
             // get a list of the department names the loggedin employee has access to
 
@@ -147,6 +149,11 @@ function doLogicAndCallIndexView() {
 
 function doLogicAndCallLoginView(){
 
+
+    if (!isset($_SESSION["loggedInEmployee"])){
+        $_SESSION["loggedInEmployee"] = null;
+    }
+
     if (!isset($_SESSION["updatedPassword"])){
         $_SESSION["updatedPassword"] = false;
     }
@@ -173,10 +180,6 @@ function doLogicAndCallLoginView(){
                 $_SESSION["loggedInEmployee"] = $foundEmployee;
 
                 if ($foundEmployee->LastLogIn == '0000-00-00 00:00:00'){
-
-                    echo ("i'm here");
-
-                    
 
                 } else {
                     $_SESSION["updatedPassword"] = true;
@@ -210,17 +213,12 @@ function doLogicAndCallLoginView(){
 
     if (isset($_SESSION["loggedInEmployee"]) && $_SESSION["updatedPassword"] == true){
 
-        echo ("branch 1");
-
         doLogicAndCallIndexView();
     }
     elseif (!isset($_SESSION["loggedInEmployee"])){
 
-        echo ("branch 2");
         require_once("../view/loginView.php");
     } else{
-
-        echo ("branch 3");
 
         doLogicAndCallUpdatePasswordView();
     }
