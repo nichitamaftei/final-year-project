@@ -8,35 +8,35 @@
         <script src="../@joint/core/dist/joint.js"></script> <!-- linking to JointJS library -->
         <script src="https://code.jquery.com/jquery-3.7.1.js"></script> <!-- linking to j query -->
         <script type="text/javascript" src="../view/css_js_images/javascript.js"></script> <!-- linking to javascript -->
-        <title>Log-in</title>
+        <title>Update Password</title>
     </head>
 
     <body id="loginView">
         <!-- top bar of the screen -->
         <section id='topBar'>
-            <h1 id="topBarTitle"> Login </h1>
+            <h1 id="topBarTitle"> Update Password</h1>
         </section>   
         <div id="loginContainer">
             <div id="loginSubContainer">
 
                 <div id="loginTitleContainer">
-                    <h2 id="loginTitle">Login</h2>
+                    <h2 id="loginTitle">Update Password</h2>
                 </div>
 
                 <form id="loginForm" method="post" action="../controller/login.php">
 
                     <div class="loginFlexContainer">
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="logInEmail" required><br>
+                        <label for="email">New Password:</label>
+                        <input type="password" id="email" name="newPassword" required><br>
                     </div>
 
                     <div class="loginFlexContainer">
-                        <label for="password"> Password:</label>
-                        <input type="password" id="password" name="logInPassword" required><br>
+                        <label for="password"> Confirm Password:</label>
+                        <input type="password" id="password" name="confirmPassword" required><br>
                     </div>
 
                     <div id="loginButtonContainer">
-                        <button class="loginButton" id="loginFormButton" type="submit" value="Login">Log in</button>
+                        <button class="loginButton" id="loginFormButton" type="submit" value="Login">Update & Log-in</button>
                     </div>
                 </form>
             </div>

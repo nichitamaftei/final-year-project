@@ -147,6 +147,10 @@ function doLogicAndCallIndexView() {
 
 function doLogicAndCallLoginView(){
 
+    if (!isset($_SESSION["updatedPassword"])){
+        $_SESSION["updatedPassword"] = false;
+    }
+
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
@@ -163,13 +167,95 @@ function doLogicAndCallLoginView(){
 
         foreach ($employees as $employee): 
             if ($employee->Email == $_REQUEST["logInEmail"] && $employee->Password == $_REQUEST["logInPassword"]){ // checking if a user in the database has the same email and password which was inputted
-                $found = true;
+
                 $foundEmployee = $employee;
+
+                $_SESSION["loggedInEmployee"] = $foundEmployee;
+
+                if ($foundEmployee->LastLogIn == '0000-00-00 00:00:00'){
+
+                    echo ("i'm here");
+
+                    
+
+                } else {
+                    $_SESSION["updatedPassword"] = true;
+                    $pdoSingleton->updateLastLogInByID($_SESSION["loggedInEmployee"]->EmployeeID);
+
+                    $auditLog = new AuditLog();
+                    $auditLog->EmployeeID = $_SESSION['loggedInEmployee']->EmployeeID;
+                    $auditLog->Date = date('Y-m-d');
+                    $auditLog->Time = date('H:i:s');
+
+                    if ($_SESSION["loggedInEmployee"]->isAdmin == 0){
+
+                        $auditLog->ActionPerformed = "User Logged in";
+                        $auditLog->Details = "User Logged in";
+
+                    } else{
+
+                        $auditLog->ActionPerformed = "Admin Logged in";
+                        $auditLog->Details = "Admin Logged in";
+
+                    }
+
+                    $auditLogID = $pdoSingleton->addNewAuditLog($auditLog);
+                    $auditLog->AuditLogID = $auditLogID;
+
+                    break;
+                }
             }
         endforeach;
+    }
 
-        if ($found == true){
-            $_SESSION["loggedInEmployee"] = $foundEmployee;
+    if (isset($_SESSION["loggedInEmployee"]) && $_SESSION["updatedPassword"] == true){
+
+        echo ("branch 1");
+
+        doLogicAndCallIndexView();
+    }
+    elseif (!isset($_SESSION["loggedInEmployee"])){
+
+        echo ("branch 2");
+        require_once("../view/loginView.php");
+    } else{
+
+        echo ("branch 3");
+
+        doLogicAndCallUpdatePasswordView();
+    }
+}
+
+
+function doLogicAndCallUpdatePasswordView(){
+
+    if (!isset($_SESSION["loggedInEmployee"])){ // if an employee isn't logged in 
+        $_SESSION["loggedInEmployee"] = null; // set the session variable 'loggedInEmployee' to null
+    }
+    
+    if ($_SESSION["loggedInEmployee"] == null){ // if the session variable 'loggedInEmployee' is null
+
+        doLogicAndCallLoginView(); // go to the log in view
+        require_once("../view/loginView.php");
+    }
+
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+
+    $pdoSingleton = pdoSingleton::getInstance(); // getting the pdoSingleton in order to access methods that speak to the database
+
+    if (!isset($_REQUEST["newPassword"]) && !isset($_REQUEST["confirmPassword"])){ // if nothing was input, set default values
+        $_REQUEST["newPassword"] = "";
+        $_REQUEST["confirmPassword"] = "";
+    }
+    else if ($_REQUEST["newPassword"] != "" && $_REQUEST["confirmPassword"] != ""){ // if all forms have been entered
+        
+        if ($_REQUEST["newPassword"] == $_REQUEST["confirmPassword"]){ // checking if the new pass is equal to the confirm pass
+
+            $_SESSION["updatedPassword"] = true;
+
+            $pdoSingleton->updateEmployeePasswordByID($_SESSION["loggedInEmployee"]->EmployeeID, $_REQUEST["confirmPassword"]);
+
             $pdoSingleton->updateLastLogInByID($_SESSION["loggedInEmployee"]->EmployeeID);
 
             $auditLog = new AuditLog();
@@ -188,18 +274,19 @@ function doLogicAndCallLoginView(){
                 $auditLog->Details = "Admin Logged in";
 
             }
-
             $auditLogID = $pdoSingleton->addNewAuditLog($auditLog);
-            $auditLog->AuditLogID = $auditLogID;   
+            $auditLog->AuditLogID = $auditLogID;
         }
     }
 
-    if (isset($_SESSION["loggedInEmployee"])){
+    if (isset($_SESSION["loggedInEmployee"]) && $_SESSION["updatedPassword"] == true){
 
         doLogicAndCallIndexView();
     }
-    else{
+    elseif (!isset($_SESSION["loggedInEmployee"])){
         require_once("../view/loginView.php");
+    } else {
+        require_once("../view/updatePasswordView.php");
     }
 }
 

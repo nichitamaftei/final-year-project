@@ -76,6 +76,12 @@ class pdoSingleton{
         return $results;
     }
 
+    public function updateEmployeePasswordByID($employeeID, $password){
+        $pdo = $this->pdo;
+        $statement = $pdo->prepare("UPDATE Employees SET Password = ? WHERE EmployeeID = ?");
+        $statement->execute([$password, $employeeID]);
+    }
+
 
 
     // Role access

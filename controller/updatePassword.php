@@ -9,6 +9,6 @@ require_once("../model/utilities.php");
 
 session_start();
 
-doLogicAndCallIndexView();
+doLogicAndCallUpdatePasswordView();
 
 ?>
