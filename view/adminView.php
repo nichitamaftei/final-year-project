@@ -55,22 +55,22 @@
                                     <th class="selectedTH"> 
                                         <ul id="roleList">
                                             <?php foreach ($employee['roles'] as $role): ?>
-                                                <li> 
+                                                <li class="roleList"> 
                                                     <?= $role->RoleName ?> 
                                                     <form method="post" action="../controller/admin.php" style="display:inline;">
                                                         <input type="hidden" name="employeeID" value=" <?= $employee['employee']->EmployeeID ?>">
                                                         <input type="hidden" name="roleID" value=" <?= $role->RoleID ?> ">
-                                                        <button type="submit"> X </button>
+                                                        <button class="roleRemoveButton" type="submit"> X </button>
                                                     </form>
                                                 </li>
                                             <?php endforeach ?>
 
                                             <?php if ($employee['employee']->isAdmin == 1): ?>
-                                                <li> 
+                                                <li class="roleList"> 
                                                     Admin 
                                                     <form method="post" action="../controller/admin.php" style="display:inline;">
                                                         <input type="hidden" name="removeAdminFromThisEmployeeID" value=" <?= $employee['employee']->EmployeeID ?>">
-                                                        <button type="submit"> X </button>
+                                                        <button class="roleRemoveButton" type="submit"> X </button>
                                                     </form>
                                                 </li>
                                             <?php elseif (empty($employee['roles'])): ?>

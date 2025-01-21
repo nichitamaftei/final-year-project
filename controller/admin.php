@@ -156,7 +156,7 @@ if (isset($_REQUEST['firstName']) && isset($_REQUEST['lastName']) && isset($_REQ
 
 
 
-if (!isset($_SESSION["loggedInEmployee"])){ // if no one is logged
+if (!isset($_SESSION["loggedInEmployee"]) || $_SESSION["updatedPassword"] == false){ // if no one is logged
 
     doLogicAndCallLoginView(); // kick them to the log in view
 

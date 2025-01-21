@@ -151,7 +151,8 @@ class pdoSingleton{
         $statement = $pdo->prepare("SELECT AuditLogs.*, Employees.FirstName, Employees.LastName 
                                     FROM AuditLogs 
                                     JOIN Employees 
-                                    ON AuditLogs.EmployeeID = Employees.EmployeeID");
+                                    ON AuditLogs.EmployeeID = Employees.EmployeeID
+                                    ORDER BY CONCAT(AuditLogs.Date, ' ', AuditLogs.Time) DESC");
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_OBJ);
     }

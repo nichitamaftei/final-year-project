@@ -13,7 +13,11 @@ if (isset($_POST['cancel'])){
         
     doLogicAndCallIndexView();
     require_once("../view/indexView.php");
-} else {
+} elseif (!isset($_SESSION["loggedInEmployee"]) || $_SESSION["updatedPassword"] == false){
+
+    doLogicAndCallLoginView(); // kick them to the log in view
+    
+} else{
 
     $jsonData = getCallData(); // gathers the call data
 

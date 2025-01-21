@@ -31,17 +31,38 @@ body{
     position: relative;
 }
 
-#menu-icon{
+#menuIcon{
     height: 60px;
     width: 60px;
 }
 
+#topBarButtonContainer{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-left: auto;
+}
+
+#topBarTitleContainer{
+    text-align: center;
+    position: absolute; 
+    left: 50%; 
+    transform: translateX(-50%);
+}
+
+#topBarTitle{
+    margin: 0;
+    text-align: center;
+    color: white;
+    background-color: #18435A;
+    padding: 10px 30px 10px 30px;
+}
+
 /* burger button container */
-#hamburger-container{
+#hamburgerContainer{
     position: absolute; 
     top: 10px;
     left: 10px;
-
 }
 
 .hamburger{
@@ -56,13 +77,6 @@ body{
 }
 
 
-#topBarTitle{
-    margin: 0 auto; 
-    text-align: center;
-    color: white;
-    background-color: #18435A;
-    padding: 10px 30px 10px 30px;
-}
 
 #callFlowTitleContainer{
     text-align: center;
@@ -568,6 +582,26 @@ body{
     padding-left: 0;
 }
 
+.roleList{
+    padding: 2px;
+}
+
+.roleRemoveButton{
+    background-color: #FF0000;
+    color: white;
+    border: none;
+    padding: 2px;
+    cursor: pointer;
+}
+
+#adminLink{
+    text-decoration: none;
+    color: white;
+    background-color: #FF0000;
+    padding: 15px 20px 15px 20px;
+}
+
+
 #roleSelectionForm{
     display: flex;
     justify-content: center; 
@@ -622,6 +656,19 @@ body{
     padding: 8px 40px;
     cursor: pointer;
 }
+
+
+#signOut{
+    border: 1px solid red;
+    background-color: #18435A;
+    color: white;
+    padding: 15px 30px 15px 30px;
+    cursor: pointer;
+}
+
+
+
+
 
 /* loginView styling */
 

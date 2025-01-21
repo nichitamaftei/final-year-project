@@ -15,20 +15,29 @@
         <!-- top bar of the screen -->
         <section id='topBar'>
 
-            <div id="hamburger-container">
+            <div id="hamburgerContainer">
                 <button class="hamburger" onclick="showMenu()">
-                    <img id="menu-icon"src="../view/css_js_images/burgerMenuIcon.png" alt="">
+                    <img id="menuIcon"src="../view/css_js_images/burgerMenuIcon.png" alt="">
                 </button>
             </div>
 
-            <h1 id="topBarTitle"><?= $departmentName ?> </h1>
+            <div id="topBarTitleContainer">
+                <h1 id="topBarTitle"><?= $departmentName ?> </h1>
+            </div>
 
-            <form method="post" action="index.php"> 
-                <input type="hidden" name="signOut" value="true">
-                <button type="submit" id="signOut"> Sign Out </button>
-            </form>
+            <div id="topBarButtonContainer">
 
-        
+                <form method="post" action="index.php"> 
+                    <input type="hidden" name="signOut" value="true">
+                    <button type="submit" id="signOut"> Sign Out </button>
+                </form>
+
+                <?php if ($_SESSION['loggedInEmployee']->isAdmin == 1):   ?>
+                    <a href="../controller/admin.php" id="adminLink">Admin Area</a>
+                <?php endif; ?>  
+
+            </div>
+
             <div id="side-menu">
                 <ul id="unordered-list">
                     
@@ -50,9 +59,7 @@
                 </ul>
             </div>
 
-            <?php if ($_SESSION['loggedInEmployee']->isAdmin == 1):   ?>
-                <a href="../controller/admin.php" id="admin_link">Admin Area</a>
-            <?php endif; ?>
+                   
         </section>   
         
         <div id="smallCanvasContainer">
