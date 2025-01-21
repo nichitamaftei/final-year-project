@@ -43,7 +43,7 @@
                     
                     <li class="list-items">
                         <button id="sideMenuBackButton" onclick="hideMenu()">
-                            <img id="backbutton-icon"src="../view/css_js_images/backButtonIcon.png" alt="">
+                            <img class="backbuttonIcon"src="../view/css_js_images/backButtonIcon.png" alt="">
                         </button>
                     </li>
 

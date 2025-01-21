@@ -108,42 +108,42 @@ if (isset($_POST['cancel'])){
 
         $filePath = '../model/fabricated_call_flow_data.json';
 
-        $voicemailMembers = $_REQUEST['voicemailMember'];
+        $voicemailMembers = htmlentities($_REQUEST['voicemailMember']);
         $voicemailMembers = preg_replace('/\s+/', ' ', trim($voicemailMembers));
         $voicemailMembersArray = explode(' ', $voicemailMembers);
 
         $jsonData["company"]["departments"][$index]["auto_attendant"]["voicemail"]["members"] = $voicemailMembersArray;
 
-        $autoAttendantGreeting = trim($_REQUEST['greetingMessage']);
+        $autoAttendantGreeting = htmlentities(trim($_REQUEST['greetingMessage']));
         $jsonData["company"]["departments"][$index]["auto_attendant"]["aa_greeting"] = $autoAttendantGreeting;
 
-        $dayStart = $_REQUEST['dayStart'];
+        $dayStart = htmlentities($_REQUEST['dayStart']);
         $jsonData["company"]["departments"][$index]["auto_attendant"]["business_hours"]["from_day_start"] = $dayStart;
 
-        $fromTimeStart = $_REQUEST['fromTimeStart'];
+        $fromTimeStart = htmlentities($_REQUEST['fromTimeStart']);
         $jsonData["company"]["departments"][$index]["auto_attendant"]["business_hours"]["from_time_start"] = $fromTimeStart;
 
-        $fromTimeEnd = $_REQUEST['fromTimeEnd'];
+        $fromTimeEnd = htmlentities($_REQUEST['fromTimeEnd']);
         $jsonData["company"]["departments"][$index]["auto_attendant"]["business_hours"]["from_time_end"] = $fromTimeEnd;
 
-        $dayEnd = $_REQUEST['dayEnd'];
+        $dayEnd = htmlentities($_REQUEST['dayEnd']);
         $jsonData["company"]["departments"][$index]["auto_attendant"]["business_hours"]["to_day_end"] = $dayEnd;
 
-        $toTimeStart = $_REQUEST['toTimeStart'];
+        $toTimeStart = htmlentities($_REQUEST['toTimeStart']);
         $jsonData["company"]["departments"][$index]["auto_attendant"]["business_hours"]["to_time_start"] = $toTimeStart;
 
-        $toTimeEnd = $_REQUEST['toTimeEnd'];
+        $toTimeEnd = htmlentities($_REQUEST['toTimeEnd']);
         $jsonData["company"]["departments"][$index]["auto_attendant"]["business_hours"]["to_time_end"] = $toTimeEnd;
 
-        $callQueueMembers = $_REQUEST['callQueueMembers'];
+        $callQueueMembers = htmlentities($_REQUEST['callQueueMembers']);
         $callQueueMembers = preg_replace('/\s+/', ' ', trim($callQueueMembers));
         $callQueueMembersArray = explode(' ', $callQueueMembers);
         $jsonData["company"]["departments"][$index]["auto_attendant"]["call_queues"][$callQueueIndex]["group"]["members"] = $callQueueMembersArray;
 
-        $waitingTimeAmount = $_REQUEST['waitingTimeAmount'];
+        $waitingTimeAmount = htmlentities($_REQUEST['waitingTimeAmount']);
         $jsonData["company"]["departments"][$index]["auto_attendant"]["call_queues"][$callQueueIndex]["answer_timeout_seconds"] = $waitingTimeAmount;
 
-        $maxCallsAmount = $_REQUEST['maximumCallQueueLimit'];
+        $maxCallsAmount = htmlentities($_REQUEST['maximumCallQueueLimit']);
         $jsonData["company"]["departments"][$index]["auto_attendant"]["call_queues"][$callQueueIndex]["max_calls"] = $maxCallsAmount;
 
         $jsonData["company"]["departments"][$index]["auto_attendant"]["call_queues"] = array_values(

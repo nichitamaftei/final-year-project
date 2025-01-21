@@ -17,7 +17,7 @@
 
             <div id="hamburger-container">
                 <button class="hamburger" onclick="showMenu()">
-                    <img id="menu-icon"src="../view/css_js_images/burgerMenuIcon.png" alt="">
+                    <img id="menuIcon"src="../view/css_js_images/burgerMenuIcon.png" alt="">
                 </button>
             </div>
 
@@ -25,10 +25,9 @@
         
             <div id="side-menu">
                 <ul id="unordered-list">
-                    
                     <li class="list-items">
-                        <button class="backButton" onclick="hideMenu()">
-                            <img id="backbutton-icon"src="../view/css_js_images/backButtonIcon.png" alt="">
+                        <button id="sideMenuBackButton" onclick="hideMenu()">
+                            <img class="backbuttonIcon"src="../view/css_js_images/backButtonIcon.png" alt="">
                         </button>
                     </li>
 

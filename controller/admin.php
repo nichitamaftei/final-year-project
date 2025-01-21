@@ -19,8 +19,6 @@ $employeeID = null;
 
 $pdoSingleton = pdoSingleton::getInstance();
 
-
-
 if (isset($_POST['removeAdminFromThisEmployeeID'])){ // if the admin removed the admin privledges of an employee
         
     $employeeID = $_POST['removeAdminFromThisEmployeeID']; // grab the employeeID
@@ -44,9 +42,6 @@ if (isset($_POST['removeAdminFromThisEmployeeID'])){ // if the admin removed the
     } 
 
 } 
-
-
-
 
 if (isset($_POST['employeeID']) && isset($_POST['roleID'])){ // if the admin removes a role from an employee
     $employeeID = $_POST['employeeID'];
@@ -155,8 +150,7 @@ if (isset($_REQUEST['firstName']) && isset($_REQUEST['lastName']) && isset($_REQ
 }
 
 
-
-if (!isset($_SESSION["loggedInEmployee"]) || $_SESSION["updatedPassword"] == false){ // if no one is logged
+if (!isset($_SESSION["loggedInEmployee"]) || $_SESSION["updatedPassword"] == false){ // if no one is logged or they havn't updated their password
 
     doLogicAndCallLoginView(); // kick them to the log in view
 

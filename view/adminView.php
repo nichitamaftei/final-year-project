@@ -17,7 +17,7 @@
             <h1 id="topBarTitleAdmin">Admin Settings</h1>
 
             <form method="post" action="../controller/admin.php"> 
-                <button name="adminGoBackButton" type="submit" id="adminBackButton"> <img id="backbutton-icon"src="../view/css_js_images/backButtonIcon.png" alt=""> </button>
+                <button name="adminGoBackButton" type="submit" id="adminBackButton"> <img class="backbuttonIcon"src="../view/css_js_images/backButtonIcon.png" alt=""> </button>
             </form>
         </section>   
 

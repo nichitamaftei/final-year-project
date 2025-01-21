@@ -23,7 +23,7 @@
                     <h2 id="loginTitle">Login</h2>
                 </div>
 
-                <form id="loginForm" method="post" action="../controller/login.php">
+                <form id="loginForm" method="post" onsubmit="return logInValidation()" action="../controller/login.php">
 
                     <div class="loginFlexContainer">
                         <label for="email">Email:</label>
