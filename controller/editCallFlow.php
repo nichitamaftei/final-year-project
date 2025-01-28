@@ -5,9 +5,13 @@ require_once("../model/employees.php");
 require_once("../model/roles.php");
 require_once("../model/employeerole.php");
 require_once("../model/dataAccess.php");
+require_once("../model/auditLogs.php");
 require_once("../model/utilities.php");
 
 session_start();
+
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
 if (isset($_POST['cancel'])){
         
@@ -156,6 +160,8 @@ if (isset($_POST['cancel'])){
         $toPutInFile = json_encode($jsonData, JSON_PRETTY_PRINT);
         file_put_contents($filePath, $toPutInFile);
 
+        $pdoSingleton = pdoSingleton::getInstance();
+
         $auditLog = new AuditLog();
         $auditLog->EmployeeID = $_SESSION['loggedInEmployee']->EmployeeID;
         $auditLog->Date = date('Y-m-d');
@@ -166,8 +172,6 @@ if (isset($_POST['cancel'])){
         $auditLogID = $pdoSingleton->addNewAuditLog($auditLog);
         $auditLog->AuditLogID = $auditLogID;
 
-
-        
         doLogicAndCallIndexView();
         require_once("../view/indexView.php");
 

@@ -27,8 +27,7 @@
                         "members": [
                             "Jeff",
                             "Tommy",
-                            "Angel",
-                            "Denis"
+                            "Angel"
                         ]
                     },
                     "call_queues": [
@@ -114,8 +113,7 @@
                         "members": [
                             "Kyle",
                             "Linda",
-                            "Steve",
-                            "Test"
+                            "Steve"
                         ]
                     },
                     "call_queues": [
@@ -132,8 +130,7 @@
                                 "members": [
                                     "Kyle",
                                     "Linda",
-                                    "Steve",
-                                    "Test"
+                                    "Steve"
                                 ]
                             }
                         }

@@ -120,15 +120,15 @@ function doLogicAndCallIndexView() {
             require_once("../view/indexView.php");
 
         } else{ // otherwise
-
-            if (!isset($_SESSION["department"])){ // if the session variable 'department' isn't set, set it to the first index of $arrayOfDepartments variable
-                $_SESSION["department"] = $arrayOfDepartments[0]; // default to the first department
-            }
     
+            
             if (isset($_POST['dept'])){ // if the employee navigated to a different department
                 $deptIndex = (int)$_REQUEST['dept']; // obtains the index of the selected department
                 $_SESSION["department"] = $arrayOfDepartments[$deptIndex]; // uses the index to select the department
                 $_SESSION["deptIndex"] = $deptIndex;
+            } else if (isset($_SESSION["deptIndex"])) { // if a department view was already set, present that instead of the first index
+                $deptIndex = $_SESSION["deptIndex"]; 
+                $_SESSION["department"] = $arrayOfDepartments[$deptIndex];
             } else{
                 $deptIndex = 0; // obtains the index of the selected department
                 $_SESSION["department"] = $arrayOfDepartments[$deptIndex]; // uses the index to select the department
