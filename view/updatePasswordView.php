@@ -23,16 +23,16 @@
                     <h2 id="loginTitle">Update Password</h2>
                 </div>
 
-                <form id="loginForm" method="post" action="../controller/login.php">
+                <form id="loginForm" onsubmit="return updatePasswordValidation()" method="post" action="../controller/login.php" >
 
                     <div class="loginFlexContainer">
                         <label for="email">New Password:</label>
-                        <input type="password" id="email" name="newPassword" required><br>
+                        <input type="password" id="password" name="newPassword" required><br>
                     </div>
 
                     <div class="loginFlexContainer">
                         <label for="password"> Confirm Password:</label>
-                        <input type="password" id="password" name="confirmPassword" required><br>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required><br>
                     </div>
 
                     <div id="loginButtonContainer">

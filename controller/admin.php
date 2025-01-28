@@ -111,7 +111,6 @@ if (isset($_POST['addEmployeeID']) && isset($_POST['addRoleID'])){ // if the adm
     } else{ // if it's a regular role
         $pdoSingleton->addRoleToEmployee($employeeID, $roleID); // add that role in the EmployeeRole table
 
-
         $auditLog->EmployeeID = $_SESSION['loggedInEmployee']->EmployeeID;
         $auditLog->Date = date('Y-m-d');
         $auditLog->Time = date('H:i');
@@ -154,7 +153,7 @@ if (!isset($_SESSION["loggedInEmployee"]) || $_SESSION["updatedPassword"] == fal
 
     doLogicAndCallLoginView(); // kick them to the log in view
 
-} else if ($_SESSION["loggedInEmployee"]->isAdmin != 1 || isset($_POST['adminGoBackButton'])) { // if the employee is logged in, but isn't an admin or the admin pressed the back button
+} else if ($_SESSION["loggedInEmployee"]->isAdmin != 1 || isset($_POST['adminGoBackButton'])){ // if the employee is logged in, but isn't an admin or the admin pressed the back button
 
     doLogicAndCallIndexView(); // kick them to the home view
    
@@ -184,7 +183,7 @@ if (!isset($_SESSION["loggedInEmployee"]) || $_SESSION["updatedPassword"] == fal
                         // assignedRoles[] array determines what roles an employee has to display
                         $assignedRoles[] = $assignedRole; // get the role and put it inside the $assignedRole[] array
                         
-                        // availableRoles[] array determines which roles an employee doesn't already have, to select from
+                        // availableRoles[] array determines which roles an employee doesn't already have to select from
                         $availableRoles = [];
 
                         foreach ($allRoles as $role){ // for every role

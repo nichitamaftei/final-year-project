@@ -45,7 +45,7 @@
                                     <th class="selectedTH"> <p> <?= $employee['employee']->Email ?> </p> </th>
                                     <th class="selectedTH"> 
                                         <p> 
-                                            <?php if ($employee['employee']->LastLogIn == '0000-00-00 00:00:00'): ?>
+                                            <?php if ($employee['employee']->LastLogIn == null): ?>
                                             Never Logged In
                                             <?php else: ?>
                                                 <?= $employee['employee']->LastLogIn ?> 
@@ -106,7 +106,6 @@
                                                         </select>
                                                         <button id="assignRoleButton" type="submit">Assign Role</button>
                                                     </div>
-
                                                 </form>
 
                                             <?php endif; ?>
@@ -159,14 +158,13 @@
         </div>
 
 
-        <!-- AddUser Modal (initially hidden) -->
+        <!-- addUser Modal (initially hidden) -->
         <div id="modalContainer">
             <div id="modal">
 
                 <div id="modalTitleContainer">
                     <h2 id="modalTitle">Fill Out User Details</h2>
                 </div>
-                
                 
                 <form id="addUserForm" method="post" action="../controller/admin.php">
 

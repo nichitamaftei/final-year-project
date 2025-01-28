@@ -421,3 +421,48 @@ function hideMenu(){
     const menu = document.getElementById('side-menu'); // grabbing the side bar
     menu.style.display = 'none' // hiding the side bar
 }
+
+
+function logInValidation(){
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    
+    if(email == "" || password == ""){
+        alert("Please fill in the empty field");
+        return false;
+    }
+    else if (email.indexOf("@") === -1){
+        alert("Please enter a valid email (Has to have the @ symbol)");
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
+function updatePasswordValidation(){
+    var specialChars = /[`!@#$%^&*()_\-+=\[\]{};':"\\|,.<>\/?~ ]/;
+    var capitalLetters = /[A-Z]/;
+    var password = document.getElementById('password').value;
+    var confirmPassword = document.getElementById('confirmPassword').value;
+    
+    if(password == "" || confirmPassword == ""){
+        alert("Please fill in the empty fields");
+        return false;
+    }
+    else if(password !== confirmPassword){
+        alert("Your passwords didn't match!");
+        return false;
+    }
+    else if(password.length < 12){
+        alert("Your password must be longer than 12 characters!");
+        return false;
+    }
+    else if(!specialChars.test(password) || !capitalLetters.test(password)){
+        alert("Your password must atleast 1 Uppercase character and 1 Complex Symbol");
+        return false;
+    }
+    else{
+        return true;
+    }
+}

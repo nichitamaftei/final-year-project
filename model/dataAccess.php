@@ -20,7 +20,7 @@ class pdoSingleton{
 
     // singleton setup: calls the constructor if it hasn't been initialised once before. If it has, then return itself
 
-    public static function getInstance() {
+    public static function getInstance(){
         if (!self::$instance) {
             self::$instance = new self();
         }

@@ -33,7 +33,7 @@ function doLogicAndCallIndexView() {
 
         $arrayOfDepartments = $jsonData['company']['departments']; // puts the array of departments into a variable
 
-        // if there are new departments in the json file that are not in the database as a role, add them
+        // if a role exists in the JSON file but not the database, add the role to the database
 
         $databaseRoles = $pdoSingleton->getAllRoles();
 
@@ -43,7 +43,7 @@ function doLogicAndCallIndexView() {
 
             foreach ($databaseRoles as $databaseRole){
 
-                if ($department['name'] == $databaseRole->RoleName) {
+                if ($department['name'] == $databaseRole->RoleName){
                     $databaseRoleExists = true;
                     break;
                 }
@@ -56,13 +56,13 @@ function doLogicAndCallIndexView() {
             }
         }
 
-        // if a department is deleted from the json file, delete it from the database
+        // if a department exists in the database but not the JSON file, delete the role from the database
 
-        foreach ($databaseRoles as $databaseRole) {
+        foreach ($databaseRoles as $databaseRole){
             $roleFound = false;
         
-            foreach ($arrayOfDepartments as $department) {
-                if ($department['name'] == $databaseRole->RoleName) {
+            foreach ($arrayOfDepartments as $department){
+                if ($department['name'] == $databaseRole->RoleName){
                     $roleFound = true;
                     break; 
                 }
@@ -73,9 +73,7 @@ function doLogicAndCallIndexView() {
             }
         }
 
-        if ($_SESSION["loggedInEmployee"]->isAdmin == 0) { // if the logged in employee isn't an admin
-
-            
+        if ($_SESSION["loggedInEmployee"]->isAdmin == 0){ // if the logged in employee isn't an admin
 
             // get a list of the department names the loggedin employee has access to
 
@@ -83,8 +81,7 @@ function doLogicAndCallIndexView() {
 
             $allowedToViewDepartments = [];
 
-
-            foreach ($arrayOfEmployeeRole as $allowed) {
+            foreach ($arrayOfEmployeeRole as $allowed){
 
                 if ($_SESSION['loggedInEmployee']->EmployeeID == $allowed->EmployeeID){
                     $allowedRole = $pdoSingleton->getRoleByID($allowed->RoleID); 
@@ -97,13 +94,12 @@ function doLogicAndCallIndexView() {
 
             // in the arrayOfDepartments, remove departments which are not on the list
 
-
-            foreach ($arrayOfDepartments as $key => $department) {
+            foreach ($arrayOfDepartments as $key => $department){
 
                 $roleFound = false;
 
-                foreach ($allowedToViewDepartments as $allowed) {
-                    if ($department['name'] == $allowed) {
+                foreach ($allowedToViewDepartments as $allowed){
+                    if ($department['name'] == $allowed){
                         $roleFound = true;
                         break; 
                     }
@@ -114,13 +110,11 @@ function doLogicAndCallIndexView() {
                 }
             }
 
-            // set the removed departments to it's self
-            
+            // set the new array of departments the employee has access to to it's self
             $arrayOfDepartments = array_values($arrayOfDepartments);
-
         }
 
-        if (empty($arrayOfDepartments)) { // if the employee has access to no department
+        if (empty($arrayOfDepartments)){ // if the employee has access to no department
             
             $departmentName = "You do not have access to any departments.";
             require_once("../view/indexView.php");
@@ -158,9 +152,8 @@ function doLogicAndCallLoginView(){
         $_SESSION["loggedInEmployee"] = null;
     }
     
-    if (!isset($_SESSION["updatedPassword"])) {
-        $_SESSION["updatedPassword"] = false;
-    }
+    $_SESSION["updatedPassword"] = false;
+
 
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
@@ -183,7 +176,7 @@ function doLogicAndCallLoginView(){
 
                 $_SESSION["loggedInEmployee"] = $foundEmployee;
 
-                if ($foundEmployee->LastLogIn == '0000-00-00 00:00:00'){
+                if ($foundEmployee->LastLogIn == null){
 
                 } else {
                     $_SESSION["updatedPassword"] = true;
@@ -220,6 +213,9 @@ function doLogicAndCallLoginView(){
         doLogicAndCallIndexView();
     }
     elseif (!isset($_SESSION["loggedInEmployee"])){
+
+        $_SESSION["department"] = null;
+        $_SESSION["deptIndex"] = null;
 
         require_once("../view/loginView.php");
     } else{
