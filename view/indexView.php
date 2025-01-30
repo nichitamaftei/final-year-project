@@ -13,34 +13,42 @@
 
     <body id="indexView">
         <!-- top bar of the screen -->
-        <section id='top-bar'>
+        <section id='topBar'>
 
-            <div id="hamburger-container">
+            <div id="hamburgerContainer">
                 <button class="hamburger" onclick="showMenu()">
-                    <img id="menu-icon"src="../view/css_js_images/burgerMenuIcon.png" alt="">
+                    <img id="menuIcon"src="../view/css_js_images/burgerMenuIcon.png" alt="">
                 </button>
             </div>
 
-            <h1 id="top-bar-title"><?= $departmentName ?> </h1>
+            <div id="topBarTitleContainer">
+                <h1 id="topBarTitle"><?= $departmentName ?> </h1>
+            </div>
 
-            <form method="post" action="index.php"> 
-                <input type="hidden" name="signOut" value="true">
-                <button type="submit" id="signOut"> Sign Out </button>
-            </form>
+            <div id="topBarButtonContainer">
 
-        
-            <div id="side-menu">
-                <ul id="unordered-list">
-                    
-                    <li class="list-items">
-                        <button class="backButton" onclick="hideMenu()">
-                            <img id="backbutton-icon"src="../view/css_js_images/backButtonIcon.png" alt="">
+                <form method="post" action="index.php"> 
+                    <input type="hidden" name="signOut" value="true">
+                    <button type="submit" id="signOut"> Sign Out </button>
+                </form>
+
+                <?php if ($_SESSION['loggedInEmployee']->isAdmin == 1):   ?>
+                    <a href="../controller/admin.php" id="adminLink">Admin Area</a>
+                <?php endif; ?>  
+
+            </div>
+
+            <div id="sideMenu">
+                <ul id="unorderedList">
+                    <li class="listItems">
+                        <button id="sideMenuBackButton" onclick="hideMenu()">
+                            <img class="backbuttonIcon"src="../view/css_js_images/backButtonIcon.png" alt="">
                         </button>
                     </li>
 
                     <?php foreach ($arrayOfDepartments as $index => $department): ?>   <!-- for every department, create links -->
                         <form method="POST" action="index.php">
-                            <li class="list-items">
+                            <li class="listItems">
                                 <button type="submit" name="dept" value="<?= $index; ?>" class="departmentButtons">
                                     <?= $department['name']; ?>
                                 </button>
@@ -50,9 +58,7 @@
                 </ul>
             </div>
 
-            <?php if ($_SESSION['loggedInEmployee']->isAdmin == 1):   ?>
-                <a href="../controller/admin.php" id="admin_link">Admin Area</a>
-            <?php endif; ?>
+                   
         </section>   
         
         <div id="smallCanvasContainer">
@@ -69,10 +75,11 @@
             <?php endif; ?>            
         </div>
 
-        <div id="canvas-modal"> <!-- initially hidden -->
+        <div id="canvasModal"> <!-- initially hidden -->
             <div id="bigCanvas">
             </div>
-            <button id="close-modal" onclick="closeBigCanvas()">Close</button>
+            <button id="closeModal" onclick="closeBigCanvas()"> Close </button>
+            <button id="resetModal" onclick="resetModal()" > Reset </button>
         </div>
     </body>
 </html>

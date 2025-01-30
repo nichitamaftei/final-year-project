@@ -13,27 +13,31 @@
 
     <body id="loginView">
         <!-- top bar of the screen -->
-        <section id='top-bar'>
-            <h1 id="top-bar-title"> Login </h1>
+        <section id='topBar'>
+            <h1 id="topBarTitle"> Login </h1>
         </section>   
-        
-        
-        <div id="loginDiv">
-            <p id="login_title">Log-in: </p>
-            <div id="section_login">
-                <form method="post" action="../controller/login.php">
-                    <label for="username">E-mail:</label>
-                    <br>
-                    <input type="text" id="username" name="logInEmail">
-                    <br>
-                    <label for="password">Password:</label>
-                    <br>
-                    <input type="password" id="password" name="logInPassword">
-                    <br>
-                    <br>
-                    <input type="submit" value="Login">
-                    <br>
-                    <br> 
+        <div id="loginContainer">
+            <div id="loginSubContainer">
+
+                <div id="loginTitleContainer">
+                    <h2 id="loginTitle">Login</h2>
+                </div>
+
+                <form id="loginForm" method="post" onsubmit="return logInValidation()" action="../controller/login.php">
+
+                    <div class="loginFlexContainer">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="logInEmail" required><br>
+                    </div>
+
+                    <div class="loginFlexContainer">
+                        <label for="password"> Password:</label>
+                        <input type="password" id="password" name="logInPassword" required><br>
+                    </div>
+
+                    <div id="loginButtonContainer">
+                        <button class="loginButton" id="loginFormButton" type="submit" value="Login">Log in</button>
+                    </div>
                 </form>
             </div>
         </div>

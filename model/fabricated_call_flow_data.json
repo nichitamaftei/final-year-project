@@ -9,12 +9,43 @@
                     "phone_number": "+448001234567",
                     "aa_greeting": "Welcome to the Sales... Please hold, and someone will be with you shortly.",
                     "business_hours": {
-                        "from_day_start": "Monday",
-                        "from_time_start": "09:30",
-                        "from_time_end": "14:30",
-                        "to_day_end": "Friday",
-                        "to_time_start": "09:30",
-                        "to_time_end": "14:30",
+                        "days": [
+                            {
+                                "day_name": "Monday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Tuesday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Wednesday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Thursday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Friday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Saturday",
+                                "from_time_start": "10:00",
+                                "from_time_end": "16:00"
+                            },
+                            {
+                                "day_name": "Sunday",
+                                "from_time_start": "10:00",
+                                "from_time_end": "16:00"
+                            }
+                        ],
                         "greeting": "We are currently closed. Please leave a message or call back during business hours."
                     },
                     "bank_holiday": {
@@ -27,8 +58,7 @@
                         "members": [
                             "Jeff",
                             "Tommy",
-                            "Angel",
-                            "Denis"
+                            "Angel"
                         ]
                     },
                     "call_queues": [
@@ -52,7 +82,7 @@
                         {
                             "queue_name": "Sales Surveys",
                             "routing_type": "Round Robin",
-                            "max_calls": "32",
+                            "max_calls": "30",
                             "max_calls_exceeeded": "Sales Enquries",
                             "answer_timeout_seconds": "32",
                             "answer_timeout_seconds_exceeded": "disconnect",
@@ -96,13 +126,44 @@
                     "phone_number": "+448002345678",
                     "aa_greeting": "Welcome to Support... Please hold, and someone will assist you shortly.",
                     "business_hours": {
-                        "from_day_start": "Monday",
-                        "from_time_start": "09:30",
-                        "from_time_end": "14:30",
-                        "to_day_end": "Friday",
-                        "to_time_start": "09:30",
-                        "to_time_end": "14:30",
-                        "greeting": "We are currently closed. Please leave a message."
+                        "days": [
+                            {
+                                "day_name": "Monday",
+                                "from_time_start": "10:01",
+                                "from_time_end": "16:00"
+                            },
+                            {
+                                "day_name": "Tuesday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Wednesday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Thursday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Friday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Saturday",
+                                "from_time_start": "10:00",
+                                "from_time_end": "16:00"
+                            },
+                            {
+                                "day_name": "Sunday",
+                                "from_time_start": "10:00",
+                                "from_time_end": "16:00"
+                            }
+                        ],
+                        "greeting": "We are currently closed. Please leave a message or call back during business hours."
                     },
                     "bank_holiday": {
                         "greeting": "Thank you for your call. We are currently closed. Please leave your name, number and a brief message, or call back during opening hours, Monday \u2013 Friday 09:00 \u2013 17:00."
@@ -114,8 +175,7 @@
                         "members": [
                             "Kyle",
                             "Linda",
-                            "Steve",
-                            "Test"
+                            "Steve"
                         ]
                     },
                     "call_queues": [
@@ -132,8 +192,7 @@
                                 "members": [
                                     "Kyle",
                                     "Linda",
-                                    "Steve",
-                                    "Test"
+                                    "Steve"
                                 ]
                             }
                         }
@@ -167,12 +226,43 @@
                     "phone_number": "+448003456789",
                     "aa_greeting": "Welcome to Marketing... Please hold, and someone will assist you shortly.",
                     "business_hours": {
-                        "from_day_start": "Monday",
-                        "from_time_start": "09:30",
-                        "from_time_end": "14:30",
-                        "to_day_end": "Friday",
-                        "to_time_start": "09:30",
-                        "to_time_end": "14:30",
+                        "days": [
+                            {
+                                "day_name": "Monday",
+                                "from_time_start": "10:00",
+                                "from_time_end": "16:00"
+                            },
+                            {
+                                "day_name": "Tuesday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Wednesday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Thursday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Friday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Saturday",
+                                "from_time_start": "10:00",
+                                "from_time_end": "16:00"
+                            },
+                            {
+                                "day_name": "Sunday",
+                                "from_time_start": "10:00",
+                                "from_time_end": "16:00"
+                            }
+                        ],
                         "greeting": "We are currently closed. Please leave a message or call back during business hours."
                     },
                     "bank_holiday": {
@@ -266,13 +356,44 @@
                     "phone_number": "+448004567890",
                     "aa_greeting": "Welcome to Finance... Please hold, and someone will assist you shortly.",
                     "business_hours": {
-                        "from_day_start": "Monday",
-                        "from_time_start": "09:30",
-                        "from_time_end": "14:30",
-                        "to_day_end": "Friday",
-                        "to_time_start": "09:30",
-                        "to_time_end": "14:30",
-                        "greeting": "We are currently closed. Please leave a message."
+                        "days": [
+                            {
+                                "day_name": "Monday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Tuesday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Wednesday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Thursday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Friday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Saturday",
+                                "from_time_start": "10:00",
+                                "from_time_end": "16:00"
+                            },
+                            {
+                                "day_name": "Sunday",
+                                "from_time_start": "10:00",
+                                "from_time_end": "16:00"
+                            }
+                        ],
+                        "greeting": "We are currently closed. Please leave a message or call back during business hours."
                     },
                     "bank_holiday": {
                         "greeting": "Thank you for your call. We are currently closed. Please leave your name, number and a brief message, or call back during opening hours, Monday \u2013 Friday 09:00 \u2013 17:00."
@@ -309,9 +430,9 @@
                         {
                             "queue_name": "Account Support",
                             "routing_type": "Round Robin",
-                            "max_calls": 10,
+                            "max_calls": "11",
                             "max_calls_exceeeded": "disconnect",
-                            "answer_timeout_seconds": 20,
+                            "answer_timeout_seconds": "20",
                             "answer_timeout_seconds_exceeded": "disconnect",
                             "group": {
                                 "group_name": "Accounts Team",
@@ -319,7 +440,8 @@
                                 "members": [
                                     "Liam",
                                     "Mia",
-                                    "Noah"
+                                    "Noah",
+                                    "Thomas"
                                 ]
                             }
                         }
@@ -353,13 +475,44 @@
                     "phone_number": "+448005678901",
                     "aa_greeting": "Welcome to HR... Please hold, and someone will assist you shortly.",
                     "business_hours": {
-                        "from_day_start": "Monday",
-                        "from_time_start": "09:30",
-                        "from_time_end": "14:30",
-                        "to_day_end": "Friday",
-                        "to_time_start": "09:30",
-                        "to_time_end": "14:30",
-                        "greeting": "We are currently closed. Please leave a message."
+                        "days": [
+                            {
+                                "day_name": "Monday",
+                                "from_time_start": "10:31",
+                                "from_time_end": "16:31"
+                            },
+                            {
+                                "day_name": "Tuesday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Wednesday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Thursday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Friday",
+                                "from_time_start": "09:30",
+                                "from_time_end": "14:30"
+                            },
+                            {
+                                "day_name": "Saturday",
+                                "from_time_start": "10:00",
+                                "from_time_end": "16:00"
+                            },
+                            {
+                                "day_name": "Sunday",
+                                "from_time_start": "10:00",
+                                "from_time_end": "16:00"
+                            }
+                        ],
+                        "greeting": "We are currently closed. Please leave a message or call back during business hours."
                     },
                     "bank_holiday": {
                         "greeting": "Thank you for your call. We are currently closed. Please leave your name, number and a brief message, or call back during opening hours, Monday \u2013 Friday 09:00 \u2013 17:00."
@@ -387,7 +540,8 @@
                                 "group_owner": "No Owner",
                                 "members": [
                                     "Isabella",
-                                    "Daniel"
+                                    "Daniel",
+                                    "hey"
                                 ]
                             }
                         },

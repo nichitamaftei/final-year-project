@@ -12,13 +12,15 @@ function initialise(){
         shape.position(x, y); // set the position of the shape
         shape.resize(width, height);  // set the size of the shape
 
+        if (!text & (type != 'Circle')){
+            text = "Not implemented"
+        }
+
         let labelAttrs = undefined;
-        if (text) { // if text is supplied
-            labelAttrs = { // add attributes, otherwise leave undefined
-                text: text,
-                fill: 'black',
-                style: {fontSize: fontsize + 'px', textAnchor: 'middle'}
-            };
+        labelAttrs = { // add attributes, otherwise leave undefined
+            text: text,
+            fill: 'black',
+            style: {fontSize: fontsize + 'px', textAnchor: 'middle'}
         }
         shape.attr({ // styling the shape
             body:{
@@ -50,6 +52,11 @@ function initialise(){
         const textBlock = new joint.shapes.standard.TextBlock(); // instantiate the specified text
         textBlock.position(x, y); // set the position of the text 
         textBlock.resize(width, height);  // set the size of the text
+
+        if (!text){
+            text = "Not implemented"
+        }
+
         textBlock.attr({ // styling the text
             body:{
                 stroke: 'none',
@@ -332,7 +339,7 @@ function initialise(){
 
 function fullView() { // when the smallCanvas is clicked:
 
-    const modal = document.getElementById('canvas-modal'); // grabbing the hidden modal
+    const modal = document.getElementById('canvasModal'); // grabbing the hidden modal
     modal.style.display = 'flex' // enabling it to be shown
 
     const bigCanvas = document.getElementById('bigCanvas'); // grabbing the 'bigCanvas'
@@ -408,16 +415,74 @@ function fullView() { // when the smallCanvas is clicked:
 }
 
 function closeBigCanvas(){
-    const modal = document.getElementById('canvas-modal'); // grabbing the hidden modal
+    const modal = document.getElementById('canvasModal'); // grabbing the hidden modal
     modal.style.display = 'none' // enabling it to be hidden
 }
 
+function resetModal(){
+
+    fullView()
+}
+
 function showMenu(){
-    const sideMenu = document.getElementById('side-menu'); // grabbing the side bar
+    const sideMenu = document.getElementById('sideMenu'); // grabbing the side bar
     sideMenu.style.display = 'block' // enabling it to be shown
 }
 
 function hideMenu(){
-    const menu = document.getElementById('side-menu'); // grabbing the side bar
+    const menu = document.getElementById('sideMenu'); // grabbing the side bar
     menu.style.display = 'none' // hiding the side bar
+}
+
+
+function logInValidation(){
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    
+    if(email == "" || password == ""){
+        alert("Please fill in the empty field");
+        return false;
+    }
+    else if (email.indexOf("@") === -1){
+        alert("Please enter a valid email (Has to have the @ symbol)");
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
+function updatePasswordValidation(){
+    var specialChars = /[`!@#$%^&*()_\-+=\[\]{};':"\\|,.<>\/?~ ]/;
+    var capitalLetters = /[A-Z]/;
+    var password = document.getElementById('password').value;
+    var confirmPassword = document.getElementById('confirmPassword').value;
+    
+    if(password == "" || confirmPassword == ""){
+        alert("Please fill in the empty fields");
+        return false;
+    }
+    else if(password !== confirmPassword){
+        alert("Your passwords didn't match!");
+        return false;
+    }
+    else if(password.length < 12){
+        alert("Your password must be longer than 12 characters!");
+        return false;
+    }
+    else if(!specialChars.test(password) && !capitalLetters.test(password)){
+        alert("Your password must atleast 1 Uppercase character and 1 Complex Symbol");
+        return false;
+    } 
+    else if(!specialChars.test(password)){
+        alert("Your password must atleast 1 Complex Symbol");
+        return false;
+    }
+    else if(!capitalLetters.test(password)){
+        alert("Your password must atleast 1 Uppercase character");
+        return false;
+    }
+    else{
+        return true;
+    }
 }

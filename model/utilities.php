@@ -5,8 +5,17 @@ function doLogicAndCallIndexView() {
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
+    // reset the sessions if they have already been inputted to avoid array access errors when going to different departments after editing a department
+    if(isset($_SESSION["currentBusinessHoursDay"])){
+        $_SESSION["currentCallQueue"] = null;
+        $_SESSION["callQueueIndex"] = null;
+
+        $_SESSION["currentBusinessHoursDay"] = null;
+        $_SESSION["businessHoursDayIndex"] = null;
+    }
+
     if (!isset($_SESSION["loggedInEmployee"])){ // if an employee isn't logged in 
-        $_SESSION["loggedInEmployee"] = null; // set the session variable 'loggedInEmployee' to null
+        $_SESSION["loggedInEmployee"] = null;
     }
     
     if ($_SESSION["loggedInEmployee"] == null){ // if the session variable 'loggedInEmployee' is null
@@ -21,6 +30,10 @@ function doLogicAndCallIndexView() {
         doLogicAndCallLoginView(); // go to the log in view
         require_once("../view/loginView.php");
     
+    } elseif ($_SESSION["updatedPassword"] == false){ // if the employee didn't update thier password
+
+        doLogicAndCallUpdatePasswordView(); // kick them to the update password view
+        
     } else{ // otherwise
 
         $pdoSingleton = pdoSingleton::getInstance();
@@ -29,47 +42,47 @@ function doLogicAndCallIndexView() {
 
         $arrayOfDepartments = $jsonData['company']['departments']; // puts the array of departments into a variable
 
-        if ($_SESSION["loggedInEmployee"]->isAdmin == 0) { // if the logged in employee isn't an admin
+        // if a role exists in the JSON file but not the database, add the role to the database
 
-            // if there are new departments in the json file that are not in the database as a role, add them
+        $databaseRoles = $pdoSingleton->getAllRoles();
 
-            $databaseRoles = $pdoSingleton->getAllRoles();
+        foreach ($arrayOfDepartments as $department){
 
+            $databaseRoleExists = false;
+
+            foreach ($databaseRoles as $databaseRole){
+
+                if ($department['name'] == $databaseRole->RoleName){
+                    $databaseRoleExists = true;
+                    break;
+                }
+            }
+
+            if (!$databaseRoleExists){
+                $role = new Roles();
+                $role->RoleName = $department['name'];
+                $pdoSingleton->addNewRole($role); 
+            }
+        }
+
+        // if a department exists in the database but not the JSON file, delete the role from the database
+
+        foreach ($databaseRoles as $databaseRole){
+            $roleFound = false;
+        
             foreach ($arrayOfDepartments as $department){
-
-                $databaseRoleExists = false;
-
-                foreach ($databaseRoles as $databaseRole){
-
-                    if ($department['name'] == $databaseRole->RoleName) {
-                        $databaseRoleExists = true;
-                        break;
-                    }
-                }
-
-                if (!$databaseRoleExists){
-                    $role = new Roles();
-                    $role->RoleName = $department['name'];
-                    $pdoSingleton->addNewRole($role); 
+                if ($department['name'] == $databaseRole->RoleName){
+                    $roleFound = true;
+                    break; 
                 }
             }
-
-            // if a department is deleted from the json file, delete it from the database
-
-            foreach ($databaseRoles as $databaseRole) {
-                $roleFound = false;
-            
-                foreach ($arrayOfDepartments as $department) {
-                    if ($department['name'] == $databaseRole->RoleName) {
-                        $roleFound = true;
-                        break; 
-                    }
-                }
-            
-                if (!$roleFound) {
-                    $pdoSingleton->deleteRoleById($databaseRole->RoleID); 
-                }
+        
+            if (!$roleFound) {
+                $pdoSingleton->deleteRoleById($databaseRole->RoleID); 
             }
+        }
+
+        if ($_SESSION["loggedInEmployee"]->isAdmin == 0){ // if the logged in employee isn't an admin
 
             // get a list of the department names the loggedin employee has access to
 
@@ -77,8 +90,7 @@ function doLogicAndCallIndexView() {
 
             $allowedToViewDepartments = [];
 
-
-            foreach ($arrayOfEmployeeRole as $allowed) {
+            foreach ($arrayOfEmployeeRole as $allowed){
 
                 if ($_SESSION['loggedInEmployee']->EmployeeID == $allowed->EmployeeID){
                     $allowedRole = $pdoSingleton->getRoleByID($allowed->RoleID); 
@@ -91,13 +103,12 @@ function doLogicAndCallIndexView() {
 
             // in the arrayOfDepartments, remove departments which are not on the list
 
-
-            foreach ($arrayOfDepartments as $key => $department) {
+            foreach ($arrayOfDepartments as $key => $department){
 
                 $roleFound = false;
 
-                foreach ($allowedToViewDepartments as $allowed) {
-                    if ($department['name'] == $allowed) {
+                foreach ($allowedToViewDepartments as $allowed){
+                    if ($department['name'] == $allowed){
                         $roleFound = true;
                         break; 
                     }
@@ -108,27 +119,24 @@ function doLogicAndCallIndexView() {
                 }
             }
 
-            // set the removed departments to it's self
-            
+            // set the new array of departments the employee has access to to it's self
             $arrayOfDepartments = array_values($arrayOfDepartments);
-
         }
 
-        if (empty($arrayOfDepartments)) { // if the employee has access to no departments
+        if (empty($arrayOfDepartments)){ // if the employee has access to no department
             
-            $departmentName = "You do not have access to any departments.";
+            $departmentName = "You do not have access to any departments! Contact Administrator";
             require_once("../view/indexView.php");
 
         } else{ // otherwise
-
-            if (!isset($_SESSION["department"])){ // if the session variable 'department' isn't set, set it to the first index of $arrayOfDepartments variable
-                $_SESSION["department"] = $arrayOfDepartments[0]; // default to the first department
-            }
     
             if (isset($_POST['dept'])){ // if the employee navigated to a different department
                 $deptIndex = (int)$_REQUEST['dept']; // obtains the index of the selected department
                 $_SESSION["department"] = $arrayOfDepartments[$deptIndex]; // uses the index to select the department
                 $_SESSION["deptIndex"] = $deptIndex;
+            } else if (isset($_SESSION["deptIndex"])) { // if a department view was already set, present that instead of the first index
+                $deptIndex = $_SESSION["deptIndex"]; 
+                $_SESSION["department"] = $arrayOfDepartments[$deptIndex];
             } else{
                 $deptIndex = 0; // obtains the index of the selected department
                 $_SESSION["department"] = $arrayOfDepartments[$deptIndex]; // uses the index to select the department
@@ -147,6 +155,15 @@ function doLogicAndCallIndexView() {
 
 function doLogicAndCallLoginView(){
 
+
+    if (!isset($_SESSION["loggedInEmployee"])){ // if no one's logged in before
+        $_SESSION["loggedInEmployee"] = null;
+        $_SESSION["updatedPassword"] = false;
+    }
+
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+
     $pdoSingleton = pdoSingleton::getInstance(); // getting the pdoSingleton in order to access methods that speak to the database
 
     if (!isset($_REQUEST["logInEmail"]) && !isset($_REQUEST["logInPassword"])){ // if nothing was input, set default values
@@ -160,23 +177,125 @@ function doLogicAndCallLoginView(){
 
         foreach ($employees as $employee): 
             if ($employee->Email == $_REQUEST["logInEmail"] && $employee->Password == $_REQUEST["logInPassword"]){ // checking if a user in the database has the same email and password which was inputted
-                $found = true;
+
                 $foundEmployee = $employee;
+
+                $_SESSION["loggedInEmployee"] = $foundEmployee;
+
+                if ($foundEmployee->LastLogIn != null){ // if the employee has logged in before
+                    $_SESSION["updatedPassword"] = true;
+                    $pdoSingleton->updateLastLogInByID($_SESSION["loggedInEmployee"]->EmployeeID);
+
+                    $auditLog = new AuditLog(); // create a new autit log reflecting this login
+                    $auditLog->EmployeeID = $_SESSION['loggedInEmployee']->EmployeeID;
+                    $auditLog->Date = date('Y-m-d');
+                    $auditLog->Time = date('H:i:s');
+
+                    if ($_SESSION["loggedInEmployee"]->isAdmin == 0){
+
+                        $auditLog->ActionPerformed = "User Logged in";
+                        $auditLog->Details = "User Logged in";
+
+                    } else{
+
+                        $auditLog->ActionPerformed = "Admin Logged in";
+                        $auditLog->Details = "Admin Logged in";
+
+                    }
+
+                    $auditLogID = $pdoSingleton->addNewAuditLog($auditLog);
+                    $auditLog->AuditLogID = $auditLogID;
+
+                    break;
+                }
             }
         endforeach;
-
-        if ($found == true){
-            $_SESSION["loggedInEmployee"] = $foundEmployee;
-            $pdoSingleton->updateLastLogInByID($_SESSION["loggedInEmployee"]->EmployeeID);
-        }
     }
 
-    if (isset($_SESSION["loggedInEmployee"])){
-    
+    if (isset($_SESSION["loggedInEmployee"]) && $_SESSION["updatedPassword"] == true){ // if a match was found and they have an updated password
+
         doLogicAndCallIndexView();
     }
-    else{
+    elseif (!isset($_SESSION["loggedInEmployee"])){ // if no match was found
+
+        $_SESSION["department"] = null;
+        $_SESSION["deptIndex"] = null;
+
         require_once("../view/loginView.php");
+
+    } else{ // if a match was found but they didn't update their password
+        doLogicAndCallUpdatePasswordView();
+    }
+}
+
+
+function doLogicAndCallUpdatePasswordView(){
+
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+
+    $pdoSingleton = pdoSingleton::getInstance();
+
+    if (!isset($_REQUEST["newPassword"]) && !isset($_REQUEST["confirmPassword"])){ // if nothing was input, set default values
+        $_REQUEST["newPassword"] = "";
+        $_REQUEST["confirmPassword"] = "";
+    }
+
+    if (!isset($_SESSION["loggedInEmployee"])){ // if an employee isn't logged in 
+        $_SESSION["loggedInEmployee"] = null; // set the session variable 'loggedInEmployee' to null
+
+    }
+
+    if (!isset($_SESSION["updatedPassword"])){
+        $_SESSION["updatedPassword"] = false;
+
+        echo "update password set to false";
+    }
+    
+    if ($_SESSION["loggedInEmployee"] == null && $_SESSION["updatedPassword"] == false){ // if the session variable 'loggedInEmployee' is null
+
+        doLogicAndCallLoginView(); // go to the log in view
+
+    } else{
+
+        // getting the pdoSingleton in order to access methods that speak to the database
+        if ($_REQUEST["newPassword"] != "" && $_REQUEST["confirmPassword"] != ""){ // if all forms have been entered
+            
+            if ($_REQUEST["newPassword"] == $_REQUEST["confirmPassword"]){ // checking if the new pass is equal to the confirm pass
+
+                $_SESSION["updatedPassword"] = true;
+
+                $pdoSingleton->updateEmployeePasswordByID($_SESSION["loggedInEmployee"]->EmployeeID, $_REQUEST["confirmPassword"]);
+
+                $pdoSingleton->updateLastLogInByID($_SESSION["loggedInEmployee"]->EmployeeID);
+
+                $auditLog = new AuditLog(); // create an audit log reflecting this login
+                $auditLog->EmployeeID = $_SESSION['loggedInEmployee']->EmployeeID;
+                $auditLog->Date = date('Y-m-d');
+                $auditLog->Time = date('H:i:s');
+
+                if ($_SESSION["loggedInEmployee"]->isAdmin == 0){
+
+                    $auditLog->ActionPerformed = "User Logged in";
+                    $auditLog->Details = "User Logged in";
+
+                } else{
+
+                    $auditLog->ActionPerformed = "Admin Logged in";
+                    $auditLog->Details = "Admin Logged in";
+
+                }
+                $auditLogID = $pdoSingleton->addNewAuditLog($auditLog);
+                $auditLog->AuditLogID = $auditLogID;
+            } 
+        } 
+    }
+
+    if ($_SESSION["updatedPassword"] == true){
+        doLogicAndCallIndexView();
+
+    } else{
+        require_once("../view/updatePasswordView.php");
     }
 }
 

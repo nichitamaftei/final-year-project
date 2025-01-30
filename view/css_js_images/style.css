@@ -8,6 +8,7 @@ html, body{
     min-height: 100vh;
     font-family: 'Lato', sans-serif;
     scroll-behavior: smooth;
+    
 }
 
 body{
@@ -20,27 +21,48 @@ body{
 
 /* indexView Page styling */
 
-#top-bar{
+#topBar{
     background-color: #16324F;
     display: flex;
-    justify-content: space-between; 
+    justify-content: center;
     align-items: center;
     padding: 10px;
     height: 80px;
     position: relative;
 }
 
-#menu-icon{
+#menuIcon{
     height: 60px;
     width: 60px;
 }
 
+#topBarButtonContainer{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-left: auto;
+}
+
+#topBarTitleContainer{
+    text-align: center;
+    position: absolute; 
+    left: 50%; 
+    transform: translateX(-50%);
+}
+
+#topBarTitle{
+    margin: 0;
+    text-align: center;
+    color: white;
+    background-color: #18435A;
+    padding: 10px 30px 10px 30px;
+}
+
 /* burger button container */
-#hamburger-container{
+#hamburgerContainer{
     position: absolute; 
     top: 10px;
     left: 10px;
-
 }
 
 .hamburger{
@@ -55,13 +77,6 @@ body{
 }
 
 
-#top-bar-title{
-    margin: 0 auto; 
-    text-align: center;
-    color: white;
-    background-color: #18435A;
-    padding: 10px 30px 10px 30px;
-}
 
 #callFlowTitleContainer{
     text-align: center;
@@ -104,7 +119,7 @@ body{
     cursor: pointer;
 }
 
-#canvas-modal{
+#canvasModal{
     display: none;
     position: fixed;
     top: 0;
@@ -116,7 +131,7 @@ body{
     align-items: center;
 }
 
-#canvas-modal.show{
+#canvasModal.show{
     display: flex;
     opacity: 1;
     transition: opacity 0.3s ease;
@@ -132,10 +147,18 @@ body{
     z-index: 9999;
 }
 
-#close-modal{
+#closeModal{
     position: absolute;
     top: 10px;
     right: 100px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#resetModal{
+    position: absolute;
+    top: 10px;
+    right: 250px;
     font-size: 30px;
     cursor: pointer;
 }
@@ -144,19 +167,19 @@ body{
 
 /* side menu initially hidden */
 
-#backbutton-icon{
+.backbuttonIcon{
     width: 60px;
     height: 60px;
     cursor: pointer;
 }
 
-
-.backButton{
+#sideMenuBackButton{
     background: transparent; 
     border: none; 
+    margin-right: 30px; 
 }
 
-#side-menu{
+#sideMenu{
     display: none;
     position: fixed;
     top: 0;
@@ -168,13 +191,13 @@ body{
     z-index: 9999;
 }
 
-#unordered-list{
+#unorderedList{
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
 
-.list-items{
+.listItems{
     padding: 15px;
 }
 
@@ -278,6 +301,8 @@ body{
     gap: 10px; 
 }
 
+
+
 #selectStyle{
     font-size: 16px; 
     padding: 5px;
@@ -301,15 +326,27 @@ body{
     gap: 20px;
     width: 100%;
     margin-bottom: 20px;
+    
 }
 
 .businessHoursSubContainer{
+    margin-top: 30px;
+    margin-left: 10px;
     display: flex;
-    flex-direction: column;
-    gap: 5px;
+    gap: 10px;
     width: 30%; 
 }
 
+#timeContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    gap: 20px;    
+    width: 100%;  
+    height: 100%;
+    text-align: center; 
+   
+}
 .selectionStyling{
     padding: 8px;
     font-size: 13px;
@@ -345,13 +382,27 @@ body{
 
 /* Styling the admin view */
 
-#listOfEmployeesTable{
+#adminBackButton{
+    background: transparent;
+    border: none;
+    margin-right: 30px; 
+    position: absolute; 
+    right: 10px; 
+    transform: translateY(-50%); 
+}
+
+#topBarTitleAdmin{
+    text-align: center;
     color: white;
+    background-color: #FF0000;
+    padding: 10px 30px 10px 30px;
 }
 
 .content{
     display: none; 
     margin-top: 20px;
+    background-color: #13293D;
+    
 }
 
 .active {
@@ -364,30 +415,97 @@ body{
     cursor: pointer;
 }
 
-#modal{
+#modalContainer {
     display: none; 
-    position: fixed; 
-    z-index: 1;
-    left: 0;
+    position: fixed;
     top: 0;
-    width: 100%; 
+    left: 0;
+    width: 100%;
     height: 100%;
-    overflow: auto; 
-    background-color: rgba(0,0,0,0.4); 
-    padding-top: 60px;
-    color: white;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 9999; 
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden;
+}
+
+#modal {
+    background-color: #18435A;
+    padding: 0px, 20px;
+    border-radius: 8px;
+    width: 600px; 
+    max-width: 100%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     justify-content: center; 
-    align-items: center; 
+    align-items: center;
+    color: white;
 }
 
 
-#modalContainer{
-    background-color: #fefefe;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
+
+#modalTitle{
+    margin-top: 0;
+    text-align: center;
+    background-color: #13293D;
+    padding: 30px 188px 30px 188px;
+    white-space: nowrap;
+}
+
+#addUserForm{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#modalButtonContainer{
+    display: flex;
+    justify-content: center; 
+    gap: 20px; 
+    margin-top: 20px; 
+    margin-bottom: 40px;
+}
+
+.modalFlexContainer label {
+    width: 150px; 
+    text-align: right; 
+    font-weight: bold; 
+}
+
+.formButton{
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#cancelFormButton{
+    background-color: #2A628F;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    width: 100px;
+}
+
+#addUserFormButton{
+    background-color: #FF0000;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.modalFlexContainer{
+    display: flex;
+    gap: 40px;
+    padding: 10px;
 }
 
 
@@ -403,4 +521,373 @@ body{
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+#tabsContainer {
+    margin: 20px;
+    padding: 0 5%; 
+}
+
+#tabs {
+    display: flex;
+    flex-direction: column;
+}
+
+.tabButtons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#usersTabButton, #logsTabButton {
+    padding: 10px 80px;
+    cursor: pointer;
+    font-size: 17px;
+    background-color: #13293D;
+    color: white; 
+    border: none; 
+    transition: background-color 0.3s ease; 
+}
+
+#usersTabButton.active {
+    background-color: #18435A; 
+}
+
+#logsTabButton.active {
+    background-color: #18435A; 
+}
+
+.content {
+    display: none;
+}
+
+.content.active {
+    display: block;
+}
+
+.table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: separate;  
+    border-spacing: 0 30px; 
+    color: white;
+}
+
+.table th, .table td {
+    padding: 0px 12px 0px 12px;
+}
+
+.selectedTH {
+    background-color: #18435A;
+}
+
+.selectedLogsTH {
+    background-color: #18435A;
+    padding: 20px !important;
+}
+
+.addRoleButtonTH{
+    background-color: transparent; 
+}
+
+#deleteEmployeeButton{
+    background-color: #FF0000;
+    color: white;
+    font-size: 15px;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+#roleList{
+    list-style-type: none;
+    padding-left: 0;
+    max-height: 70px; 
+    overflow-y: scroll;
+}
+
+.roleList{
+    padding: 2px;
+}
+
+.roleRemoveButton{
+    background-color: #FF0000;
+    color: white;
+    border: none;
+    padding: 2px;
+    cursor: pointer;
+}
+
+#adminLink{
+    text-decoration: none;
+    color: white;
+    background-color: #FF0000;
+    padding: 15px 20px 15px 20px;
+}
+
+
+#roleSelectionForm{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+    gap: 10px;  
+}
+
+#formGroup{
+    text-align: center; 
+    background-color: #2A628F;
+}
+
+.placeHolderTextRole{
+    background-color: #2A628F;
+    padding: 20px !important;
+    margin-left: 20px;
+    max-width: 270px;
+}
+
+#addARoleLabel{
+    display: block;
+    padding-top: 10px;
+}
+
+#roleSelect, #assignRoleButton{
+    display: inline-block; 
+    margin: 5px;
+    padding: 3px;
+    font-size: 15px;
+}
+
+#assignRoleButton{
+    font-size: 16px; 
+    background-color: #18435A;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#addUserButtonContainer{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#addUserButton{
+    background-color: #2A628F;
+    color: white;
+    border: none;
+    font-size: 18px;
+    padding: 8px 40px;
+    cursor: pointer;
+}
+
+
+#signOut{
+    border: 1px solid red;
+    background-color: #18435A;
+    color: white;
+    padding: 15px 30px 15px 30px;
+    cursor: pointer;
+}
+
+
+
+/* loginView styling */
+
+
+#loginContainer {
+    display: flex; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden;
+}
+
+#loginSubContainer {
+    background-color: #18435A;
+    padding: 0px, 20px;
+    border-radius: 8px;
+    width: 600px; 
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center; 
+    align-items: center;
+    color: white;
+}
+
+#loginTitleContainer{
+    margin-top: 0;
+    text-align: center;
+    background-color: #13293D;
+    padding: 5px 80px 5px 80px;
+    white-space: nowrap;
+}
+
+#loginForm{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#loginButtonContainer{
+    display: flex;
+    justify-content: center; 
+    gap: 20px; 
+    margin-top: 20px; 
+    margin-bottom: 40px;
+}
+
+#loginTitle{
+    margin-top: 0;
+    text-align: center;
+    background-color: #13293D;
+    padding: 30px 188px 30px 188px;
+    white-space: nowrap;
+}
+
+.loginFlexContainer label {
+    width: 150px; 
+    text-align: right; 
+    font-weight: bold; 
+}
+
+.loginButton{
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#loginFormButton{
+    background-color: white;
+    color: #13293D;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    width: auto; 
+    text-align: center;
+    margin: 0 auto; 
+    display: inline-block;
+}
+
+#loginButtonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.loginFlexContainer {
+    display: flex;
+    align-items: center;
+    gap: 30px; 
+    padding: 10px 0;
+}
+
+/* updatePasswordView styling */
+
+#updatePasswordContainer {
+    display: flex; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden;
+}
+
+#updatePasswordSubContainer {
+    background-color: #18435A;
+    padding: 0px, 20px;
+    border-radius: 8px;
+    width: 600px; 
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center; 
+    align-items: center;
+    color: white;
+}
+
+#updatePasswordTitleContainer{
+    margin-top: 0;
+    text-align: center;
+    background-color: #13293D;
+    padding: 5px 12px 5px 12px;
+    white-space: nowrap;
+}
+
+#updatePasswordForm{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#updatePasswordButtonContainer{
+    display: flex;
+    justify-content: center; 
+    gap: 20px; 
+    margin-top: 20px; 
+    margin-bottom: 40px;
+}
+
+#updatePasswordTitle{
+    margin-top: 0;
+    text-align: center;
+    background-color: #13293D;
+    padding: 30px 188px 30px 188px;
+    white-space: nowrap;
+}
+
+.updatePasswordFlexContainer label {
+    width: 150px; 
+    text-align: right; 
+    font-weight: bold; 
+}
+
+.updatePasswordButton{
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#updatePasswordFormButton{
+    background-color: white;
+    color: #13293D;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    width: auto; 
+    text-align: center;
+    margin: 0 auto; 
+    display: inline-block;
+}
+
+#updatePasswordButtonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.updatePasswordFlexContainer {
+    display: flex;
+    align-items: center;
+    gap: 30px; 
+    padding: 10px 0;
 }
