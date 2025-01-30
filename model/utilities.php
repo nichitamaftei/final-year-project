@@ -5,8 +5,17 @@ function doLogicAndCallIndexView() {
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
+    // reset the sessions if they have already been inputted to avoid array access errors when going to different departments after editing a department
+    if(isset($_SESSION["currentBusinessHoursDay"])){
+        $_SESSION["currentCallQueue"] = null;
+        $_SESSION["callQueueIndex"] = null;
+
+        $_SESSION["currentBusinessHoursDay"] = null;
+        $_SESSION["businessHoursDayIndex"] = null;
+    }
+
     if (!isset($_SESSION["loggedInEmployee"])){ // if an employee isn't logged in 
-        $_SESSION["loggedInEmployee"] = null; // set the session variable 'loggedInEmployee' to null
+        $_SESSION["loggedInEmployee"] = null;
     }
     
     if ($_SESSION["loggedInEmployee"] == null){ // if the session variable 'loggedInEmployee' is null
@@ -21,7 +30,7 @@ function doLogicAndCallIndexView() {
         doLogicAndCallLoginView(); // go to the log in view
         require_once("../view/loginView.php");
     
-    } elseif ($_SESSION["updatedPassword"] == false){
+    } elseif ($_SESSION["updatedPassword"] == false){ // if the employee didn't update thier password
 
         doLogicAndCallUpdatePasswordView(); // kick them to the update password view
         
@@ -116,12 +125,11 @@ function doLogicAndCallIndexView() {
 
         if (empty($arrayOfDepartments)){ // if the employee has access to no department
             
-            $departmentName = "You do not have access to any departments.";
+            $departmentName = "You do not have access to any departments! Contact Administrator";
             require_once("../view/indexView.php");
 
         } else{ // otherwise
     
-            
             if (isset($_POST['dept'])){ // if the employee navigated to a different department
                 $deptIndex = (int)$_REQUEST['dept']; // obtains the index of the selected department
                 $_SESSION["department"] = $arrayOfDepartments[$deptIndex]; // uses the index to select the department
@@ -148,12 +156,10 @@ function doLogicAndCallIndexView() {
 function doLogicAndCallLoginView(){
 
 
-    if (!isset($_SESSION["loggedInEmployee"])) {
+    if (!isset($_SESSION["loggedInEmployee"])){ // if no one's logged in before
         $_SESSION["loggedInEmployee"] = null;
+        $_SESSION["updatedPassword"] = false;
     }
-    
-    $_SESSION["updatedPassword"] = false;
-
 
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
@@ -176,13 +182,11 @@ function doLogicAndCallLoginView(){
 
                 $_SESSION["loggedInEmployee"] = $foundEmployee;
 
-                if ($foundEmployee->LastLogIn == null){
-
-                } else {
+                if ($foundEmployee->LastLogIn != null){ // if the employee has logged in before
                     $_SESSION["updatedPassword"] = true;
                     $pdoSingleton->updateLastLogInByID($_SESSION["loggedInEmployee"]->EmployeeID);
 
-                    $auditLog = new AuditLog();
+                    $auditLog = new AuditLog(); // create a new autit log reflecting this login
                     $auditLog->EmployeeID = $_SESSION['loggedInEmployee']->EmployeeID;
                     $auditLog->Date = date('Y-m-d');
                     $auditLog->Time = date('H:i:s');
@@ -208,18 +212,18 @@ function doLogicAndCallLoginView(){
         endforeach;
     }
 
-    if (isset($_SESSION["loggedInEmployee"]) && $_SESSION["updatedPassword"] == true){
+    if (isset($_SESSION["loggedInEmployee"]) && $_SESSION["updatedPassword"] == true){ // if a match was found and they have an updated password
 
         doLogicAndCallIndexView();
     }
-    elseif (!isset($_SESSION["loggedInEmployee"])){
+    elseif (!isset($_SESSION["loggedInEmployee"])){ // if no match was found
 
         $_SESSION["department"] = null;
         $_SESSION["deptIndex"] = null;
 
         require_once("../view/loginView.php");
-    } else{
 
+    } else{ // if a match was found but they didn't update their password
         doLogicAndCallUpdatePasswordView();
     }
 }
@@ -265,7 +269,7 @@ function doLogicAndCallUpdatePasswordView(){
 
                 $pdoSingleton->updateLastLogInByID($_SESSION["loggedInEmployee"]->EmployeeID);
 
-                $auditLog = new AuditLog();
+                $auditLog = new AuditLog(); // create an audit log reflecting this login
                 $auditLog->EmployeeID = $_SESSION['loggedInEmployee']->EmployeeID;
                 $auditLog->Date = date('Y-m-d');
                 $auditLog->Time = date('H:i:s');

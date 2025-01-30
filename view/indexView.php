@@ -38,10 +38,9 @@
 
             </div>
 
-            <div id="side-menu">
-                <ul id="unordered-list">
-                    
-                    <li class="list-items">
+            <div id="sideMenu">
+                <ul id="unorderedList">
+                    <li class="listItems">
                         <button id="sideMenuBackButton" onclick="hideMenu()">
                             <img class="backbuttonIcon"src="../view/css_js_images/backButtonIcon.png" alt="">
                         </button>
@@ -49,7 +48,7 @@
 
                     <?php foreach ($arrayOfDepartments as $index => $department): ?>   <!-- for every department, create links -->
                         <form method="POST" action="index.php">
-                            <li class="list-items">
+                            <li class="listItems">
                                 <button type="submit" name="dept" value="<?= $index; ?>" class="departmentButtons">
                                     <?= $department['name']; ?>
                                 </button>
@@ -76,10 +75,11 @@
             <?php endif; ?>            
         </div>
 
-        <div id="canvas-modal"> <!-- initially hidden -->
+        <div id="canvasModal"> <!-- initially hidden -->
             <div id="bigCanvas">
             </div>
-            <button id="close-modal" onclick="closeBigCanvas()">Close</button>
+            <button id="closeModal" onclick="closeBigCanvas()"> Close </button>
+            <button id="resetModal" onclick="resetModal()" > Reset </button>
         </div>
     </body>
 </html>

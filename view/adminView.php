@@ -54,17 +54,7 @@
                                     </th>
                                     <th class="selectedTH"> 
                                         <ul id="roleList">
-                                            <?php foreach ($employee['roles'] as $role): ?>
-                                                <li class="roleList"> 
-                                                    <?= $role->RoleName ?> 
-                                                    <form method="post" action="../controller/admin.php" style="display:inline;">
-                                                        <input type="hidden" name="employeeID" value=" <?= $employee['employee']->EmployeeID ?>">
-                                                        <input type="hidden" name="roleID" value=" <?= $role->RoleID ?> ">
-                                                        <button class="roleRemoveButton" type="submit"> X </button>
-                                                    </form>
-                                                </li>
-                                            <?php endforeach ?>
-
+                                        
                                             <?php if ($employee['employee']->isAdmin == 1): ?>
                                                 <li class="roleList"> 
                                                     Admin 
@@ -77,6 +67,18 @@
                                                 <li>
                                                     No assigned Roles
                                                 </li>
+                                            
+                                            <?php else: ?>
+                                                <?php foreach ($employee['roles'] as $role): ?>
+                                                <li class="roleList"> 
+                                                    <?= $role->RoleName ?> 
+                                                    <form method="post" action="../controller/admin.php" style="display:inline;">
+                                                        <input type="hidden" name="employeeID" value=" <?= $employee['employee']->EmployeeID ?>">
+                                                        <input type="hidden" name="roleID" value=" <?= $role->RoleID ?> ">
+                                                        <button class="roleRemoveButton" type="submit"> X </button>
+                                                    </form>
+                                                </li>
+                                            <?php endforeach ?>
 
                                             <?php endif; ?>
                                         </ul> 
@@ -112,7 +114,7 @@
                                         </div>
                                     </th>
                                     <th class="deleteUserButtonTH"> 
-                                        <form method="post" action="../controller/admin.php"> 
+                                        <form method="post" onclick="return confirm('Are you sure you want to DELETE the User: \'<?= $employee['employee']->FirstName . ' ' . $employee['employee']->LastName  ?>\' ');" action="../controller/admin.php"> 
                                             <input type="hidden" name="employeeToDeleteID" value=" <?= $employee['employee']->EmployeeID ?> ">
                                             <button type="submit" id="deleteEmployeeButton"> Delete Employee </button>
                                         </form>
@@ -121,7 +123,6 @@
                             <?php endforeach ?>
                         </tbody>
                     </table>   
-
 
                     <div id="addUserButtonContainer">
                         <button id="addUserButton" onclick="openAddUserModal()"> Add a new User </button>
@@ -195,6 +196,5 @@
                 </form>
             </div>
         </div>
-
     </body>
 </html>

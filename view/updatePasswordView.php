@@ -16,26 +16,26 @@
         <section id='topBar'>
             <h1 id="topBarTitle"> Update Password</h1>
         </section>   
-        <div id="loginContainer">
-            <div id="loginSubContainer">
+        <div id="updatePasswordContainer">
+            <div id="updatePasswordSubContainer">
 
-                <div id="loginTitleContainer">
-                    <h2 id="loginTitle">Update Password</h2>
+                <div id="updatePasswordTitleContainer">
+                    <h2 id="updatePasswordTitle">Update Password</h2>
                 </div>
 
-                <form id="loginForm" onsubmit="return updatePasswordValidation()" method="post" action="../controller/login.php" >
+                <form id="updatePasswordForm" onsubmit="return updatePasswordValidation()" method="post" action="../controller/login.php" >
 
-                    <div class="loginFlexContainer">
+                    <div class="updatePasswordFlexContainer">
                         <label for="email">New Password:</label>
                         <input type="password" id="password" name="newPassword" required><br>
                     </div>
 
-                    <div class="loginFlexContainer">
+                    <div class="updatePasswordFlexContainer">
                         <label for="password"> Confirm Password:</label>
                         <input type="password" id="confirmPassword" name="confirmPassword" required><br>
                     </div>
 
-                    <div id="loginButtonContainer">
+                    <div id="updatePasswordButtonContainer">
                         <button class="loginButton" id="loginFormButton" type="submit" value="Login">Update & Log-in</button>
                     </div>
                 </form>

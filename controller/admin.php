@@ -27,7 +27,7 @@ if (isset($_POST['removeAdminFromThisEmployeeID'])){ // if the admin removed the
 
     $pdoSingleton->removeAdminFromID($employeeID); // change the isAdmin from 1 to 0
 
-    $auditLog = new AuditLog();
+    $auditLog = new AuditLog(); // create a new audit log reflecting this change
     $auditLog->EmployeeID = $_SESSION['loggedInEmployee']->EmployeeID;
     $auditLog->Date = date('Y-m-d');
     $auditLog->Time = date('H:i');
@@ -52,7 +52,7 @@ if (isset($_POST['employeeID']) && isset($_POST['roleID'])){ // if the admin rem
 
     $pdoSingleton->removeRoleFromEmployee($employeeID, $roleID); // remove the selected role
 
-    $auditLog = new AuditLog();
+    $auditLog = new AuditLog(); // create a new audit log reflecting this change
     $auditLog->EmployeeID = $_SESSION['loggedInEmployee']->EmployeeID;
     $auditLog->Date = date('Y-m-d');
     $auditLog->Time = date('H:i');
@@ -66,9 +66,9 @@ if (isset($_POST['employeeID']) && isset($_POST['roleID'])){ // if the admin rem
 if (isset($_POST['employeeToDeleteID'])){ // if the admin deletes an employee
     $employeeToDeleteID = $_POST['employeeToDeleteID'];
 
-    $employeeToBeDeletedDetails = $pdoSingleton->getEmployeeByID($employeeToDeleteID);
+    $employeeToBeDeletedDetails = $pdoSingleton->getEmployeeByID($employeeToDeleteID); // used to create audit log
     
-    $auditLog = new AuditLog();
+    $auditLog = new AuditLog(); // create a new audit log reflecting this change
     $auditLog->EmployeeID = $_SESSION['loggedInEmployee']->EmployeeID;
     $auditLog->Date = date('Y-m-d');
     $auditLog->Time = date('H:i');
@@ -94,11 +94,10 @@ if (isset($_POST['addEmployeeID']) && isset($_POST['addRoleID'])){ // if the adm
     $employeeObject = $pdoSingleton->getEmployeeByID($employeeID);
     $roleObject = $pdoSingleton->getRoleByID($roleID);
 
-    $auditLog = new AuditLog();
+    $auditLog = new AuditLog(); // create a new audit log reflecting this change conditionally
     
 
     if ($roleID == "admin"){ // if the admin chose to set the employee as an admin
-        $pdoSingleton->removeAllInEmployeeRoleByID($employeeID); // remove all current roles
 
         $pdoSingleton->addAdminFromID($employeeID); // change isAdmin from 0 to 1
 
@@ -159,7 +158,7 @@ if (!isset($_SESSION["loggedInEmployee"]) || $_SESSION["updatedPassword"] == fal
    
 } else{
 
-        // the following populates $employeeArray with $employee, $assignedRoles[] and $availableRoles[] in order to be iterated through in the adminView
+        // the following populates the $employeeArray key value pair with an $employee object, $assignedRoles[] array of their assigned roles and $availableRoles[] array of their available roles in order to be iterated through in the adminView
 
         $employees = $pdoSingleton->getAllEmployees(); // get every Employee
         $allRoles = $pdoSingleton->getAllRoles(); // get every Role
