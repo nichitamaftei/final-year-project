@@ -15,7 +15,7 @@
 
         <section id='topBar'>
 
-            <div id="hamburger-container">
+            <div id="hamburgerContainer">
                 <button class="hamburger" onclick="showMenu()">
                     <img id="menuIcon"src="../view/css_js_images/burgerMenuIcon.png" alt="">
                 </button>
