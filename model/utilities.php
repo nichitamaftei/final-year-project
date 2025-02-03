@@ -146,7 +146,73 @@ function doLogicAndCallIndexView() {
             $results = $pdoSingleton->getAllEmployees();
             
             $departmentName = $_SESSION["department"]['name']; // displays the currently selected department for debugging purposes
-    
+
+
+            // beginning of setting call metrics
+
+            $arrayOfCallMetrics = $_SESSION["department"]["call_metrics"]; // gets an array of all the metrics for the current department
+
+            // sets up the array for the Top 5 Callers info
+
+            $arrayOfAllNumbersCalled = array_column($arrayOfCallMetrics, 'number');
+
+            $timesANumberHasBeenCalled = array_count_values($arrayOfAllNumbersCalled);
+
+            arsort($timesANumberHasBeenCalled);
+
+            $topNumbers = array_slice($timesANumberHasBeenCalled, 0, 5, true);
+
+
+            // sets up the variables for the Incoming Calls Today info
+
+            $totalCallers = count($arrayOfAllNumbersCalled);
+
+            $totalWaitTime = 0;
+
+            foreach ($arrayOfCallMetrics as $metric) {
+                $totalWaitTime += $metric['wait_time'];
+            }
+
+            if ($totalCallers > 0) {
+                $averageWaitTime = $totalWaitTime / $totalCallers;
+            } else {
+                $averageWaitTime = 0;
+            }
+
+            
+
+            // sets up the varirables for the Abandonded Today info
+
+            $abdandondedArray = [];
+
+            foreach ($arrayOfCallMetrics as $metric) {
+                if ($metric['abandoned'] == true){
+                    $abdandondedArray[] = $metric;
+                }
+            }
+
+            $totalAbandondedCalls =  count($abdandondedArray);
+
+            $abandondedRate = ($totalAbandondedCalls / $totalCallers) * 100;
+
+
+            // sets up the variables for the Extra Metrics Today info
+
+            $answereddArray = [];
+
+            foreach ($arrayOfCallMetrics as $metric) {
+                if ($metric['abandoned'] == false){
+                    $answereddArray[] = $metric;
+                }
+            }
+
+            $totalAnsweredCalls =  count($answereddArray);
+
+            $arrayOfWaitTimes = array_column($arrayOfCallMetrics, 'wait_time');
+
+            $longestWaitTime = max($arrayOfWaitTimes);
+
+
             require_once("../view/indexView.php");
 
         }

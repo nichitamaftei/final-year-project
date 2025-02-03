@@ -100,24 +100,564 @@
                 },
                 "call_metrics": [
                     {
-                        "call_id": 1,
                         "number": "7492847582",
+                        "timestamp": "2025-02-01T08:30:00",
                         "wait_time": 40,
                         "abandoned": false
                     },
                     {
-                        "call_id": 2,
                         "number": "7492131143",
+                        "timestamp": "2025-02-01T09:00:00",
                         "wait_time": 55,
                         "abandoned": true
                     },
                     {
-                        "call_id": 3,
                         "number": "7211214354",
+                        "timestamp": "2025-02-01T09:45:00",
                         "wait_time": 30,
                         "abandoned": false
+                    },
+                    {
+                        "number": "7499876543",
+                        "timestamp": "2025-02-01T10:15:00",
+                        "wait_time": 20,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7498765432",
+                        "timestamp": "2025-02-01T10:45:00",
+                        "wait_time": 35,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7312345678",
+                        "timestamp": "2025-02-01T11:15:00",
+                        "wait_time": 10,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7494567890",
+                        "timestamp": "2025-02-01T11:45:00",
+                        "wait_time": 50,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7321476589",
+                        "timestamp": "2025-02-01T12:15:00",
+                        "wait_time": 15,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7491478523",
+                        "timestamp": "2025-02-01T12:45:00",
+                        "wait_time": 45,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7339988776",
+                        "timestamp": "2025-02-01T13:15:00",
+                        "wait_time": 20,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7401236789",
+                        "timestamp": "2025-02-01T13:45:00",
+                        "wait_time": 65,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7426584731",
+                        "timestamp": "2025-02-01T14:15:00",
+                        "wait_time": 40,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7453892348",
+                        "timestamp": "2025-02-01T14:45:00",
+                        "wait_time": 30,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7478561239",
+                        "timestamp": "2025-02-01T15:15:00",
+                        "wait_time": 25,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7423412657",
+                        "timestamp": "2025-02-01T15:45:00",
+                        "wait_time": 55,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7498326745",
+                        "timestamp": "2025-02-02T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7465432109",
+                        "timestamp": "2025-02-02T09:00:00",
+                        "wait_time": 15,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7492348793",
+                        "timestamp": "2025-02-02T09:30:00",
+                        "wait_time": 20,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7324685439",
+                        "timestamp": "2025-02-02T10:00:00",
+                        "wait_time": 60,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7386452301",
+                        "timestamp": "2025-02-02T10:30:00",
+                        "wait_time": 25,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7468901235",
+                        "timestamp": "2025-02-02T11:00:00",
+                        "wait_time": 35,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7453456789",
+                        "timestamp": "2025-02-02T11:30:00",
+                        "wait_time": 45,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7320978236",
+                        "timestamp": "2025-02-02T12:00:00",
+                        "wait_time": 15,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7492847582",
+                        "timestamp": "2025-02-02T12:30:00",
+                        "wait_time": 25,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7211214354",
+                        "timestamp": "2025-02-02T13:00:00",
+                        "wait_time": 30,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7401236789",
+                        "timestamp": "2025-02-02T13:30:00",
+                        "wait_time": 50,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7426584731",
+                        "timestamp": "2025-02-02T14:00:00",
+                        "wait_time": 35,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7453892348",
+                        "timestamp": "2025-02-02T14:30:00",
+                        "wait_time": 15,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7478561239",
+                        "timestamp": "2025-02-02T15:00:00",
+                        "wait_time": 20,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7423412657",
+                        "timestamp": "2025-02-02T15:30:00",
+                        "wait_time": 50,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7498326745",
+                        "timestamp": "2025-02-03T08:00:00",
+                        "wait_time": 60,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7465432109",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 45,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7492348793",
+                        "timestamp": "2025-02-03T09:00:00",
+                        "wait_time": 20,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7324685439",
+                        "timestamp": "2025-02-03T09:30:00",
+                        "wait_time": 30,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7386452301",
+                        "timestamp": "2025-02-03T10:00:00",
+                        "wait_time": 50,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7468901235",
+                        "timestamp": "2025-02-03T10:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7453456789",
+                        "timestamp": "2025-02-03T11:00:00",
+                        "wait_time": 55,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7320978236",
+                        "timestamp": "2025-02-03T11:30:00",
+                        "wait_time": 15,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7492847582",
+                        "timestamp": "2025-02-03T12:00:00",
+                        "wait_time": 30,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7211214354",
+                        "timestamp": "2025-02-03T12:30:00",
+                        "wait_time": 45,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7401236789",
+                        "timestamp": "2025-02-03T13:00:00",
+                        "wait_time": 50,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7426584731",
+                        "timestamp": "2025-02-03T13:30:00",
+                        "wait_time": 20,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7453892348",
+                        "timestamp": "2025-02-03T14:00:00",
+                        "wait_time": 25,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7478561239",
+                        "timestamp": "2025-02-03T14:30:00",
+                        "wait_time": 15,
+                        "abandoned": true
+                    },{
+                        "number": "7492847582",
+                        "timestamp": "2025-02-04T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7492131143",
+                        "timestamp": "2025-02-04T09:00:00",
+                        "wait_time": 55,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7211214354",
+                        "timestamp": "2025-02-04T09:30:00",
+                        "wait_time": 30,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7499876543",
+                        "timestamp": "2025-02-04T10:00:00",
+                        "wait_time": 20,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7498765432",
+                        "timestamp": "2025-02-04T10:30:00",
+                        "wait_time": 35,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7312345678",
+                        "timestamp": "2025-02-04T11:00:00",
+                        "wait_time": 10,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7494567890",
+                        "timestamp": "2025-02-04T11:30:00",
+                        "wait_time": 50,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7321476589",
+                        "timestamp": "2025-02-04T12:00:00",
+                        "wait_time": 15,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7491478523",
+                        "timestamp": "2025-02-04T12:30:00",
+                        "wait_time": 45,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7339988776",
+                        "timestamp": "2025-02-04T13:00:00",
+                        "wait_time": 20,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7401236789",
+                        "timestamp": "2025-02-04T13:30:00",
+                        "wait_time": 65,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7426584731",
+                        "timestamp": "2025-02-04T14:00:00",
+                        "wait_time": 40,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7453892348",
+                        "timestamp": "2025-02-04T14:30:00",
+                        "wait_time": 30,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7478561239",
+                        "timestamp": "2025-02-04T15:00:00",
+                        "wait_time": 25,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7423412657",
+                        "timestamp": "2025-02-04T15:30:00",
+                        "wait_time": 55,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7498326745",
+                        "timestamp": "2025-02-05T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7465432109",
+                        "timestamp": "2025-02-05T09:00:00",
+                        "wait_time": 15,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7492348793",
+                        "timestamp": "2025-02-05T09:30:00",
+                        "wait_time": 20,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7324685439",
+                        "timestamp": "2025-02-05T10:00:00",
+                        "wait_time": 60,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7386452301",
+                        "timestamp": "2025-02-05T10:30:00",
+                        "wait_time": 25,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7468901235",
+                        "timestamp": "2025-02-05T11:00:00",
+                        "wait_time": 35,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7453456789",
+                        "timestamp": "2025-02-05T11:30:00",
+                        "wait_time": 45,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7320978236",
+                        "timestamp": "2025-02-05T12:00:00",
+                        "wait_time": 15,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7492847582",
+                        "timestamp": "2025-02-05T12:30:00",
+                        "wait_time": 25,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7211214354",
+                        "timestamp": "2025-02-05T13:00:00",
+                        "wait_time": 30,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7401236789",
+                        "timestamp": "2025-02-05T13:30:00",
+                        "wait_time": 50,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7426584731",
+                        "timestamp": "2025-02-05T14:00:00",
+                        "wait_time": 35,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7453892348",
+                        "timestamp": "2025-02-05T14:30:00",
+                        "wait_time": 15,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7478561239",
+                        "timestamp": "2025-02-05T15:00:00",
+                        "wait_time": 20,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7423412657",
+                        "timestamp": "2025-02-05T15:30:00",
+                        "wait_time": 50,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7498326745",
+                        "timestamp": "2025-02-06T08:00:00",
+                        "wait_time": 60,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7465432109",
+                        "timestamp": "2025-02-06T08:30:00",
+                        "wait_time": 45,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7492348793",
+                        "timestamp": "2025-02-06T09:00:00",
+                        "wait_time": 20,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7324685439",
+                        "timestamp": "2025-02-06T09:30:00",
+                        "wait_time": 30,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7386452301",
+                        "timestamp": "2025-02-06T10:00:00",
+                        "wait_time": 50,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7468901235",
+                        "timestamp": "2025-02-06T10:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7453456789",
+                        "timestamp": "2025-02-06T11:00:00",
+                        "wait_time": 55,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7320978236",
+                        "timestamp": "2025-02-06T11:30:00",
+                        "wait_time": 15,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7492847582",
+                        "timestamp": "2025-02-06T12:00:00",
+                        "wait_time": 30,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7211214354",
+                        "timestamp": "2025-02-06T12:30:00",
+                        "wait_time": 45,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7401236789",
+                        "timestamp": "2025-02-06T13:00:00",
+                        "wait_time": 50,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7426584731",
+                        "timestamp": "2025-02-06T13:30:00",
+                        "wait_time": 20,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7453892348",
+                        "timestamp": "2025-02-06T14:00:00",
+                        "wait_time": 25,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "7478561239",
+                        "timestamp": "2025-02-06T14:30:00",
+                        "wait_time": 15,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7478561239",
+                        "timestamp": "2025-02-07T14:30:00",
+                        "wait_time": 15,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7478561239",
+                        "timestamp": "2025-02-07T14:20:00",
+                        "wait_time": 13,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7478561239",
+                        "timestamp": "2025-02-07T14:10:00",
+                        "wait_time": 13,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7478561239",
+                        "timestamp": "2025-02-07T14:50:00",
+                        "wait_time": 13,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "7432938413",
+                        "timestamp": "2025-02-07T14:30:00",
+                        "wait_time": 13,
+                        "abandoned": true
                     }
                 ]
+                
             },
             {
                 "name": "Support",

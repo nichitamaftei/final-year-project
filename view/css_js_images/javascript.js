@@ -1,8 +1,11 @@
-$(document).ready(initialise);
+$(document).ready(function() {
+    jointJS();
+    barChart();
+});
 
 let graph = new joint.dia.Graph(); // 'graph' holds the data
 
-function initialise(){
+function jointJS(){
 
 
      // --- defining specific shapes --- 
@@ -328,13 +331,10 @@ function initialise(){
             })
 
         },
-        error: function(err) {
+        error: function(err){
             console.error("Error fetching data:", err); // logs any errors
         }
     });
-
-   
-
 };
 
 function fullView() { // when the smallCanvas is clicked:
@@ -413,6 +413,55 @@ function fullView() { // when the smallCanvas is clicked:
 
     bigCanvas.addEventListener('mouseup', () => isPanning = false); // when the user releases their mouse click, set the panning flag to false
 }
+
+
+function barChart(){
+
+    $.ajax({ // get the department json data 
+        url: 'fetchBarChartData.php', // specificying which php file
+        method: 'POST', // fetch type
+        success: function(data){
+
+            var xValues = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    
+            var barColors = ["#2A628F", "#18435A","#2A628F","#18435A","#2A628F", "#18435A", "#2A628F"];
+
+            var yValues = [data.Monday, data.Tuesday, data.Wednesday, data.Thursday, data.Friday, data.Saturday, data.Sunday];
+
+
+            new Chart("myChart",{
+                type: "bar",
+                data:{
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options:{
+                    legend: {display: false},
+                    title:{
+                        display: true,
+                        text: "Calls Per Day",
+                        color: 'white'
+                    }
+                }
+            });
+
+            Chart.defaults.global.defaultFontColor = "#fff";
+
+        },
+        error: function(xhr, status, error){  // Include 'xhr', 'status', and 'error'
+            console.error("Error fetching data:", status, error); // Log the error details
+            console.error("Response text:", xhr.responseText); // Log the response text to inspect
+        }
+    });
+
+
+    
+}
+
+
 
 function closeBigCanvas(){
     const modal = document.getElementById('canvasModal'); // grabbing the hidden modal
