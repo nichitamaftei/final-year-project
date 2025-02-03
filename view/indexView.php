@@ -56,23 +56,145 @@
                         </form>
                     <?php endforeach; ?>
                 </ul>
-            </div>
-
-                   
+            </div>    
         </section>   
         
-        <div id="smallCanvasContainer">
+        <div id="topRowContainer">
 
-            <div id="callFlowTitleContainer">
-                <h3 id="callFlowDiagramTitle"> <?= $departmentName . " Call Flow Diagram:" ?> </h3>
+            <div id="smallCanvasContainer">
+                <div id="callFlowTitleContainer">
+                    <h3 id="callFlowDiagramTitle"> <?= $departmentName . " Call Flow Diagram:" ?> </h3>
+                </div>
+                
                 <div id="smallCanvas" onclick="fullView()"></div>
             </div>
 
-            <?php if ($_SESSION['loggedInEmployee']->isAdmin == 1): ?>
-                <div>   
-                    <a href="../controller/editCallFlow.php"><button id="editButton">Edit Call Flow</button></a>
+            <div id="topCallersContainer">
+
+                <div id="topCallerTitleContainer">
+                    <h3 id="topCallersTitle"> Top 5 Callers </h3>
                 </div>
-            <?php endif; ?>            
+                
+                <div id="topCallersSubContainer">
+                    <table id="topCallersTable">
+                        <thead>
+                            <tr>
+                                <th> <p> Number </p> </th>
+                                <th> <p> Amount </p> </th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <tr>
+                                <td> +4444444444 </td>
+                                <td> 25 </td>
+                            </tr>
+                            <tr>
+                                <td> +4444444444 </td>
+                                <td> 25 </td>
+                            </tr>
+                            <tr>
+                                <td> +4444444444 </td>
+                                <td> 25 </td>
+                            </tr>
+                            <tr>
+                                <td> +4444444444 </td>
+                                <td> 25 </td>
+                            </tr>
+                            <tr>
+                                <td> +4444444444 </td>
+                                <td> 25 </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>    
+        </div>
+
+        <div id="bottomRowContainer">
+
+            <div id="callMetricsContainer">
+
+                <div id="callMetricsTitleContainer">
+                    <h3 id="callMetricsTitle"> Call Metrics </h3>
+                </div>
+
+                <div id="metricLayout">
+                    <div class="callMetricsSubContainer">
+                        <div class="metricBox">
+                            <p class="metricTitle"> Incoming Calls Today </p>
+                            <div class="metricItem">
+                                <p>Total</p>
+                                <p class="metricValue"> 132 </p>
+                            </div>
+                            <div class="metricItem">
+                                <p> Avg Wait Time </p>
+                                <p class="metricValue"> 23 sec </p>
+                            </div>
+                        </div>
+
+                        <div class="metricBox">
+                            <p class="metricTitle"> Abandoned Today </p>
+                            <div class="metricItem">
+                                <p>Total</p>
+                                <p class="metricValue"> 13 </p>
+                            </div>
+                            <div class="metricItem">
+                                <p>Abandoned Rate</p>
+                                <p class="metricValue"> 9.9% </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="barChartContainer">
+                        bar chart placeholder
+                    </div>
+
+                    <div class="callMetricsSubContainer">
+                        <div class="metricBox">
+                            <p class="metricTitle"> Service Target Level </p>
+                            <div class="metricItem">
+                                <p>Target</p>
+                                <p class="metricValue" id="smallFont"> 80% </p>
+                            </div>
+                            <div class="metricItem">
+                                <p> Actual </p>
+                                <p class="metricValue"> 75% </p>
+                            </div>
+                        </div>
+
+                        <div class="metricBox">
+                            <p class="metricTitle"> Extra Metrics Today </p>
+                            <div class="metricItem">
+                                <p>Missed Calls</p>
+                                <p class="metricValue">7 </p>
+                            </div>
+                            <div class="metricItem">
+                                <p> Longest Waiting Time </p>
+                                <p class="metricValue"> 3min 26 sec </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="additionalFuncContainer">
+
+                <div id="additionalFuncTitleContainer">
+                    <h3 id="addtionalFuncTitle"> Additional Functionality </h3>
+                </div>
+                    
+                <div id="buttons">
+                    <button class="button"> View Historical Call Flows </button>
+                    <button class="button"> Download Call Diagram </button>
+                    <button class="button"> Download Metrics </button>
+                    <?php if ($_SESSION['loggedInEmployee']->isAdmin == 1): ?>
+                        <div>   
+                            <a href="../controller/editCallFlow.php"> <button id="editButton"> Edit Call Flow </button> </a>
+                        </div>
+                    <?php endif; ?>  
+                </div>
+            </div>
         </div>
 
         <div id="canvasModal"> <!-- initially hidden -->
