@@ -109,23 +109,23 @@ function jointJS(){
 
     let canvas = null;
 
-    if ($('body').attr('id') === 'indexView'){
+    if ($("body").attr("id") === "indexView"){
         width = window.innerWidth * 0.6; // 80% of the window width
         height = window.innerHeight * 0.4; // 40% of the window height
 
         defaultX = 120; 
         defaultY = 110; 
 
-        canvas = document.getElementById('smallCanvas')
+        canvas = document.getElementById("smallCanvas")
 
-    } else if ($('body').attr('id') === 'editCallFlowView'){
+    } else if ($("body").attr("id") === "editCallFlowView"){
         width = window.innerWidth * 0.7; // 80% of the window width      
         height = window.innerHeight * 0.4; // 40% of the window height
         
         defaultX = 200; 
         defaultY = 100; 
 
-        canvas = document.getElementById('editingCanvas')
+        canvas = document.getElementById("editingCanvas")
     }
 
     const paper = new joint.dia.Paper({ // 'paper' renders the view
@@ -145,8 +145,8 @@ function jointJS(){
 
 
     $.ajax({ // get the department json data 
-        url: 'fetchDepartmentData.php', // specificying which php file
-        method: 'POST', // fetch type
+        url: "fetchDepartmentData.php", // specificying which php file
+        method: "POST", // fetch type
         success: function(data){
             
 
@@ -339,8 +339,8 @@ function jointJS(){
 
 function fullView() { // when the smallCanvas is clicked:
 
-    const modal = document.getElementById('canvasModal'); // grabbing the hidden modal
-    modal.style.display = 'flex' // enabling it to be shown
+    const modal = $("#canvasModal"); // grabbing the hidden modal
+    modal.css("display", "flex"); // enabling it to be shown
 
     const bigCanvas = document.getElementById('bigCanvas'); // grabbing the 'bigCanvas'
 
@@ -418,7 +418,7 @@ function fullView() { // when the smallCanvas is clicked:
 function barChart(){
 
     $.ajax({ // get the department json data 
-        url: 'fetchBarChartData.php', // specificying which php file
+        url: "fetchBarChartData.php", // specificying which php file
         method: 'POST', // fetch type
         success: function(data){
 
@@ -454,17 +454,12 @@ function barChart(){
         error: function(error){  
             console.error("Error fetching data:", error);
         }
-    });
-
-
-    
+    });    
 }
 
-
-
 function closeBigCanvas(){
-    const modal = document.getElementById('canvasModal'); // grabbing the hidden modal
-    modal.style.display = 'none' // enabling it to be hidden
+    const modal = $("#canvasModal"); // grabbing the hidden modal
+    modal.css("display", "none"); // enabling it to be hidden
 }
 
 function resetModal(){
@@ -473,19 +468,19 @@ function resetModal(){
 }
 
 function showMenu(){
-    const sideMenu = document.getElementById('sideMenu'); // grabbing the side bar
-    sideMenu.style.display = 'block' // enabling it to be shown
+    const sideMenu = $("#sideMenu"); // grabbing the side bar
+    sideMenu.css("display", "block"); // enabling it to be shown
 }
 
 function hideMenu(){
-    const menu = document.getElementById('sideMenu'); // grabbing the side bar
-    menu.style.display = 'none' // hiding the side bar
+    const menu = $("#sideMenu"); // grabbing the side bar
+    menu.css("display", "none"); // hiding the side bar
 }
 
 
 function logInValidation(){
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
     
     if(email == "" || password == ""){
         alert("Please fill in the empty field");
@@ -534,5 +529,3 @@ function updatePasswordValidation(){
         return true;
     }
 }
-
-
