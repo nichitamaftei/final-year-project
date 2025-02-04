@@ -158,6 +158,50 @@ if (!isset($_SESSION["loggedInEmployee"]) || $_SESSION["updatedPassword"] == fal
    
 } else{
 
+
+        if(!isset($_SESSION["userFilter"])){
+            $_SESSION["userFilter"] = [
+                "name" => "not set",
+                "email" => "not set",
+                "lastLogIn" => "not set"   
+            ];
+        }
+
+        if (isset($_REQUEST['nameFilterForm'])){
+
+            if($_SESSION["userFilter"]["name"] == "not set"){
+                $_SESSION["userFilter"]["name"] = "asc";
+            }else if($_SESSION["userFilter"]["name"] == "asc"){
+                $_SESSION["userFilter"]["name"] = "desc";
+            }else if($_SESSION["userFilter"]["name"] == "desc"){
+                $_SESSION["userFilter"]["name"] = "not set";
+            }
+        }
+
+        if (isset($_REQUEST['emailFilterForm'])){
+
+            if($_SESSION["userFilter"]["email"] == "not set"){
+                $_SESSION["userFilter"]["email"] = "asc";
+            }else if($_SESSION["userFilter"]["email"] == "asc"){
+                $_SESSION["userFilter"]["email"] = "desc";
+            }else if($_SESSION["userFilter"]["email"] == "desc"){
+                $_SESSION["userFilter"]["email"] = "not set";
+            }
+        }
+
+
+        if (isset($_REQUEST['logInFilterForm'])){
+
+            if($_SESSION["userFilter"]["lastLogIn"] == "not set"){
+                $_SESSION["userFilter"]["lastLogIn"] = "asc";
+            }else if($_SESSION["userFilter"]["lastLogIn"] == "asc"){
+                $_SESSION["userFilter"]["lastLogIn"] = "desc";
+            }else if($_SESSION["userFilter"]["lastLogIn"] == "desc"){
+                $_SESSION["userFilter"]["lastLogIn"] = "not set";
+            }
+        }
+
+       
         // the following populates the $employeeArray key value pair with an $employee object, $assignedRoles[] array of their assigned roles and $availableRoles[] array of their available roles in order to be iterated through in the adminView
 
         $employees = $pdoSingleton->getAllEmployees(); // get every Employee

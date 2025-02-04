@@ -144,7 +144,7 @@ body{
     text-align: center;
     color: white;
     background-color: #13293D;
-    padding: 12px;
+    padding: 12px 70px 12px 70px;
     max-width: 500px;
 }
 
@@ -174,7 +174,7 @@ body{
     text-align: center;
     color: white;
     background-color: #13293D;
-    padding: 12px;
+    padding: 12px 60px 12px 60px;
     max-width: 500px;
 }
 
@@ -858,6 +858,81 @@ body{
     padding: 15px 30px 15px 30px;
     cursor: pointer;
 }
+
+
+#UsersNameFilteringContainer{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    justify-content: center;
+    text-align: center; 
+    cursor: pointer;
+}
+
+.filterIcon{
+    width: 30px;
+    height: 30px;
+}
+
+#nameFilterIcon{
+    display: none
+}
+
+#nameUpIcon{
+    display: none
+}
+
+#nameDownIcon{
+    display: none
+}
+
+
+#UsersEmailFilteringContainer{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    justify-content: center;
+    text-align: center; 
+    cursor: pointer;
+}
+
+#emailFilterIcon{
+    display: none
+}
+
+#emailUpIcon{
+    display: none
+}
+
+#emailDownIcon{
+    display: none
+}
+
+
+#UsersLogInFilteringContainer{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    justify-content: center;
+    text-align: center; 
+    cursor: pointer;
+}
+
+#logInFilterIcon{
+    display: none
+}
+
+#logInUpIcon{
+    display: none
+}
+
+#logInDownIcon{
+    display: none
+}
+
+
+
+
 
 
 

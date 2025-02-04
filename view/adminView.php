@@ -32,9 +32,43 @@
                     <table class="table">
                         <thead>
                             <tr class="tableRow">
-                                <th> <p> Name </p> </th>
-                                <th> <p> E-mail </p> </th>
-                                <th> <p> Last-log in</p> </th>
+                                <th> 
+                                    <form method="post" id="nameFilteringForm" action="../controller/admin.php">
+                                        <input type="hidden" name="nameFilterForm" value="toggle">
+                                        <div id="UsersNameFilteringContainer" onclick="submitNameFilterForm()">
+                                            <p> Name </p> 
+                                            <img src="../view/css_js_images/filterOffIcon.png" id="nameFilterOffIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/filterIcon.png" id="nameFilterIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/upArrowIcon.png" id="nameUpIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/downArrowIcon.png" id="nameDownIcon" class="filterIcon" alt="">
+                                        </div>
+                                    </form>
+                                    
+                                </th>
+                                <th> 
+                                    <form method="post" id="emailFilteringForm" action="../controller/admin.php">
+                                        <input type="hidden" name="emailFilterForm" value="toggle">
+                                        <div id="UsersEmailFilteringContainer" onclick="submitEmailFilterForm()">
+                                            <p> E-mail </p> 
+                                            <img src="../view/css_js_images/filterOffIcon.png" id="emailFilterOffIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/filterIcon.png" id="emailFilterIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/upArrowIcon.png" id="emailUpIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/downArrowIcon.png" id="emailDownIcon" class="filterIcon" alt="">
+                                        </div>
+                                    </form>
+                                </th>
+                                <th>
+                                    <form method="post" id="logInFilteringForm" action="../controller/admin.php"> 
+                                        <input type="hidden" name="logInFilterForm" value="toggle">
+                                        <div id="UsersLogInFilteringContainer" onclick="submitLogInFilterForm()">
+                                            <p> Last-log in</p> 
+                                            <img src="../view/css_js_images/filterOffIcon.png" id="logInFilterOffIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/filterIcon.png" id="logInFilterIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/upArrowIcon.png" id="logInUpIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/downArrowIcon.png" id="logInDownIcon" class="filterIcon" alt="">
+                                        </div>
+                                    </form>
+                                </th>
                                 <th> <p> Security Role/s </p> </th>
                             </tr>
                         </thead>
@@ -186,7 +220,7 @@
 
                     <div class="modalFlexContainer">
                         <label for="password">Temporary Password:</label>
-                        <input type="text" id="password" name="password" required><br>
+                        <input type="password" id="password" name="password" required><br>
                     </div>
 
                     <div id="modalButtonContainer">

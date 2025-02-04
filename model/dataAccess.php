@@ -31,7 +31,7 @@ class pdoSingleton{
 
     public function getAllEmployees(){
         $pdo = $this->pdo;
-        $statement = $pdo->prepare("SELECT * FROM Employees");
+        $statement = $pdo->prepare("SELECT * FROM Employees"); // make this dynamic with parameters
         $statement->execute();
         $results = $statement->fetchAll(PDO::FETCH_CLASS, "Employees");
         return $results;

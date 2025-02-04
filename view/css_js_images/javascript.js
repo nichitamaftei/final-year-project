@@ -433,7 +433,7 @@ function barChart(){
                 type: "bar",
                 data:{
                     labels: xValues,
-                    datasets: [{
+                    datasets:[{
                         backgroundColor: barColors,
                         data: yValues
                     }]
@@ -451,9 +451,8 @@ function barChart(){
             Chart.defaults.global.defaultFontColor = "#fff";
 
         },
-        error: function(xhr, status, error){  // Include 'xhr', 'status', and 'error'
-            console.error("Error fetching data:", status, error); // Log the error details
-            console.error("Response text:", xhr.responseText); // Log the response text to inspect
+        error: function(error){  
+            console.error("Error fetching data:", error);
         }
     });
 
@@ -535,3 +534,5 @@ function updatePasswordValidation(){
         return true;
     }
 }
+
+
