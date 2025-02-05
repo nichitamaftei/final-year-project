@@ -20,7 +20,7 @@ function doLogicAndCallIndexView() {
         doLogicAndCallLoginView(); // go to the log in view
         require_once("../view/loginView.php");
     
-    } else if (isset($_POST['signOut'])) { // if the employee clicked the 'sign out' button
+    } else if (isset($_POST["signOut"])) { // if the employee clicked the 'sign out' button
 
         $_SESSION["loggedInEmployee"] = null;
 
@@ -139,8 +139,6 @@ function doLogicAndCallIndexView() {
                 $_SESSION["department"] = $arrayOfDepartments[$deptIndex]; // uses the index to select the department
                 $_SESSION["deptIndex"] = $deptIndex;
             }
-    
-            $results = $pdoSingleton->getAllEmployees();
             
             $departmentName = $_SESSION["department"]["name"]; // displays the currently selected department for debugging purposes
 
@@ -232,7 +230,7 @@ function doLogicAndCallLoginView(){
     }
     else if ($_REQUEST["logInEmail"] != "" && $_REQUEST["logInPassword"] != ""){ // if all forms have been entered
 
-        $employees = $pdoSingleton->getAllEmployees(); // get an array of all employees from the database
+        $employees = $pdoSingleton->getAllEmployees($_SESSION["userFilter"]); // get an array of all employees from the database
         $found = false;
 
         foreach ($employees as $employee): 
@@ -288,7 +286,6 @@ function doLogicAndCallLoginView(){
     }
 }
 
-
 function doLogicAndCallUpdatePasswordView(){
 
     error_reporting(E_ALL);
@@ -308,8 +305,6 @@ function doLogicAndCallUpdatePasswordView(){
 
     if (!isset($_SESSION["updatedPassword"])){
         $_SESSION["updatedPassword"] = false;
-
-        echo "update password set to false";
     }
     
     if ($_SESSION["loggedInEmployee"] == null && $_SESSION["updatedPassword"] == false){ // if the session variable 'loggedInEmployee' is null
@@ -359,13 +354,14 @@ function doLogicAndCallUpdatePasswordView(){
     }
 }
 
-function toggleFilterState($filterKey){
-    if (!isset($_SESSION["userFilter"][$filterKey]) || $_SESSION["userFilter"][$filterKey] == "not set"){
-        $_SESSION["userFilter"][$filterKey] = "asc";
-    } elseif ($_SESSION["userFilter"][$filterKey] == "asc"){
-        $_SESSION["userFilter"][$filterKey] = "desc";
+function toggleFilterState($filterTab, $filterKey){
+    
+    if ($_SESSION[$filterTab][$filterKey] == "not set"){
+        $_SESSION[$filterTab][$filterKey] = "asc";
+    } elseif ($_SESSION[$filterTab][$filterKey] == "asc"){
+        $_SESSION[$filterTab][$filterKey] = "desc";
     } else{
-        $_SESSION["userFilter"][$filterKey] = "not set";
+        $_SESSION[$filterTab][$filterKey] = "not set";
     }
 }
 ?>

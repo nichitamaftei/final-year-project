@@ -155,6 +155,17 @@ if (!isset($_SESSION["loggedInEmployee"]) || $_SESSION["updatedPassword"] == fal
    
 } else{
 
+        if (!isset($_SESSION["currentTab"])){
+            $_SESSION["currentTab"] = "users";
+        } 
+
+        if (isset($_REQUEST["users"])){
+            $_SESSION["currentTab"] = "users";
+        }
+        if (isset($_REQUEST["logs"])){
+            $_SESSION["currentTab"] = "logs";
+        }
+
 
         if(!isset($_SESSION["userFilter"])){
             $_SESSION["userFilter"] = [
@@ -164,17 +175,40 @@ if (!isset($_SESSION["loggedInEmployee"]) || $_SESSION["updatedPassword"] == fal
             ];
         }
 
-        $filterKeys = ["name", "email", "logIn"];
+        $filterUserKeys = ["name", "email", "logIn"];
 
-        foreach ($filterKeys as $filter){
+        foreach ($filterUserKeys as $filter){
             if (isset($_REQUEST[$filter . "FilterForm"])){
-                toggleFilterState($filter);
+                toggleFilterState("userFilter", $filter);
             }
         }
+
+
+
+        if(!isset($_SESSION["logsFilter"])){
+            $_SESSION["logsFilter"] = [
+                "date" => "not set",
+                "time" => "not set",
+                "nameLog" => "not set",  
+                "eventType" => "not set",
+                "details" => "not set"
+            ];
+        }
+
+
+        $filterLogsKeys = ["date", "time", "nameLog", "eventType", "details"];
+
+        foreach ($filterLogsKeys as $filter){
+            if (isset($_REQUEST[$filter . "FilterForm"])){
+                toggleFilterState("logsFilter", $filter);
+            }
+        }
+
+
        
         // the following populates the $employeeArray key value pair with an $employee object, $assignedRoles[] array of their assigned roles and $availableRoles[] array of their available roles in order to be iterated through in the adminView
 
-        $employees = $pdoSingleton->getAllEmployees(); // get every Employee
+        $employees = $pdoSingleton->getAllEmployees($_SESSION["userFilter"]); // get every Employee
         $allRoles = $pdoSingleton->getAllRoles(); // get every Role
         $allEmployeeRole = $pdoSingleton->getAllEmployeeRole(); // get every EmployeeRole
 
@@ -222,7 +256,7 @@ if (!isset($_SESSION["loggedInEmployee"]) || $_SESSION["updatedPassword"] == fal
         }
 
         // populates logs tab
-        $auditLogs = $pdoSingleton->getAllAuditLogsWithEmployeeNames(); 
+        $auditLogs = $pdoSingleton->getAllAuditLogsWithEmployeeNames($_SESSION["logsFilter"]); 
 
         require_once("../view/adminView.php");
 

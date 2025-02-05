@@ -1,24 +1,33 @@
 $(document).ready(function(){
-    initialise();
+    initialiseTab();
     initialiseFiltering();
 }); // when the DOM loads call the initialise() function
 
-function initialise(){
-    showTab('users'); // show the users tab by default
-}
+function initialiseTab(){
 
-function showTab(tab){
-    if (tab === "users"){
-        $("#users").addClass("active");
-        $("#logs").removeClass("active");
-        $("#usersTabButton").addClass("active");
-        $("#logsTabButton").removeClass("active");
-    } else if (tab === "logs"){
-        $("#logs").addClass("active");
-        $("#users").removeClass("active");
-        $("#logsTabButton").addClass("active");
-        $("#usersTabButton").removeClass("active");
-    }
+    $.ajax({ // get the department json data 
+        url: "fetchCurrentAdminTab.php", // specificying which php file
+        method: "POST", // fetch type
+        success: function(data){
+
+            console.log(data)
+
+            if (data == "users"){
+                $("#users").addClass("active");
+                $("#logs").removeClass("active");
+                $("#usersTabButton").addClass("active");
+                $("#logsTabButton").removeClass("active");
+            } else if (data == "logs"){
+                $("#logs").addClass("active");
+                $("#users").removeClass("active");
+                $("#logsTabButton").addClass("active");
+                $("#usersTabButton").removeClass("active");
+            }
+        },
+        error: function(error){  
+            console.error("Error fetching data:", error);
+        }
+    });
 }
 
 function openAddUserModal(){
@@ -56,15 +65,31 @@ function updateFilterIcons(field, value){
 function initialiseFiltering(){
 
     $.ajax({ // get the department json data 
-        url: "fetchFilteringState.php", // specificying which php file
+        url: "fetchUserFilteringState.php", // specificying which php file
         method: "POST", // fetch type
         success: function(data){
-
-            console.log(data);
 
             updateFilterIcons("name", data.name);
             updateFilterIcons("email", data.email);
             updateFilterIcons("logIn", data.logIn);
+        },
+        error: function(error){  
+            console.error("Error fetching data:", error);
+        }
+    });
+
+    $.ajax({ // get the department json data 
+        url: "fetchLogFilteringState.php", // specificying which php file
+        method: "POST", // fetch type
+        success: function(data){
+
+            console.log(data)
+
+            updateFilterIcons("date", data.date);
+            updateFilterIcons("time", data.time);
+            updateFilterIcons("nameLog", data.nameLog);
+            updateFilterIcons("eventType", data.eventType);
+            updateFilterIcons("details", data.details);
         },
         error: function(error){  
             console.error("Error fetching data:", error);
@@ -82,4 +107,26 @@ function submitEmailFilterForm(){
 
 function submitLogInFilterForm(){
     $("#logInFilteringForm").submit();
+}
+
+
+
+function submitDateFilterForm(){
+    $("#dateFilteringForm").submit();
+}
+
+function submitTimeFilterForm(){
+    $("#timeFilteringForm").submit();
+}
+
+function submitNameLogFilterForm(){
+    $("#nameLogFilteringForm").submit();
+}
+
+function submitEventTypeFilterForm(){
+    $("#eventTypeFilteringForm").submit();
+}
+
+function submitDetailsFilterForm(){
+    $("#detailsFilteringForm").submit();
 }

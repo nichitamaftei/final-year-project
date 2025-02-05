@@ -362,7 +362,8 @@
                         "timestamp": "2025-02-03T14:30:00",
                         "wait_time": 15,
                         "abandoned": true
-                    },{
+                    },
+                    {
                         "number": "7492847582",
                         "timestamp": "2025-02-04T08:30:00",
                         "wait_time": 40,
@@ -657,7 +658,6 @@
                         "abandoned": true
                     }
                 ]
-                
             },
             {
                 "name": "Support",
@@ -1064,7 +1064,8 @@
                         "members": [
                             "Henry",
                             "Ella",
-                            "James"
+                            "James",
+                            "Thomas"
                         ]
                     },
                     "call_queues": [

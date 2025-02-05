@@ -693,20 +693,24 @@ body{
     cursor: pointer;
 }
 
-#tabsContainer {
+#tabsContainer{
     margin: 20px;
     padding: 0 5%; 
 }
 
-#tabs {
+#tabs{
     display: flex;
     flex-direction: column;
 }
 
-.tabButtons {
+.tabButtons{
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+}
+
+#tabForm{
+    display: flex;
 }
 
 #usersTabButton, #logsTabButton {
@@ -931,6 +935,119 @@ body{
 }
 
 
+
+#LogsDateFilteringContainer{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    justify-content: center;
+    text-align: center; 
+    cursor: pointer;
+}
+
+#dateFilterIcon{
+    display: none
+}
+
+#dateUpIcon{
+    display: none
+}
+
+#dateDownIcon{
+    display: none
+}
+
+
+
+#LogsTimeFilteringContainer{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    justify-content: center;
+    text-align: center; 
+    cursor: pointer;
+}
+
+#timeFilterIcon{
+    display: none
+}
+
+#timeUpIcon{
+    display: none
+}
+
+#timeDownIcon{
+    display: none
+}
+
+
+
+
+#LogsNameFilteringContainer{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    justify-content: center;
+    text-align: center; 
+    cursor: pointer;
+}
+
+#nameLogFilterIcon{
+    display: none
+}
+
+#nameLogUpIcon{
+    display: none
+}
+
+#nameLogDownIcon{
+    display: none
+}
+
+#LogsEventTypeFilteringContainer{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    justify-content: center;
+    text-align: center; 
+    cursor: pointer;
+}
+
+#eventTypeFilterIcon{
+    display: none
+}
+
+#eventTypeUpIcon{
+    display: none
+}
+
+#eventTypeDownIcon{
+    display: none
+}
+
+
+
+
+#LogsDetailsFilteringContainer{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    justify-content: center;
+    text-align: center; 
+    cursor: pointer;
+}
+
+#detailsFilterIcon{
+    display: none
+}
+
+#detailsUpIcon{
+    display: none
+}
+
+#detailsDownIcon{
+    display: none
+}
 
 
 
