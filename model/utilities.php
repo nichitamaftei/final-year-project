@@ -190,6 +190,19 @@ function doLogicAndCallIndexView() {
 
             $abandondedRate = ($totalAbandondedCalls / $totalCallers) * 100;
 
+            // sets up the variables for the Service Target Level
+
+            $answeredOnTime = [];
+
+            foreach ($arrayOfCallMetrics as $metric){
+                if ($metric["wait_time"]  < 20){
+                    $answeredOnTime[] = $metric;
+                }
+            }
+
+            $numberOfCallsAnsweredOnTime = count($answeredOnTime);
+
+            $actualServiceLevelPercentage = round(($numberOfCallsAnsweredOnTime / $totalCallers) * 100);
 
             // sets up the variables for the Extra Metrics Today info
 

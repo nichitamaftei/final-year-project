@@ -442,7 +442,7 @@ function barChart(){
                     legend: {display: false},
                     title:{
                         display: true,
-                        text: "Calls Per Day",
+                        text: "Calls Per Day (All Time)",
                         color: 'white'
                     }
                 }

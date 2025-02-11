@@ -103,25 +103,25 @@
             <div id="callMetricsContainer">
 
                 <div id="callMetricsTitleContainer">
-                    <h3 id="callMetricsTitle"> Call Metrics </h3>
+                    <h3 id="callMetricsTitle"> Call Metrics (All Time) </h3>
                 </div>
 
                 <div id="metricLayout">
                     <div class="callMetricsSubContainer">
                         <div class="metricBox">
-                            <p class="metricTitle"> Incoming Calls Today </p>
+                            <p class="metricTitle"> Incoming Calls </p>
                             <div class="metricItem">
                                 <p>Total</p>
                                 <p class="metricValue"> <?= $totalCallers ?> </p>
                             </div>
                             <div class="metricItem">
                                 <p> Avg Wait Time </p>
-                                <p class="metricValue"> <?= round($averageWaitTime) ?> Seconds </p>
+                                <p class="metricValue"> <?= round($averageWaitTime) ?> seconds </p>
                             </div>
                         </div>
 
                         <div class="metricBox">
-                            <p class="metricTitle"> Abandoned Today </p>
+                            <p class="metricTitle"> Abandoned Calls </p>
                             <div class="metricItem">
                                 <p>Total</p>
                                 <p class="metricValue"> <?= $totalAbandondedCalls ?> </p>
@@ -144,12 +144,12 @@
                             </div>
                             <div class="metricItem">
                                 <p> Actual </p>
-                                <p class="metricValue"> 75% </p>
+                                <p class="metricValue"> <?= $actualServiceLevelPercentage ?>% </p>
                             </div>
                         </div>
 
                         <div class="metricBox">
-                            <p class="metricTitle"> Extra Metrics Today </p>
+                            <p class="metricTitle"> Extra Metrics </p>
                             <div class="metricItem">
                                 <p>Answered Calls</p>
                                 <p class="metricValue"> <?= $totalAnsweredCalls ?> </p>

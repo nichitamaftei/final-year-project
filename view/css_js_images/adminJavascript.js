@@ -64,7 +64,7 @@ function updateFilterIcons(field, value){
 
 function initialiseFiltering(){
 
-    $.ajax({ // get the department json data 
+    $.ajax({ // get the user tab filtering values json data 
         url: "fetchUserFilteringState.php", // specificying which php file
         method: "POST", // fetch type
         success: function(data){
@@ -78,7 +78,7 @@ function initialiseFiltering(){
         }
     });
 
-    $.ajax({ // get the department json data 
+    $.ajax({ // get the logs tab filtering values json data 
         url: "fetchLogFilteringState.php", // specificying which php file
         method: "POST", // fetch type
         success: function(data){

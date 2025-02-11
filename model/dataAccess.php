@@ -58,7 +58,7 @@ class pdoSingleton{
         }
 
         $pdo = $this->pdo;
-        $statement = $pdo->prepare($baseQuery); // make this dynamic with parameters
+        $statement = $pdo->prepare($baseQuery); 
         $statement->execute();
         $results = $statement->fetchAll(PDO::FETCH_CLASS, "Employees");
         return $results;
