@@ -349,7 +349,7 @@ function barChart(){
             var yValues = [data.Monday, data.Tuesday, data.Wednesday, data.Thursday, data.Friday, data.Saturday, data.Sunday];
 
 
-            new Chart("myChart",{
+            new Chart("callMetricsBarChart",{
                 type: "bar",
                 data:{
                     labels: xValues,
@@ -376,10 +376,6 @@ function barChart(){
         }
     });    
 }
-
-
-
-
 
 function fullView() { // when the smallCanvas is clicked:
 
@@ -458,8 +454,6 @@ function fullView() { // when the smallCanvas is clicked:
     bigCanvas.addEventListener("mouseup", () => isPanning = false); // when the user releases their mouse click, set the panning flag to false
 }
 
-
-
 function downloadCallMetrics(){
 
     $.ajax({ // get the department json data 
@@ -502,6 +496,68 @@ function downloadCallMetrics(){
             console.error("Error fetching data:", err); // logs any errors
         }
     });
+}
+
+
+function downloadDiagramAsPNG(){
+
+    $.ajax({ // get the department json data 
+        url: "fetchDepartmentData.php", // specificying which php file
+        method: "POST", // fetch type
+        success: function(data){
+
+            // grab the call flow canvas
+            const paperElement = document.querySelector("#smallCanvas svg");
+
+            // clone it to not modify the orginal
+            const clonedSvg = paperElement.cloneNode(true);
+            clonedSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+
+            // convert SVG into a String representation
+            const serializer = new XMLSerializer();
+            const svgString = serializer.serializeToString(clonedSvg);
+
+            const img = new Image();
+
+            img.onload = function (){
+                
+                // setups up area to draw the SVG into na image
+                const canvas = document.createElement("canvas");
+                const ctx = canvas.getContext("2d");
+
+                // get the dimensions of the SVG
+                const bbox = paperElement.getBBox();
+                const width = bbox.width || 800;
+                const height = bbox.height || 600;
+
+                // increases the image resolution and scales accordingly
+                const scaleFactor = 20; 
+                canvas.width = width * scaleFactor;
+                canvas.height = height * scaleFactor;
+                ctx.scale(scaleFactor, scaleFactor);
+
+                ctx.drawImage(img, 0, 0);
+
+                // convert the canvas to png
+                const pngData = canvas.toDataURL("image/png");
+
+                // triggering a dynamic temporary file download 
+                const link = document.createElement("a");
+                link.href = pngData;
+                link.download = data.name + "_CallFlow_Diagram.png";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            };
+
+            const encodedData = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svgString)));
+            img.src = encodedData;
+        },
+        error: function(err){
+            console.error("Error fetching data:", err); // logs any errors
+        }
+    });
+
 }
 
 

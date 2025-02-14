@@ -133,7 +133,7 @@
                         </div>
                     </div>
 
-                    <canvas id="myChart" style="max-width:500px"></canvas>
+                    <canvas id="callMetricsBarChart" style="max-width:500px"></canvas>
 
                     <div class="callMetricsSubContainer">
                         <div class="metricBox">
@@ -171,9 +171,9 @@
                     
                 <div id="buttons">
                     <button class="button"> View Historical Call Flows </button>
-                    <button class="button"> Download Call Diagram </button>
+                    <button class="button" onclick="downloadDiagramAsPNG()"> Download Call Diagram </button>
                     <button class="button" onclick="downloadCallMetrics()"> Download Metrics </button>
-                    <?php if ($_SESSION['loggedInEmployee']->isAdmin == 1): ?>
+                    <?php if ($_SESSION["loggedInEmployee"]->isAdmin == 1): ?>
                         <div>   
                             <a href="../controller/editCallFlow.php"> <button id="editButton"> Edit Call Flow </button> </a>
                         </div>
