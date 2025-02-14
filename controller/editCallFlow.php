@@ -10,10 +10,7 @@ require_once("../model/utilities.php");
 
 session_start();
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
-if (isset($_POST['cancel'])){
+if (isset($_POST["cancel"])){
         
     doLogicAndCallIndexView();
     require_once("../view/indexView.php");
@@ -25,16 +22,16 @@ if (isset($_POST['cancel'])){
 
     $jsonData = getCallData(); // gathers the call data
 
-    $arrayOfDepartments = $jsonData['company']['departments']; // puts the array of departments into a variable
-    $departmentName = $_SESSION["department"]['name']; // sets the departments name in a variable
+    $arrayOfDepartments = $jsonData["company"]["departments"]; // puts the array of departments into a variable
+    $departmentName = $_SESSION["department"]["name"]; // sets the departments name in a variable
 
     $arrayOfCurrentCallQueues = $_SESSION["department"]["auto_attendant"]["call_queues"]; // sets the departments call queue's array in a variable
     
     
     // fetching the selection to dynamically set the call queue's details
     
-    if (isset($_POST['indexCallQueueSelection'])){ // if a call queue selection is made
-        $CallQueueIndex = (int)$_REQUEST['indexCallQueueSelection']; // obtains the index of the selected department
+    if (isset($_POST["indexCallQueueSelection"])){ // if a call queue selection is made
+        $CallQueueIndex = (int)$_REQUEST["indexCallQueueSelection"]; // obtains the index of the selected department
         $_SESSION["currentCallQueue"] = $arrayOfCurrentCallQueues[$CallQueueIndex]; // uses the index to select the department
         $_SESSION["callQueueIndex"] = $CallQueueIndex; // sets the index to a session variable
 
@@ -63,11 +60,11 @@ if (isset($_POST['cancel'])){
 
 
 
-    $arrayOfBusinessHoursDays = $_SESSION["department"]["auto_attendant"]["business_hours"]['days']; // sets the array of business days info to a variable
+    $arrayOfBusinessHoursDays = $_SESSION["department"]["auto_attendant"]["business_hours"]["days"]; // sets the array of business days info to a variable
    
     // fetching the selection to dynamically set the selected business day
-    if (isset($_POST['businessHoursDaySelection'])){ // if a businesshours day selection is made
-        $businessHoursDayIndex = (int)$_REQUEST['businessHoursDaySelection']; // obtains the index of the selected department
+    if (isset($_POST["businessHoursDaySelection"])){ // if a businesshours day selection is made
+        $businessHoursDayIndex = (int)$_REQUEST["businessHoursDaySelection"]; // obtains the index of the selected department
         $_SESSION["currentBusinessHoursDay"] = $arrayOfBusinessHoursDays[$businessHoursDayIndex]; // uses the index to select the department
         $_SESSION["businessHoursDayIndex"] = $businessHoursDayIndex; // sets the index to a session variable
 
@@ -130,45 +127,45 @@ if (isset($_POST['cancel'])){
 
     $businessHourDayName = $_SESSION["currentBusinessHoursDay"]["day_name"];
 
-    if (isset($_POST['save'])){ // if the user clicks save
+    if (isset($_POST["save"])){ // if the user clicks save
 
         // gathers the relevant state selection for the users current selection
-        $index = $_SESSION['deptIndex'];
+        $index = $_SESSION["deptIndex"];
         $callQueueIndex = $_SESSION["callQueueIndex"];
         $businessHoursDayIndex = $_SESSION["businessHoursDayIndex"];
 
-        $filePath = '../model/fabricated_call_flow_data.json';
+        $filePath = "../model/fabricated_call_flow_data.json";
 
         // replacing the voicemail members with the new input
-        $voicemailMembers = htmlentities($_REQUEST['voicemailMember']);
+        $voicemailMembers = htmlentities($_REQUEST["voicemailMember"]);
         $voicemailMembers = preg_replace('/\s+/', ' ', trim($voicemailMembers));
         $voicemailMembersArray = explode(' ', $voicemailMembers);
 
         $jsonData["company"]["departments"][$index]["auto_attendant"]["voicemail"]["members"] = $voicemailMembersArray;
 
         // replacing the auto attendant greeting with the new input
-        $autoAttendantGreeting = htmlentities(trim($_REQUEST['greetingMessage']));
+        $autoAttendantGreeting = htmlentities(trim($_REQUEST["greetingMessage"]));
         $jsonData["company"]["departments"][$index]["auto_attendant"]["aa_greeting"] = $autoAttendantGreeting;
 
         // replacing the time details with the new inputs
-        $fromTimeStart = htmlentities($_REQUEST['fromTimeStart']);
-        $jsonData["company"]["departments"][$index]["auto_attendant"]["business_hours"]['days'][$businessHoursDayIndex]["from_time_start"] = $fromTimeStart;
+        $fromTimeStart = htmlentities($_REQUEST["fromTimeStart"]);
+        $jsonData["company"]["departments"][$index]["auto_attendant"]["business_hours"]["days"][$businessHoursDayIndex]["from_time_start"] = $fromTimeStart;
 
-        $fromTimeEnd = htmlentities($_REQUEST['fromTimeEnd']);
-        $jsonData["company"]["departments"][$index]["auto_attendant"]["business_hours"]['days'][$businessHoursDayIndex]["from_time_end"] = $fromTimeEnd;
+        $fromTimeEnd = htmlentities($_REQUEST["fromTimeEnd"]);
+        $jsonData["company"]["departments"][$index]["auto_attendant"]["business_hours"]["days"][$businessHoursDayIndex]["from_time_end"] = $fromTimeEnd;
 
         // replacing the call queue members with the new members
-        $callQueueMembers = htmlentities($_REQUEST['callQueueMembers']);
+        $callQueueMembers = htmlentities($_REQUEST["callQueueMembers"]);
         $callQueueMembers = preg_replace('/\s+/', ' ', trim($callQueueMembers));
         $callQueueMembersArray = explode(' ', $callQueueMembers);
         $jsonData["company"]["departments"][$index]["auto_attendant"]["call_queues"][$callQueueIndex]["group"]["members"] = $callQueueMembersArray;
 
         // replacing the waiting time amount with the new time
-        $waitingTimeAmount = htmlentities($_REQUEST['waitingTimeAmount']);
+        $waitingTimeAmount = htmlentities($_REQUEST["waitingTimeAmount"]);
         $jsonData["company"]["departments"][$index]["auto_attendant"]["call_queues"][$callQueueIndex]["answer_timeout_seconds"] = $waitingTimeAmount;
 
         // replacing the maximum call queue limit amount with the new limit
-        $maxCallsAmount = htmlentities($_REQUEST['maximumCallQueueLimit']);
+        $maxCallsAmount = htmlentities($_REQUEST["maximumCallQueueLimit"]);
         $jsonData["company"]["departments"][$index]["auto_attendant"]["call_queues"][$callQueueIndex]["max_calls"] = $maxCallsAmount;
 
         // reindexting the call queues
@@ -188,9 +185,9 @@ if (isset($_POST['cancel'])){
         $pdoSingleton = pdoSingleton::getInstance();
 
         $auditLog = new AuditLog(); // create a new audit log relfecting this new department change
-        $auditLog->EmployeeID = $_SESSION['loggedInEmployee']->EmployeeID;
-        $auditLog->Date = date('Y-m-d');
-        $auditLog->Time = date('H:i:s');
+        $auditLog->EmployeeID = $_SESSION["loggedInEmployee"]->EmployeeID;
+        $auditLog->Date = date("Y-m-d");
+        $auditLog->Time = date("H:i:s");
         $auditLog->ActionPerformed = $departmentName . "Call Flow Updated";
         $auditLog->Details = "Admin updated " . $departmentName . "'s Call Flow";
 
@@ -200,7 +197,7 @@ if (isset($_POST['cancel'])){
         doLogicAndCallIndexView();
         require_once("../view/indexView.php");
 
-    } else if (!isset($_POST['save'])){ // if they havn't clicked save
+    } else if (!isset($_POST["save"])){ // if they havn't clicked save
         
         require_once("../view/editCallFlowView.php");
 

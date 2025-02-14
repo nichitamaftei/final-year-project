@@ -24,17 +24,52 @@
         <div id="tabsContainer">
             <div id="tabs">
                 <div class="tabButtons">
-                    <button id="usersTabButton" onclick="showTab('users')">Users</button>
-                    <button id="logsTabButton" onclick="showTab('logs')">Logs</button>
+                    <form action="admin.php" id="tabForm">
+                        <button type="submit" name="users" id="usersTabButton" value="users"> Users </button>
+                        <button type="submit" name="logs" id="logsTabButton" value="logs"> Logs </button>
+                    </form>
                 </div>
 
                 <div id="users" class="content">
                     <table class="table">
                         <thead>
                             <tr class="tableRow">
-                                <th> <p> Name </p> </th>
-                                <th> <p> E-mail </p> </th>
-                                <th> <p> Last-log in</p> </th>
+                                <th> 
+                                    <form method="post" id="nameFilteringForm" action="../controller/admin.php">
+                                        <input type="hidden" name="nameFilterForm" value="toggle">
+                                        <div id="UsersNameFilteringContainer" onclick="submitNameFilterForm()">
+                                            <p> Name </p> 
+                                            <img src="../view/css_js_images/filterOffIcon.png" id="nameFilterOffIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/filterIcon.png" id="nameFilterIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/upArrowIcon.png" id="nameUpIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/downArrowIcon.png" id="nameDownIcon" class="filterIcon" alt="">
+                                        </div>
+                                    </form>
+                                </th>
+                                <th> 
+                                    <form method="post" id="emailFilteringForm" action="../controller/admin.php">
+                                        <input type="hidden" name="emailFilterForm" value="toggle">
+                                        <div id="UsersEmailFilteringContainer" onclick="submitEmailFilterForm()">
+                                            <p> E-mail </p> 
+                                            <img src="../view/css_js_images/filterOffIcon.png" id="emailFilterOffIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/filterIcon.png" id="emailFilterIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/upArrowIcon.png" id="emailUpIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/downArrowIcon.png" id="emailDownIcon" class="filterIcon" alt="">
+                                        </div>
+                                    </form>
+                                </th>
+                                <th>
+                                    <form method="post" id="logInFilteringForm" action="../controller/admin.php"> 
+                                        <input type="hidden" name="logInFilterForm" value="toggle">
+                                        <div id="UsersLogInFilteringContainer" onclick="submitLogInFilterForm()">
+                                            <p> Last-log in</p> 
+                                            <img src="../view/css_js_images/filterOffIcon.png" id="logInFilterOffIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/filterIcon.png" id="logInFilterIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/upArrowIcon.png" id="logInUpIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/downArrowIcon.png" id="logInDownIcon" class="filterIcon" alt="">
+                                        </div>
+                                    </form>
+                                </th>
                                 <th> <p> Security Role/s </p> </th>
                             </tr>
                         </thead>
@@ -135,11 +170,66 @@
                     <table class="table">
                         <thead>
                             <tr class="tableRow">
-                                <th> <p> Date </p> </th>
-                                <th> <p> Time </p> </th>
-                                <th> <p> Name </p> </th>
-                                <th> <p> Event Type </p> </th>
-                                <th> <p> Details </p> </th>
+                                <th> 
+                                    <form method="post" id="dateFilteringForm" action="../controller/admin.php">
+                                        <input type="hidden" name="dateFilterForm" value="toggle">
+                                        <div id="LogsDateFilteringContainer" onclick="submitDateFilterForm()">
+                                            <p> Date </p> 
+                                            <img src="../view/css_js_images/filterOffIcon.png" id="dateFilterOffIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/filterIcon.png" id="dateFilterIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/upArrowIcon.png" id="dateUpIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/downArrowIcon.png" id="dateDownIcon" class="filterIcon" alt="">
+                                        </div>
+                                    </form>
+                                </th>
+                                <th> 
+                                    <form method="post" id="timeFilteringForm" action="../controller/admin.php">
+                                        <input type="hidden" name="timeFilterForm" value="toggle">
+                                        <div id="LogsTimeFilteringContainer" onclick="submitTimeFilterForm()">
+                                            <p> Time </p> 
+                                            <img src="../view/css_js_images/filterOffIcon.png" id="timeFilterOffIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/filterIcon.png" id="timeFilterIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/upArrowIcon.png" id="timeUpIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/downArrowIcon.png" id="timeDownIcon" class="filterIcon" alt="">
+                                        </div>
+                                    </form> 
+                                </th>
+                                <th> 
+                                    <form method="post" id="nameLogFilteringForm" action="../controller/admin.php">
+                                        <input type="hidden" name="nameLogFilterForm" value="toggle">
+                                        <div id="LogsNameFilteringContainer" onclick="submitNameLogFilterForm()">
+                                            <p> Name </p> 
+                                            <img src="../view/css_js_images/filterOffIcon.png" id="nameLogFilterOffIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/filterIcon.png" id="nameLogFilterIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/upArrowIcon.png" id="nameLogUpIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/downArrowIcon.png" id="nameLogDownIcon" class="filterIcon" alt="">
+                                        </div>
+                                    </form> 
+                                </th>
+                                <th> 
+                                    <form method="post" id="eventTypeFilteringForm" action="../controller/admin.php">
+                                        <input type="hidden" name="eventTypeFilterForm" value="toggle">
+                                        <div id="LogsEventTypeFilteringContainer" onclick="submitEventTypeFilterForm()">
+                                            <p> Event Type </p> 
+                                            <img src="../view/css_js_images/filterOffIcon.png" id="eventTypeFilterOffIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/filterIcon.png" id="eventTypeFilterIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/upArrowIcon.png" id="eventTypeUpIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/downArrowIcon.png" id="eventTypeDownIcon" class="filterIcon" alt="">
+                                        </div>
+                                    </form>
+                                </th>
+                                <th> 
+                                    <form method="post" id="detailsFilteringForm" action="../controller/admin.php">
+                                        <input type="hidden" name="detailsFilterForm" value="toggle">
+                                        <div id="LogsDetailsFilteringContainer" onclick="submitDetailsFilterForm()">
+                                            <p> Details </p> 
+                                            <img src="../view/css_js_images/filterOffIcon.png" id="detailsFilterOffIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/filterIcon.png" id="detailsFilterIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/upArrowIcon.png" id="detailsUpIcon" class="filterIcon" alt="">
+                                            <img src="../view/css_js_images/downArrowIcon.png" id="detailsDownIcon" class="filterIcon" alt="">
+                                        </div>
+                                    </form>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -186,7 +276,7 @@
 
                     <div class="modalFlexContainer">
                         <label for="password">Temporary Password:</label>
-                        <input type="text" id="password" name="password" required><br>
+                        <input type="password" id="password" name="password" required><br>
                     </div>
 
                     <div id="modalButtonContainer">

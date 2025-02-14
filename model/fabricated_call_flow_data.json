@@ -100,21 +100,573 @@
                 },
                 "call_metrics": [
                     {
-                        "call_id": 1,
-                        "number": "7492847582",
+                        "number": "+44 7492847582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 21,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-03T08:30:00",
                         "wait_time": 40,
                         "abandoned": false
                     },
                     {
-                        "call_id": 2,
-                        "number": "7492131143",
-                        "wait_time": 55,
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 742341412",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 742341412",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 742341412",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 742341412",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 769420772",
+                        "timestamp": "2025-02-04T08:55:00",
+                        "wait_time": 17,
                         "abandoned": true
                     },
                     {
-                        "call_id": 3,
-                        "number": "7211214354",
+                        "number": "+44 761653124",
+                        "timestamp": "2025-02-04T09:17:00",
+                        "wait_time": 15,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 722053998",
+                        "timestamp": "2025-02-04T09:04:00",
+                        "wait_time": 54,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 724933233",
+                        "timestamp": "2025-02-04T09:23:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 737917607",
+                        "timestamp": "2025-02-04T08:55:00",
+                        "wait_time": 49,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 737563457",
+                        "timestamp": "2025-02-04T09:15:00",
+                        "wait_time": 29,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 727306556",
+                        "timestamp": "2025-02-04T09:13:00",
+                        "wait_time": 26,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 755880510",
+                        "timestamp": "2025-02-04T08:56:00",
+                        "wait_time": 37,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 759213727",
+                        "timestamp": "2025-02-04T09:22:00",
+                        "wait_time": 33,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 768001467",
+                        "timestamp": "2025-02-04T09:09:00",
+                        "wait_time": 17,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 776850451",
+                        "timestamp": "2025-02-04T08:58:00",
+                        "wait_time": 23,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 766845103",
+                        "timestamp": "2025-02-04T09:01:00",
+                        "wait_time": 31,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 732343855",
+                        "timestamp": "2025-02-04T08:49:00",
+                        "wait_time": 23,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 711388453",
+                        "timestamp": "2025-02-04T08:39:00",
+                        "wait_time": 52,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 748004228",
+                        "timestamp": "2025-02-04T08:41:00",
+                        "wait_time": 27,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 724309290",
+                        "timestamp": "2025-02-04T09:21:00",
+                        "wait_time": 38,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 719251019",
+                        "timestamp": "2025-02-04T08:48:00",
+                        "wait_time": 28,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 736288742",
+                        "timestamp": "2025-02-04T08:49:00",
+                        "wait_time": 37,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 790489887",
+                        "timestamp": "2025-02-04T08:58:00",
+                        "wait_time": 49,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 713688929",
+                        "timestamp": "2025-02-04T09:07:00",
+                        "wait_time": 37,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 791980259",
+                        "timestamp": "2025-02-05T09:32:29",
+                        "wait_time": 34,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 704530421",
+                        "timestamp": "2025-02-05T09:41:57",
+                        "wait_time": 45,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 708478268",
+                        "timestamp": "2025-02-05T09:58:52",
+                        "wait_time": 10,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 745135559",
+                        "timestamp": "2025-02-05T09:42:55",
+                        "wait_time": 27,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 701396798",
+                        "timestamp": "2025-02-05T09:30:24",
+                        "wait_time": 14,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 747889635",
+                        "timestamp": "2025-02-05T08:23:55",
+                        "wait_time": 18,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 712177289",
+                        "timestamp": "2025-02-05T09:36:38",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 761896664",
+                        "timestamp": "2025-02-05T09:53:46",
+                        "wait_time": 46,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 743057122",
+                        "timestamp": "2025-02-05T09:26:10",
+                        "wait_time": 36,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 702085223",
+                        "timestamp": "2025-02-05T08:39:34",
+                        "wait_time": 13,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 760179310",
+                        "timestamp": "2025-02-05T09:08:29",
+                        "wait_time": 17,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 727210344",
+                        "timestamp": "2025-02-05T09:00:27",
+                        "wait_time": 50,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 702540488",
+                        "timestamp": "2025-02-05T09:10:06",
+                        "wait_time": 21,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 784217342",
+                        "timestamp": "2025-02-05T08:24:46",
+                        "wait_time": 55,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 700050886",
+                        "timestamp": "2025-02-05T08:59:07",
+                        "wait_time": 41,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 737482491",
+                        "timestamp": "2025-02-05T09:43:15",
+                        "wait_time": 15,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 769354638",
+                        "timestamp": "2025-02-05T09:35:55",
+                        "wait_time": 54,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 750802670",
+                        "timestamp": "2025-02-05T09:27:42",
+                        "wait_time": 54,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 746118887",
+                        "timestamp": "2025-02-05T08:17:33",
+                        "wait_time": 31,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 738756781",
+                        "timestamp": "2025-02-05T09:03:29",
+                        "wait_time": 43,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 792081659",
+                        "timestamp": "2025-02-06T09:17:22",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 739265800",
+                        "timestamp": "2025-02-06T09:04:15",
                         "wait_time": 30,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 704370104",
+                        "timestamp": "2025-02-06T09:30:42",
+                        "wait_time": 11,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 752768522",
+                        "timestamp": "2025-02-06T09:51:06",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 736288151",
+                        "timestamp": "2025-02-06T09:05:40",
+                        "wait_time": 28,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 747324577",
+                        "timestamp": "2025-02-06T08:38:59",
+                        "wait_time": 19,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 711840289",
+                        "timestamp": "2025-02-06T09:23:14",
+                        "wait_time": 22,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 739682149",
+                        "timestamp": "2025-02-06T09:41:30",
+                        "wait_time": 50,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 735183827",
+                        "timestamp": "2025-02-06T09:15:53",
+                        "wait_time": 78,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 702324708",
+                        "timestamp": "2025-02-06T09:47:19",
+                        "wait_time": 32,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 743824915",
+                        "timestamp": "2025-02-06T08:52:29",
+                        "wait_time": 45,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 702350868",
+                        "timestamp": "2025-02-06T08:57:56",
+                        "wait_time": 23,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 733474926",
+                        "timestamp": "2025-02-06T09:33:25",
+                        "wait_time": 33,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 731669598",
+                        "timestamp": "2025-02-06T09:12:14",
+                        "wait_time": 26,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 740925306",
+                        "timestamp": "2025-02-06T08:39:22",
+                        "wait_time": 48,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-06T09:24:38",
+                        "wait_time": 37,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 741376917",
+                        "timestamp": "2025-02-06T09:07:08",
+                        "wait_time": 10,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 703222582",
+                        "timestamp": "2025-02-06T09:56:14",
+                        "wait_time": 41,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 752591144",
+                        "timestamp": "2025-02-06T08:40:36",
+                        "wait_time": 56,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-07T09:11:04",
+                        "wait_time": 38,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 736295670",
+                        "timestamp": "2025-02-07T09:45:17",
+                        "wait_time": 29,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 720501892",
+                        "timestamp": "2025-02-07T09:24:42",
+                        "wait_time": 12,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-07T09:56:34",
+                        "wait_time": 41,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 743648211",
+                        "timestamp": "2025-02-07T09:12:08",
+                        "wait_time": 18,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 701829543",
+                        "timestamp": "2025-02-07T08:53:26",
+                        "wait_time": 22,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 752982334",
+                        "timestamp": "2025-02-07T09:17:45",
+                        "wait_time": 36,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-07T09:36:09",
+                        "wait_time": 20,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 773195083",
+                        "timestamp": "2025-02-07T09:50:32",
+                        "wait_time": 31,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 702518640",
+                        "timestamp": "2025-02-07T09:03:50",
+                        "wait_time": 28,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-08T09:22:17",
+                        "wait_time": 35,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 734695872",
+                        "timestamp": "2025-02-08T09:47:32",
+                        "wait_time": 41,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 753021694",
+                        "timestamp": "2025-02-08T09:03:45",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 739184256",
+                        "timestamp": "2025-02-08T09:25:53",
+                        "wait_time": 29,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 724637861",
+                        "timestamp": "2025-02-08T08:58:09",
+                        "wait_time": 26,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-08T09:39:19",
+                        "wait_time": 33,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 735192840",
+                        "timestamp": "2025-02-09T09:16:03",
+                        "wait_time": 28,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-09T09:22:47",
+                        "wait_time": 39,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 741328950",
+                        "timestamp": "2025-02-09T09:04:32",
+                        "wait_time": 32,
                         "abandoned": false
                     }
                 ]
@@ -200,21 +752,531 @@
                 },
                 "call_metrics": [
                     {
-                        "call_id": 1,
-                        "number": "723958092",
+                        "number": "+44 7492847582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 21,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 742341412",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 742341412",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 742341412",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 742341412",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 769420772",
+                        "timestamp": "2025-02-04T08:55:00",
+                        "wait_time": 17,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 761653124",
+                        "timestamp": "2025-02-04T09:17:00",
+                        "wait_time": 15,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 722053998",
+                        "timestamp": "2025-02-04T09:04:00",
+                        "wait_time": 54,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 724933233",
+                        "timestamp": "2025-02-04T09:23:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 737917607",
+                        "timestamp": "2025-02-04T08:55:00",
+                        "wait_time": 49,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 737563457",
+                        "timestamp": "2025-02-04T09:15:00",
+                        "wait_time": 29,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 727306556",
+                        "timestamp": "2025-02-04T09:13:00",
+                        "wait_time": 26,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 755880510",
+                        "timestamp": "2025-02-04T08:56:00",
+                        "wait_time": 37,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 759213727",
+                        "timestamp": "2025-02-04T09:22:00",
+                        "wait_time": 33,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 768001467",
+                        "timestamp": "2025-02-04T09:09:00",
+                        "wait_time": 17,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 776850451",
+                        "timestamp": "2025-02-04T08:58:00",
+                        "wait_time": 23,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 766845103",
+                        "timestamp": "2025-02-04T09:01:00",
+                        "wait_time": 31,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-04T08:49:00",
+                        "wait_time": 23,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 711388453",
+                        "timestamp": "2025-02-04T08:39:00",
+                        "wait_time": 52,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 748004228",
+                        "timestamp": "2025-02-04T08:41:00",
+                        "wait_time": 27,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-04T09:21:00",
+                        "wait_time": 38,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 719251019",
+                        "timestamp": "2025-02-04T08:48:00",
+                        "wait_time": 28,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 736288742",
+                        "timestamp": "2025-02-04T08:49:00",
+                        "wait_time": 37,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-04T08:58:00",
+                        "wait_time": 49,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 713688929",
+                        "timestamp": "2025-02-04T09:07:00",
+                        "wait_time": 37,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 791980259",
+                        "timestamp": "2025-02-05T09:32:29",
+                        "wait_time": 34,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 704530421",
+                        "timestamp": "2025-02-05T09:41:57",
+                        "wait_time": 45,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-05T09:58:52",
+                        "wait_time": 10,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-05T09:42:55",
+                        "wait_time": 27,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 701396798",
+                        "timestamp": "2025-02-05T09:30:24",
+                        "wait_time": 14,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 747889635",
+                        "timestamp": "2025-02-05T08:23:55",
+                        "wait_time": 18,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 712177289",
+                        "timestamp": "2025-02-05T09:36:38",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-05T09:53:46",
+                        "wait_time": 46,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 743057122",
+                        "timestamp": "2025-02-05T09:26:10",
+                        "wait_time": 36,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-05T08:39:34",
+                        "wait_time": 13,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 760179310",
+                        "timestamp": "2025-02-05T09:08:29",
+                        "wait_time": 17,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 727210344",
+                        "timestamp": "2025-02-05T09:00:27",
+                        "wait_time": 63,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 702540488",
+                        "timestamp": "2025-02-05T09:10:06",
+                        "wait_time": 21,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-05T08:24:46",
+                        "wait_time": 55,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 700050886",
+                        "timestamp": "2025-02-05T08:59:07",
+                        "wait_time": 41,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 737482491",
+                        "timestamp": "2025-02-05T09:43:15",
+                        "wait_time": 15,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 769354638",
+                        "timestamp": "2025-02-05T09:35:55",
+                        "wait_time": 54,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-06T09:17:22",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 739265800",
+                        "timestamp": "2025-02-06T09:04:15",
+                        "wait_time": 30,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 704370104",
+                        "timestamp": "2025-02-06T09:30:42",
+                        "wait_time": 11,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 752768522",
+                        "timestamp": "2025-02-06T09:51:06",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 736288151",
+                        "timestamp": "2025-02-06T09:05:40",
+                        "wait_time": 28,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 747324577",
+                        "timestamp": "2025-02-06T08:38:59",
+                        "wait_time": 19,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 711840289",
+                        "timestamp": "2025-02-06T09:23:14",
+                        "wait_time": 22,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 739682149",
+                        "timestamp": "2025-02-06T09:41:30",
+                        "wait_time": 50,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 735183827",
+                        "timestamp": "2025-02-06T09:15:53",
+                        "wait_time": 13,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 702324708",
+                        "timestamp": "2025-02-06T09:47:19",
+                        "wait_time": 32,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 743824915",
+                        "timestamp": "2025-02-06T08:52:29",
+                        "wait_time": 45,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 702350868",
+                        "timestamp": "2025-02-06T08:57:56",
+                        "wait_time": 23,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 733474926",
+                        "timestamp": "2025-02-06T09:33:25",
                         "wait_time": 33,
                         "abandoned": false
                     },
                     {
-                        "call_id": 2,
-                        "number": "742342364",
-                        "wait_time": 78,
+                        "number": "+44 731669598",
+                        "timestamp": "2025-02-06T09:12:14",
+                        "wait_time": 26,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 752591144",
+                        "timestamp": "2025-02-06T08:40:36",
+                        "wait_time": 56,
                         "abandoned": false
                     },
                     {
-                        "call_id": 3,
-                        "number": "742345141",
-                        "wait_time": 30,
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-07T09:11:04",
+                        "wait_time": 38,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 736295670",
+                        "timestamp": "2025-02-07T09:45:17",
+                        "wait_time": 29,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 720501892",
+                        "timestamp": "2025-02-07T09:24:42",
+                        "wait_time": 12,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-07T09:56:34",
+                        "wait_time": 41,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 743648211",
+                        "timestamp": "2025-02-07T09:12:08",
+                        "wait_time": 18,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 701829543",
+                        "timestamp": "2025-02-07T08:53:26",
+                        "wait_time": 22,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 752982334",
+                        "timestamp": "2025-02-07T09:17:45",
+                        "wait_time": 36,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-07T09:36:09",
+                        "wait_time": 20,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 773195083",
+                        "timestamp": "2025-02-07T09:50:32",
+                        "wait_time": 31,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 702518640",
+                        "timestamp": "2025-02-07T09:03:50",
+                        "wait_time": 28,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-08T09:22:17",
+                        "wait_time": 35,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 734695872",
+                        "timestamp": "2025-02-08T09:47:32",
+                        "wait_time": 41,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 753021694",
+                        "timestamp": "2025-02-08T09:03:45",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 739184256",
+                        "timestamp": "2025-02-08T09:25:53",
+                        "wait_time": 29,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 724637861",
+                        "timestamp": "2025-02-08T08:58:09",
+                        "wait_time": 26,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-08T09:39:19",
+                        "wait_time": 33,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 735192840",
+                        "timestamp": "2025-02-09T09:16:03",
+                        "wait_time": 28,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-09T09:22:47",
+                        "wait_time": 39,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 741328950",
+                        "timestamp": "2025-02-09T09:04:32",
+                        "wait_time": 32,
                         "abandoned": false
                     }
                 ]
@@ -330,22 +1392,472 @@
                 },
                 "call_metrics": [
                     {
-                        "call_id": 1,
-                        "number": "79234801",
+                        "number": "+44 7492847582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 21,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 742341412",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 742341412",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 742341412",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 742341412",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 769420772",
+                        "timestamp": "2025-02-04T08:55:00",
+                        "wait_time": 17,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 761653124",
+                        "timestamp": "2025-02-04T09:17:00",
+                        "wait_time": 15,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 722053998",
+                        "timestamp": "2025-02-04T09:04:00",
+                        "wait_time": 54,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 724933233",
+                        "timestamp": "2025-02-04T09:23:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 737917607",
+                        "timestamp": "2025-02-04T08:55:00",
+                        "wait_time": 49,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 737563457",
+                        "timestamp": "2025-02-04T09:15:00",
+                        "wait_time": 29,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 727306556",
+                        "timestamp": "2025-02-04T09:13:00",
+                        "wait_time": 26,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 755880510",
+                        "timestamp": "2025-02-04T08:56:00",
+                        "wait_time": 37,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 759213727",
+                        "timestamp": "2025-02-04T09:22:00",
+                        "wait_time": 33,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 768001467",
+                        "timestamp": "2025-02-04T09:09:00",
+                        "wait_time": 17,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 776850451",
+                        "timestamp": "2025-02-04T08:58:00",
                         "wait_time": 23,
                         "abandoned": false
                     },
                     {
-                        "call_id": 2,
-                        "number": "723490821",
+                        "number": "+44 766845103",
+                        "timestamp": "2025-02-04T09:01:00",
+                        "wait_time": 31,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-04T08:49:00",
+                        "wait_time": 23,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 711388453",
+                        "timestamp": "2025-02-04T08:39:00",
+                        "wait_time": 52,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 748004228",
+                        "timestamp": "2025-02-04T08:41:00",
+                        "wait_time": 27,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-04T09:21:00",
+                        "wait_time": 38,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 719251019",
+                        "timestamp": "2025-02-04T08:48:00",
+                        "wait_time": 28,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 736288742",
+                        "timestamp": "2025-02-04T08:49:00",
+                        "wait_time": 37,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-04T08:58:00",
+                        "wait_time": 49,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 713688929",
+                        "timestamp": "2025-02-04T09:07:00",
+                        "wait_time": 37,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 791980259",
+                        "timestamp": "2025-02-05T09:32:29",
+                        "wait_time": 34,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 704530421",
+                        "timestamp": "2025-02-05T09:41:57",
+                        "wait_time": 45,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-05T09:58:52",
+                        "wait_time": 10,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-05T09:42:55",
+                        "wait_time": 27,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 701396798",
+                        "timestamp": "2025-02-05T09:30:24",
+                        "wait_time": 14,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 747889635",
+                        "timestamp": "2025-02-05T08:23:55",
+                        "wait_time": 18,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 712177289",
+                        "timestamp": "2025-02-05T09:36:38",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-05T09:53:46",
+                        "wait_time": 46,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 743057122",
+                        "timestamp": "2025-02-05T09:26:10",
+                        "wait_time": 36,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-05T08:39:34",
+                        "wait_time": 13,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 760179310",
+                        "timestamp": "2025-02-05T09:08:29",
+                        "wait_time": 17,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 737482491",
+                        "timestamp": "2025-02-05T09:43:15",
+                        "wait_time": 15,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 769354638",
+                        "timestamp": "2025-02-05T09:35:55",
+                        "wait_time": 54,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-06T09:17:22",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 739265800",
+                        "timestamp": "2025-02-06T09:04:15",
+                        "wait_time": 30,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 704370104",
+                        "timestamp": "2025-02-06T09:30:42",
+                        "wait_time": 11,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 752768522",
+                        "timestamp": "2025-02-06T09:51:06",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 736288151",
+                        "timestamp": "2025-02-06T09:05:40",
+                        "wait_time": 28,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 747324577",
+                        "timestamp": "2025-02-06T08:38:59",
+                        "wait_time": 19,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 711840289",
+                        "timestamp": "2025-02-06T09:23:14",
+                        "wait_time": 22,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 739682149",
+                        "timestamp": "2025-02-06T09:41:30",
+                        "wait_time": 50,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 735183827",
+                        "timestamp": "2025-02-06T09:15:53",
+                        "wait_time": 13,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 702324708",
+                        "timestamp": "2025-02-06T09:47:19",
+                        "wait_time": 32,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 752591144",
+                        "timestamp": "2025-02-06T08:40:36",
+                        "wait_time": 56,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-07T09:11:04",
+                        "wait_time": 38,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 736295670",
+                        "timestamp": "2025-02-07T09:45:17",
+                        "wait_time": 29,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 720501892",
+                        "timestamp": "2025-02-07T09:24:42",
                         "wait_time": 12,
                         "abandoned": false
                     },
                     {
-                        "call_id": 3,
-                        "number": "754509220",
-                        "wait_time": 30,
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-07T09:56:34",
+                        "wait_time": 41,
                         "abandoned": true
+                    },
+                    {
+                        "number": "+44 743648211",
+                        "timestamp": "2025-02-07T09:12:08",
+                        "wait_time": 18,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 701829543",
+                        "timestamp": "2025-02-07T08:53:26",
+                        "wait_time": 22,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 752982334",
+                        "timestamp": "2025-02-07T09:17:45",
+                        "wait_time": 36,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-07T09:36:09",
+                        "wait_time": 20,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 773195083",
+                        "timestamp": "2025-02-07T09:50:32",
+                        "wait_time": 31,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 702518640",
+                        "timestamp": "2025-02-07T09:03:50",
+                        "wait_time": 28,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-08T09:22:17",
+                        "wait_time": 35,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 734695872",
+                        "timestamp": "2025-02-08T09:47:32",
+                        "wait_time": 41,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 753021694",
+                        "timestamp": "2025-02-08T09:03:45",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 739184256",
+                        "timestamp": "2025-02-08T09:25:53",
+                        "wait_time": 29,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 724637861",
+                        "timestamp": "2025-02-08T08:58:09",
+                        "wait_time": 26,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-08T09:39:19",
+                        "wait_time": 33,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 735192840",
+                        "timestamp": "2025-02-09T09:16:03",
+                        "wait_time": 28,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-09T09:22:47",
+                        "wait_time": 39,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 741328950",
+                        "timestamp": "2025-02-09T09:04:32",
+                        "wait_time": 32,
+                        "abandoned": false
                     }
                 ]
             },
@@ -449,22 +1961,448 @@
                 },
                 "call_metrics": [
                     {
-                        "call_id": 1,
-                        "number": "723535632",
+                        "number": "+44 7492847582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 21,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 742341412",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 742341412",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 742341412",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 742341412",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 769420772",
+                        "timestamp": "2025-02-04T08:55:00",
+                        "wait_time": 17,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 761653124",
+                        "timestamp": "2025-02-04T09:17:00",
                         "wait_time": 15,
                         "abandoned": false
                     },
                     {
-                        "call_id": 2,
-                        "number": "7429034802",
-                        "wait_time": 4,
+                        "number": "+44 722053998",
+                        "timestamp": "2025-02-04T09:04:00",
+                        "wait_time": 54,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 724933233",
+                        "timestamp": "2025-02-04T09:23:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 737917607",
+                        "timestamp": "2025-02-04T08:55:00",
+                        "wait_time": 49,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 737563457",
+                        "timestamp": "2025-02-04T09:15:00",
+                        "wait_time": 29,
                         "abandoned": true
                     },
                     {
-                        "call_id": 3,
-                        "number": "7892374810",
+                        "number": "+44 727306556",
+                        "timestamp": "2025-02-04T09:13:00",
+                        "wait_time": 26,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 755880510",
+                        "timestamp": "2025-02-04T08:56:00",
                         "wait_time": 37,
                         "abandoned": true
+                    },
+                    {
+                        "number": "+44 759213727",
+                        "timestamp": "2025-02-04T09:22:00",
+                        "wait_time": 33,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 768001467",
+                        "timestamp": "2025-02-04T09:09:00",
+                        "wait_time": 17,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 748004228",
+                        "timestamp": "2025-02-04T08:41:00",
+                        "wait_time": 27,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-04T09:21:00",
+                        "wait_time": 38,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 719251019",
+                        "timestamp": "2025-02-04T08:48:00",
+                        "wait_time": 28,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 736288742",
+                        "timestamp": "2025-02-04T08:49:00",
+                        "wait_time": 37,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-04T08:58:00",
+                        "wait_time": 49,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 713688929",
+                        "timestamp": "2025-02-04T09:07:00",
+                        "wait_time": 37,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 791980259",
+                        "timestamp": "2025-02-05T09:32:29",
+                        "wait_time": 34,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 704530421",
+                        "timestamp": "2025-02-05T09:41:57",
+                        "wait_time": 45,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-05T09:58:52",
+                        "wait_time": 10,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-05T09:42:55",
+                        "wait_time": 27,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 701396798",
+                        "timestamp": "2025-02-05T09:30:24",
+                        "wait_time": 14,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 747889635",
+                        "timestamp": "2025-02-05T08:23:55",
+                        "wait_time": 18,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 712177289",
+                        "timestamp": "2025-02-05T09:36:38",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-05T09:53:46",
+                        "wait_time": 46,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 743057122",
+                        "timestamp": "2025-02-05T09:26:10",
+                        "wait_time": 36,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-05T08:39:34",
+                        "wait_time": 13,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 760179310",
+                        "timestamp": "2025-02-05T09:08:29",
+                        "wait_time": 17,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 737482491",
+                        "timestamp": "2025-02-05T09:43:15",
+                        "wait_time": 15,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 769354638",
+                        "timestamp": "2025-02-05T09:35:55",
+                        "wait_time": 54,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-06T09:17:22",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 739265800",
+                        "timestamp": "2025-02-06T09:04:15",
+                        "wait_time": 30,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 704370104",
+                        "timestamp": "2025-02-06T09:30:42",
+                        "wait_time": 11,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 752768522",
+                        "timestamp": "2025-02-06T09:51:06",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 736288151",
+                        "timestamp": "2025-02-06T09:05:40",
+                        "wait_time": 28,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 747324577",
+                        "timestamp": "2025-02-06T08:38:59",
+                        "wait_time": 19,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 711840289",
+                        "timestamp": "2025-02-06T09:23:14",
+                        "wait_time": 22,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 739682149",
+                        "timestamp": "2025-02-06T09:41:30",
+                        "wait_time": 50,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 735183827",
+                        "timestamp": "2025-02-06T09:15:53",
+                        "wait_time": 13,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 702324708",
+                        "timestamp": "2025-02-06T09:47:19",
+                        "wait_time": 32,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 752591144",
+                        "timestamp": "2025-02-06T08:40:36",
+                        "wait_time": 56,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-07T09:11:04",
+                        "wait_time": 38,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 736295670",
+                        "timestamp": "2025-02-07T09:45:17",
+                        "wait_time": 29,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 720501892",
+                        "timestamp": "2025-02-07T09:24:42",
+                        "wait_time": 432,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-07T09:56:34",
+                        "wait_time": 41,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 743648211",
+                        "timestamp": "2025-02-07T09:12:08",
+                        "wait_time": 18,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 701829543",
+                        "timestamp": "2025-02-07T08:53:26",
+                        "wait_time": 22,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 752982334",
+                        "timestamp": "2025-02-07T09:17:45",
+                        "wait_time": 36,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-07T09:36:09",
+                        "wait_time": 20,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 773195083",
+                        "timestamp": "2025-02-07T09:50:32",
+                        "wait_time": 31,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 702518640",
+                        "timestamp": "2025-02-07T09:03:50",
+                        "wait_time": 28,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-08T09:22:17",
+                        "wait_time": 35,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 734695872",
+                        "timestamp": "2025-02-08T09:47:32",
+                        "wait_time": 41,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 753021694",
+                        "timestamp": "2025-02-08T09:03:45",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 739184256",
+                        "timestamp": "2025-02-08T09:25:53",
+                        "wait_time": 29,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 724637861",
+                        "timestamp": "2025-02-08T08:58:09",
+                        "wait_time": 26,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-08T09:39:19",
+                        "wait_time": 33,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 735192840",
+                        "timestamp": "2025-02-09T09:16:03",
+                        "wait_time": 28,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-09T09:22:47",
+                        "wait_time": 39,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 741328950",
+                        "timestamp": "2025-02-09T09:04:32",
+                        "wait_time": 32,
+                        "abandoned": false
                     }
                 ]
             },
@@ -524,7 +2462,8 @@
                         "members": [
                             "Henry",
                             "Ella",
-                            "James"
+                            "James",
+                            "Thomas"
                         ]
                     },
                     "call_queues": [
@@ -540,8 +2479,7 @@
                                 "group_owner": "No Owner",
                                 "members": [
                                     "Isabella",
-                                    "Daniel",
-                                    "hey"
+                                    "Daniel"
                                 ]
                             }
                         },
@@ -597,22 +2535,448 @@
                 },
                 "call_metrics": [
                     {
-                        "call_id": 1,
-                        "number": "7238940291",
-                        "wait_time": 77,
+                        "number": "+44 7492847582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 21,
                         "abandoned": false
                     },
                     {
-                        "call_id": 2,
-                        "number": "9248092809",
-                        "wait_time": 23,
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 742341412",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 742341412",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 742341412",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 39,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 742341412",
+                        "timestamp": "2025-02-03T08:30:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 769420772",
+                        "timestamp": "2025-02-04T08:55:00",
+                        "wait_time": 17,
                         "abandoned": true
                     },
                     {
-                        "call_id": 3,
-                        "number": "7398099322",
+                        "number": "+44 761653124",
+                        "timestamp": "2025-02-04T09:17:00",
+                        "wait_time": 15,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 722053998",
+                        "timestamp": "2025-02-04T09:04:00",
+                        "wait_time": 54,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 724933233",
+                        "timestamp": "2025-02-04T09:23:00",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 737917607",
+                        "timestamp": "2025-02-04T08:55:00",
+                        "wait_time": 49,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 737563457",
+                        "timestamp": "2025-02-04T09:15:00",
+                        "wait_time": 29,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 727306556",
+                        "timestamp": "2025-02-04T09:13:00",
+                        "wait_time": 26,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 755880510",
+                        "timestamp": "2025-02-04T08:56:00",
+                        "wait_time": 37,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 759213727",
+                        "timestamp": "2025-02-04T09:22:00",
+                        "wait_time": 33,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 768001467",
+                        "timestamp": "2025-02-04T09:09:00",
+                        "wait_time": 17,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 748004228",
+                        "timestamp": "2025-02-04T08:41:00",
+                        "wait_time": 27,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-04T09:21:00",
+                        "wait_time": 38,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 719251019",
+                        "timestamp": "2025-02-04T08:48:00",
+                        "wait_time": 28,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 736288742",
+                        "timestamp": "2025-02-04T08:49:00",
+                        "wait_time": 37,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-04T08:58:00",
+                        "wait_time": 49,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 713688929",
+                        "timestamp": "2025-02-04T09:07:00",
+                        "wait_time": 37,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 791980259",
+                        "timestamp": "2025-02-05T09:32:29",
+                        "wait_time": 34,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 704530421",
+                        "timestamp": "2025-02-05T09:41:57",
+                        "wait_time": 45,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-05T09:58:52",
+                        "wait_time": 10,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7492375431",
+                        "timestamp": "2025-02-05T09:42:55",
+                        "wait_time": 27,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 701396798",
+                        "timestamp": "2025-02-05T09:30:24",
+                        "wait_time": 14,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 747889635",
+                        "timestamp": "2025-02-05T08:23:55",
+                        "wait_time": 18,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 712177289",
+                        "timestamp": "2025-02-05T09:36:38",
+                        "wait_time": 40,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-05T09:53:46",
+                        "wait_time": 46,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 743057122",
+                        "timestamp": "2025-02-05T09:26:10",
+                        "wait_time": 36,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-05T08:39:34",
+                        "wait_time": 13,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 760179310",
+                        "timestamp": "2025-02-05T09:08:29",
+                        "wait_time": 17,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 737482491",
+                        "timestamp": "2025-02-05T09:43:15",
+                        "wait_time": 15,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 769354638",
+                        "timestamp": "2025-02-05T09:35:55",
+                        "wait_time": 54,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-06T09:17:22",
+                        "wait_time": 24,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 739265800",
+                        "timestamp": "2025-02-06T09:04:15",
+                        "wait_time": 30,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 704370104",
+                        "timestamp": "2025-02-06T09:30:42",
                         "wait_time": 11,
                         "abandoned": true
+                    },
+                    {
+                        "number": "+44 752768522",
+                        "timestamp": "2025-02-06T09:51:06",
+                        "wait_time": 112,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 736288151",
+                        "timestamp": "2025-02-06T09:05:40",
+                        "wait_time": 28,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 747324577",
+                        "timestamp": "2025-02-06T08:38:59",
+                        "wait_time": 19,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 711840289",
+                        "timestamp": "2025-02-06T09:23:14",
+                        "wait_time": 22,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 739682149",
+                        "timestamp": "2025-02-06T09:41:30",
+                        "wait_time": 50,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 735183827",
+                        "timestamp": "2025-02-06T09:15:53",
+                        "wait_time": 13,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 702324708",
+                        "timestamp": "2025-02-06T09:47:19",
+                        "wait_time": 32,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 752591144",
+                        "timestamp": "2025-02-06T08:40:36",
+                        "wait_time": 56,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-07T09:11:04",
+                        "wait_time": 38,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 736295670",
+                        "timestamp": "2025-02-07T09:45:17",
+                        "wait_time": 29,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 720501892",
+                        "timestamp": "2025-02-07T09:24:42",
+                        "wait_time": 12,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7345637552",
+                        "timestamp": "2025-02-07T09:56:34",
+                        "wait_time": 41,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 743648211",
+                        "timestamp": "2025-02-07T09:12:08",
+                        "wait_time": 18,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 701829543",
+                        "timestamp": "2025-02-07T08:53:26",
+                        "wait_time": 22,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 752982334",
+                        "timestamp": "2025-02-07T09:17:45",
+                        "wait_time": 36,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-07T09:36:09",
+                        "wait_time": 20,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 773195083",
+                        "timestamp": "2025-02-07T09:50:32",
+                        "wait_time": 31,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 702518640",
+                        "timestamp": "2025-02-07T09:03:50",
+                        "wait_time": 28,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-08T09:22:17",
+                        "wait_time": 35,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 734695872",
+                        "timestamp": "2025-02-08T09:47:32",
+                        "wait_time": 41,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 753021694",
+                        "timestamp": "2025-02-08T09:03:45",
+                        "wait_time": 19,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 739184256",
+                        "timestamp": "2025-02-08T09:25:53",
+                        "wait_time": 29,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 724637861",
+                        "timestamp": "2025-02-08T08:58:09",
+                        "wait_time": 26,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-08T09:39:19",
+                        "wait_time": 33,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 735192840",
+                        "timestamp": "2025-02-09T09:16:03",
+                        "wait_time": 28,
+                        "abandoned": false
+                    },
+                    {
+                        "number": "+44 7495637582",
+                        "timestamp": "2025-02-09T09:22:47",
+                        "wait_time": 39,
+                        "abandoned": true
+                    },
+                    {
+                        "number": "+44 741328950",
+                        "timestamp": "2025-02-09T09:04:32",
+                        "wait_time": 32,
+                        "abandoned": false
                     }
                 ]
             }

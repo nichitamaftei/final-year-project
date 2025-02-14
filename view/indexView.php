@@ -7,8 +7,9 @@
         <link rel="stylesheet" href="../view/css_js_images/style.css"> <!-- linking to style sheet -->
         <script src="../@joint/core/dist/joint.js"></script> <!-- linking to JointJS library -->
         <script src="https://code.jquery.com/jquery-3.7.1.js"></script> <!-- linking to j query -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> <!-- linking to chart.js -->
         <script type="text/javascript" src="../view/css_js_images/javascript.js"></script> <!-- linking to javascript -->
-        <title>Index</title>
+        <title> Index </title>
     </head>
 
     <body id="indexView">
@@ -33,7 +34,7 @@
                 </form>
 
                 <?php if ($_SESSION['loggedInEmployee']->isAdmin == 1):   ?>
-                    <a href="../controller/admin.php" id="adminLink">Admin Area</a>
+                    <a href="../controller/admin.php" id="adminLink"> Admin Area </a>
                 <?php endif; ?>  
 
             </div>
@@ -85,26 +86,12 @@
                         </thead>
                         
                         <tbody>
-                            <tr>
-                                <td> +4444444444 </td>
-                                <td> 25 </td>
-                            </tr>
-                            <tr>
-                                <td> +4444444444 </td>
-                                <td> 25 </td>
-                            </tr>
-                            <tr>
-                                <td> +4444444444 </td>
-                                <td> 25 </td>
-                            </tr>
-                            <tr>
-                                <td> +4444444444 </td>
-                                <td> 25 </td>
-                            </tr>
-                            <tr>
-                                <td> +4444444444 </td>
-                                <td> 25 </td>
-                            </tr>
+                            <?php foreach ($topNumbers as $number => $totalCalls): ?>
+                                <tr>
+                                    <td> <?= $number ?> </td>
+                                    <td> <?= $totalCalls ?> </td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -116,62 +103,60 @@
             <div id="callMetricsContainer">
 
                 <div id="callMetricsTitleContainer">
-                    <h3 id="callMetricsTitle"> Call Metrics </h3>
+                    <h3 id="callMetricsTitle"> Call Metrics (All Time) </h3>
                 </div>
 
                 <div id="metricLayout">
                     <div class="callMetricsSubContainer">
                         <div class="metricBox">
-                            <p class="metricTitle"> Incoming Calls Today </p>
+                            <p class="metricTitle"> Incoming Calls </p>
                             <div class="metricItem">
                                 <p>Total</p>
-                                <p class="metricValue"> 132 </p>
+                                <p class="metricValue"> <?= $totalCallers ?> </p>
                             </div>
                             <div class="metricItem">
                                 <p> Avg Wait Time </p>
-                                <p class="metricValue"> 23 sec </p>
+                                <p class="metricValue"> <?= round($averageWaitTime) ?> seconds </p>
                             </div>
                         </div>
 
                         <div class="metricBox">
-                            <p class="metricTitle"> Abandoned Today </p>
+                            <p class="metricTitle"> Abandoned Calls </p>
                             <div class="metricItem">
                                 <p>Total</p>
-                                <p class="metricValue"> 13 </p>
+                                <p class="metricValue"> <?= $totalAbandondedCalls ?> </p>
                             </div>
                             <div class="metricItem">
                                 <p>Abandoned Rate</p>
-                                <p class="metricValue"> 9.9% </p>
+                                <p class="metricValue"> <?= round($abandondedRate) ?>% </p>
                             </div>
                         </div>
                     </div>
 
-                    <div id="barChartContainer">
-                        bar chart placeholder
-                    </div>
+                    <canvas id="myChart" style="max-width:500px"></canvas>
 
                     <div class="callMetricsSubContainer">
                         <div class="metricBox">
                             <p class="metricTitle"> Service Target Level </p>
                             <div class="metricItem">
                                 <p>Target</p>
-                                <p class="metricValue" id="smallFont"> 80% </p>
+                                <p class="metricValue" id="smallFont"> 80%</p>
                             </div>
                             <div class="metricItem">
                                 <p> Actual </p>
-                                <p class="metricValue"> 75% </p>
+                                <p class="metricValue"> <?= $actualServiceLevelPercentage ?>% </p>
                             </div>
                         </div>
 
                         <div class="metricBox">
-                            <p class="metricTitle"> Extra Metrics Today </p>
+                            <p class="metricTitle"> Extra Metrics </p>
                             <div class="metricItem">
-                                <p>Missed Calls</p>
-                                <p class="metricValue">7 </p>
+                                <p>Answered Calls</p>
+                                <p class="metricValue"> <?= $totalAnsweredCalls ?> </p>
                             </div>
                             <div class="metricItem">
                                 <p> Longest Waiting Time </p>
-                                <p class="metricValue"> 3min 26 sec </p>
+                                <p class="metricValue"> <?= $longestWaitTime ?> sec </p>
                             </div>
                         </div>
                     </div>

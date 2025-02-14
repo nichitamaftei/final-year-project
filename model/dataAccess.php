@@ -29,9 +29,36 @@ class pdoSingleton{
 
     // Employee access
 
-    public function getAllEmployees(){
+    public function getAllEmployees($filterOptions){
+
+        $baseQuery = "SELECT * FROM Employees";
+
+        $orderByStatements = [];
+
+        if($filterOptions["name"] == "asc"){
+            $orderByStatements[] = " FirstName ASC ";
+        }else if($filterOptions["name"] == "desc"){
+            $orderByStatements[] = " FirstName DESC ";
+        }
+
+        if($filterOptions["email"] == "asc"){
+            $orderByStatements[] = " Email ASC ";
+        }else if($filterOptions["email"] == "desc"){
+            $orderByStatements[] = " Email DESC ";
+        }
+
+        if($filterOptions["logIn"] == "asc"){
+            $orderByStatements[] = " LastLogIn ASC ";
+        }else if($filterOptions["logIn"] == "desc"){
+            $orderByStatements[] = " LastLogIn DESC ";
+        }
+
+        if(!empty($orderByStatements)){
+            $baseQuery .= " ORDER BY " . implode(", ", $orderByStatements);
+        }
+
         $pdo = $this->pdo;
-        $statement = $pdo->prepare("SELECT * FROM Employees");
+        $statement = $pdo->prepare($baseQuery); 
         $statement->execute();
         $results = $statement->fetchAll(PDO::FETCH_CLASS, "Employees");
         return $results;
@@ -146,13 +173,50 @@ class pdoSingleton{
 
     // AuditLogs access
 
-    public function getAllAuditLogsWithEmployeeNames(){
+    public function getAllAuditLogsWithEmployeeNames($filterOptions){
+
+        $baseQuery = "SELECT AuditLogs.*, Employees.FirstName, Employees.LastName 
+                        FROM AuditLogs 
+                        JOIN Employees ON AuditLogs.EmployeeID = Employees.EmployeeID";
+
+        $orderByStatements = [];
+
+        if($filterOptions["date"] == "asc"){
+            $orderByStatements[] = " Date ASC ";
+        }else if($filterOptions["date"] == "desc"){
+            $orderByStatements[] = " Date DESC ";
+        }
+
+        if($filterOptions["time"] == "asc"){
+            $orderByStatements[] = " Time ASC ";
+        }else if($filterOptions["time"] == "desc"){
+            $orderByStatements[] = " Time DESC ";
+        }
+
+        if($filterOptions["name"] == "asc"){
+            $orderByStatements[] = " FirstName ASC ";
+        }else if($filterOptions["name"] == "desc"){
+            $orderByStatements[] = " FirstName DESC ";
+        }
+
+        if($filterOptions["eventType"] == "asc"){
+            $orderByStatements[] = " ActionPerformed ASC ";
+        }else if($filterOptions["eventType"] == "desc"){
+            $orderByStatements[] = " ActionPerformed DESC ";
+        }
+
+        if($filterOptions["details"] == "asc"){
+            $orderByStatements[] = " Details ASC ";
+        }else if($filterOptions["details"] == "desc"){
+            $orderByStatements[] = " Details DESC ";
+        }
+
+        if(!empty($orderByStatements)){
+            $baseQuery .= " ORDER BY " . implode(", ", $orderByStatements);
+        }
+
         $pdo = $this->pdo;        
-        $statement = $pdo->prepare("SELECT AuditLogs.*, Employees.FirstName, Employees.LastName 
-                                    FROM AuditLogs 
-                                    JOIN Employees 
-                                    ON AuditLogs.EmployeeID = Employees.EmployeeID
-                                    ORDER BY CONCAT(AuditLogs.Date, ' ', AuditLogs.Time) DESC");
+        $statement = $pdo->prepare($baseQuery);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_OBJ);
     }
@@ -164,7 +228,6 @@ class pdoSingleton{
         $statement->execute([$auditLog->EmployeeID, $auditLog->Date, $auditLog->Time, $auditLog->ActionPerformed, $auditLog->Details]);
         return $pdo->lastInsertId();
     }
-
 }
 
 ?>

@@ -2,9 +2,6 @@
 
 function doLogicAndCallIndexView() {
 
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
-
     // reset the sessions if they have already been inputted to avoid array access errors when going to different departments after editing a department
     if(isset($_SESSION["currentBusinessHoursDay"])){
         $_SESSION["currentCallQueue"] = null;
@@ -23,7 +20,7 @@ function doLogicAndCallIndexView() {
         doLogicAndCallLoginView(); // go to the log in view
         require_once("../view/loginView.php");
     
-    } else if (isset($_POST['signOut'])) { // if the employee clicked the 'sign out' button
+    } else if (isset($_POST["signOut"])) { // if the employee clicked the 'sign out' button
 
         $_SESSION["loggedInEmployee"] = null;
 
@@ -40,7 +37,7 @@ function doLogicAndCallIndexView() {
 
         $jsonData = getCallData();
 
-        $arrayOfDepartments = $jsonData['company']['departments']; // puts the array of departments into a variable
+        $arrayOfDepartments = $jsonData["company"]["departments"]; // puts the array of departments into a variable
 
         // if a role exists in the JSON file but not the database, add the role to the database
 
@@ -52,7 +49,7 @@ function doLogicAndCallIndexView() {
 
             foreach ($databaseRoles as $databaseRole){
 
-                if ($department['name'] == $databaseRole->RoleName){
+                if ($department["name"] == $databaseRole->RoleName){
                     $databaseRoleExists = true;
                     break;
                 }
@@ -60,7 +57,7 @@ function doLogicAndCallIndexView() {
 
             if (!$databaseRoleExists){
                 $role = new Roles();
-                $role->RoleName = $department['name'];
+                $role->RoleName = $department["name"];
                 $pdoSingleton->addNewRole($role); 
             }
         }
@@ -71,7 +68,7 @@ function doLogicAndCallIndexView() {
             $roleFound = false;
         
             foreach ($arrayOfDepartments as $department){
-                if ($department['name'] == $databaseRole->RoleName){
+                if ($department["name"] == $databaseRole->RoleName){
                     $roleFound = true;
                     break; 
                 }
@@ -92,7 +89,7 @@ function doLogicAndCallIndexView() {
 
             foreach ($arrayOfEmployeeRole as $allowed){
 
-                if ($_SESSION['loggedInEmployee']->EmployeeID == $allowed->EmployeeID){
+                if ($_SESSION["loggedInEmployee"]->EmployeeID == $allowed->EmployeeID){
                     $allowedRole = $pdoSingleton->getRoleByID($allowed->RoleID); 
 
                     if ($allowedRole) {
@@ -114,7 +111,7 @@ function doLogicAndCallIndexView() {
                     }
                 }
             
-                if (!$roleFound) {
+                if (!$roleFound){
                     unset($arrayOfDepartments[$key]); 
                 }
             }
@@ -130,8 +127,8 @@ function doLogicAndCallIndexView() {
 
         } else{ // otherwise
     
-            if (isset($_POST['dept'])){ // if the employee navigated to a different department
-                $deptIndex = (int)$_REQUEST['dept']; // obtains the index of the selected department
+            if (isset($_POST["dept"])){ // if the employee navigated to a different department
+                $deptIndex = (int)$_REQUEST["dept"]; // obtains the index of the selected department
                 $_SESSION["department"] = $arrayOfDepartments[$deptIndex]; // uses the index to select the department
                 $_SESSION["deptIndex"] = $deptIndex;
             } else if (isset($_SESSION["deptIndex"])) { // if a department view was already set, present that instead of the first index
@@ -142,11 +139,88 @@ function doLogicAndCallIndexView() {
                 $_SESSION["department"] = $arrayOfDepartments[$deptIndex]; // uses the index to select the department
                 $_SESSION["deptIndex"] = $deptIndex;
             }
-    
-            $results = $pdoSingleton->getAllEmployees();
             
-            $departmentName = $_SESSION["department"]['name']; // displays the currently selected department for debugging purposes
-    
+            $departmentName = $_SESSION["department"]["name"]; // displays the currently selected department for debugging purposes
+
+
+            // beginning of setting call metrics
+
+            $arrayOfCallMetrics = $_SESSION["department"]["call_metrics"]; // gets an array of all the metrics for the current department
+
+            // sets up the array for the Top 5 Callers info
+
+            $arrayOfAllNumbersCalled = array_column($arrayOfCallMetrics, "number");
+
+            $timesANumberHasBeenCalled = array_count_values($arrayOfAllNumbersCalled);
+
+            arsort($timesANumberHasBeenCalled);
+
+            $topNumbers = array_slice($timesANumberHasBeenCalled, 0, 5, true);
+
+
+            // sets up the variables for the Incoming Calls Today info
+
+            $totalCallers = count($arrayOfAllNumbersCalled);
+
+            $totalWaitTime = 0;
+
+            foreach ($arrayOfCallMetrics as $metric){
+                $totalWaitTime += $metric["wait_time"];
+            }
+
+            if ($totalCallers > 0){
+                $averageWaitTime = $totalWaitTime / $totalCallers;
+            } else {
+                $averageWaitTime = 0;
+            }
+
+            
+
+            // sets up the varirables for the Abandonded Today info
+
+            $abdandondedArray = [];
+
+            foreach ($arrayOfCallMetrics as $metric){
+                if ($metric["abandoned"] == true){
+                    $abdandondedArray[] = $metric;
+                }
+            }
+
+            $totalAbandondedCalls =  count($abdandondedArray);
+
+            $abandondedRate = ($totalAbandondedCalls / $totalCallers) * 100;
+
+            // sets up the variables for the Service Target Level
+
+            $answeredOnTime = [];
+
+            foreach ($arrayOfCallMetrics as $metric){
+                if ($metric["wait_time"]  < 20){
+                    $answeredOnTime[] = $metric;
+                }
+            }
+
+            $numberOfCallsAnsweredOnTime = count($answeredOnTime);
+
+            $actualServiceLevelPercentage = round(($numberOfCallsAnsweredOnTime / $totalCallers) * 100);
+
+            // sets up the variables for the Extra Metrics Today info
+
+            $answereddArray = [];
+
+            foreach ($arrayOfCallMetrics as $metric){
+                if ($metric["abandoned"] == false){
+                    $answereddArray[] = $metric;
+                }
+            }
+
+            $totalAnsweredCalls =  count($answereddArray);
+
+            $arrayOfWaitTimes = array_column($arrayOfCallMetrics, "wait_time");
+
+            $longestWaitTime = max($arrayOfWaitTimes);
+
+
             require_once("../view/indexView.php");
 
         }
@@ -161,9 +235,6 @@ function doLogicAndCallLoginView(){
         $_SESSION["updatedPassword"] = false;
     }
 
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
-
     $pdoSingleton = pdoSingleton::getInstance(); // getting the pdoSingleton in order to access methods that speak to the database
 
     if (!isset($_REQUEST["logInEmail"]) && !isset($_REQUEST["logInPassword"])){ // if nothing was input, set default values
@@ -172,7 +243,7 @@ function doLogicAndCallLoginView(){
     }
     else if ($_REQUEST["logInEmail"] != "" && $_REQUEST["logInPassword"] != ""){ // if all forms have been entered
 
-        $employees = $pdoSingleton->getAllEmployees(); // get an array of all employees from the database
+        $employees = $pdoSingleton->getAllEmployees($_SESSION["userFilter"]); // get an array of all employees from the database
         $found = false;
 
         foreach ($employees as $employee): 
@@ -228,7 +299,6 @@ function doLogicAndCallLoginView(){
     }
 }
 
-
 function doLogicAndCallUpdatePasswordView(){
 
     error_reporting(E_ALL);
@@ -248,8 +318,6 @@ function doLogicAndCallUpdatePasswordView(){
 
     if (!isset($_SESSION["updatedPassword"])){
         $_SESSION["updatedPassword"] = false;
-
-        echo "update password set to false";
     }
     
     if ($_SESSION["loggedInEmployee"] == null && $_SESSION["updatedPassword"] == false){ // if the session variable 'loggedInEmployee' is null
@@ -299,4 +367,14 @@ function doLogicAndCallUpdatePasswordView(){
     }
 }
 
+function toggleFilterState($filterTab, $filterKey){
+    
+    if ($_SESSION[$filterTab][$filterKey] == "not set"){
+        $_SESSION[$filterTab][$filterKey] = "asc";
+    } elseif ($_SESSION[$filterTab][$filterKey] == "asc"){
+        $_SESSION[$filterTab][$filterKey] = "desc";
+    } else{
+        $_SESSION[$filterTab][$filterKey] = "not set";
+    }
+}
 ?>
