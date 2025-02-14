@@ -421,10 +421,8 @@ body{
     display: flex;
     justify-content: center;
     gap: 50px;
-    margin-top: 20px;
-    margin-bottom: 80px;
-    
-   
+    margin-top: 40px;
+    padding-bottom: 60px;
 }
 
 .button{
