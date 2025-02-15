@@ -14,13 +14,22 @@
 
     <body id="indexView">
         <!-- top bar of the screen -->
-        <section id='topBar'>
+        <section id="topBar">
 
             <div id="hamburgerContainer">
                 <button class="hamburger" onclick="showMenu()">
                     <img id="menuIcon"src="../view/css_js_images/burgerMenuIcon.png" alt="">
                 </button>
             </div>
+
+            <div id="helpIconContainer">
+                <form method="post" action="../controller/helpPage.php">
+                    <button type="submit" id="helpPageButton">
+                        <img id="helpIcon" src="../view/css_js_images/helpIcon.png" alt="Help">
+                    </button>
+                </form>
+            </div>
+            
 
             <div id="topBarTitleContainer">
                 <h1 id="topBarTitle"><?= $departmentName ?> </h1>

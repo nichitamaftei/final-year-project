@@ -28,10 +28,18 @@ body{
     align-items: center;
     padding: 10px;
     height: 80px;
-    position: relative;
 }
 
 #menuIcon{
+    height: 60px;
+    width: 60px;
+}
+
+#helpIconContainer{
+    margin-left: 200px;
+}
+
+#helpIcon{
     height: 60px;
     width: 60px;
 }
@@ -63,7 +71,6 @@ topBarTitleHistoricalCallFlows
 
 /* burger button container */
 #hamburgerContainer{
-    position: absolute; 
     top: 10px;
     left: 10px;
 }
@@ -1289,4 +1296,88 @@ topBarTitleHistoricalCallFlows
 
 #historicalCallFlowDownloadLink{
     color: lightblue;
+}
+
+/* helpPageView styling */
+
+#helpPageButton{
+    border: none; 
+    background: none; 
+    padding: 0; 
+    cursor: pointer;
+}
+
+#helpPageGoBackButton{
+    background: transparent;
+    border: none;
+    margin-right: 30px; 
+    position: absolute; 
+    right: 10px; 
+    transform: translateY(-50%); 
+}
+
+#topBarTitleHelpPage{
+    margin: 0;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    background-color: #18435AB3;
+    padding: 10px 30px 10px 30px;
+}
+
+#helpContainer{
+    max-width: 800px; 
+    margin: 50px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.helpCategory{
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 30px;
+    border-bottom: 3px solid gray;
+    padding-bottom: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+.helpSection{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.helpTitle{
+    flex: 1;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    padding-right: 50px;
+    text-align: left;
+}
+
+.helpExplanation{
+    flex: 2;
+    font-size: 16px;
+    color: white;
+    padding: 20px 15px 50px 15px;
+    background-color: #13293D;
+    max-height: 200px;
+    overflow-y: auto;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.helpContent{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 35px;
 }

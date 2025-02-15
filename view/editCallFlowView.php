@@ -13,7 +13,7 @@
 
     <body id="editCallFlowView">
 
-        <section id='topBar'>
+        <section id="topBar">
 
             <div id="hamburgerContainer">
                 <button class="hamburger" onclick="showMenu()">
