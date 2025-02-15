@@ -525,9 +525,11 @@ function downloadDiagramAsPNG(){
 
 function getCanvasData(callback){
 
-    // grab the call flow canvas
-    const paperElement = document.querySelector("#smallCanvas svg");
+    const paperElement = document.querySelector("#smallCanvas svg"); // grab the call flow canvas
 
+    let width = 1000;
+    let height = 400;
+    
     // clone it to not modify the orginal
     const clonedSvg = paperElement.cloneNode(true);
     clonedSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
@@ -535,40 +537,29 @@ function getCanvasData(callback){
     // convert SVG into a String representation
     const serializer = new XMLSerializer();
     const svgString = serializer.serializeToString(clonedSvg);
+    const encodedData = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgString);
 
     const img = new Image();
+    
+    img.onload = function(){
 
-    let pngData = "";
-
-    img.onload = function (){
-        
         // setups up area to draw the SVG into na image
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
 
         // get the dimensions of the SVG
-        const bbox = paperElement.getBBox();
-        const width = bbox.width || 800;
-        const height = bbox.height || 600;
+        canvas.width = width;
+        canvas.height = height;
+        
+        ctx.drawImage(img, 0, 0, width, height); // draw image onto the canvas
 
-        // increases the image resolution and scales accordingly
-        const scaleFactor = 20; 
-        canvas.width = width * scaleFactor;
-        canvas.height = height * scaleFactor;
-        ctx.scale(scaleFactor, scaleFactor);
-
-        ctx.drawImage(img, 0, 0);
-
-        // convert the canvas to png
-        pngData = canvas.toDataURL("image/png");
+        const pngData = canvas.toDataURL("image/png");  // convert the canvas to png
 
         callback(pngData);
     };
 
-    const encodedData = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svgString)));
     img.src = encodedData;
 }
-
 
 
 function checkIfCallFlowWasChanged(){
