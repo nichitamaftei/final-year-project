@@ -150,6 +150,10 @@ function toggleFilterState($filterTab, $filterKey){
 
 function doLogicAndCallIndexView() {
 
+    if (!isset($_SESSION["callFlowEdited"])){
+        $_SESSION["callFlowEdited"] = false;
+    }
+
     // reset the sessions if they have already been inputted to avoid array access errors when going to different departments after editing a department
     if(isset($_SESSION["currentBusinessHoursDay"])){
         $_SESSION["currentCallQueue"] = null;

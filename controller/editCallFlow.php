@@ -10,6 +10,10 @@ require_once("../model/utilities.php");
 
 session_start();
 
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
+
 if (isset($_POST["cancel"])){
         
     doLogicAndCallIndexView();
@@ -90,7 +94,7 @@ if (isset($_POST["cancel"])){
         $dayStartTime = $arrayOfBusinessHoursDays[0]["from_time_start"]; 
         $dayEndTime = $arrayOfBusinessHoursDays[0]["from_time_end"];
     }
-    
+
 
     // setting the auto attendant details
 
@@ -198,13 +202,14 @@ if (isset($_POST["cancel"])){
         $auditLogID = $pdoSingleton->addNewAuditLog($auditLog);
         $auditLog->AuditLogID = $auditLogID;
 
+        $_SESSION["callFlowEdited"] = true;
+
         doLogicAndCallIndexView();
         require_once("../view/indexView.php");
 
     } else if (!isset($_POST["save"])){ // if they havn't clicked save
         
         require_once("../view/editCallFlowView.php");
-
     }
 }
 ?>

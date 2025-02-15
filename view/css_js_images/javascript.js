@@ -1,6 +1,7 @@
 $(document).ready(function(){
     jointJS();
     barChart();
+    checkIfCallFlowWasChanged();
 });
 
 let graph = new joint.dia.Graph(); // 'graph' holds the data
@@ -110,7 +111,7 @@ function jointJS(){
    let canvas = null;
 
     if ($("body").attr("id") === "indexView"){
-        width = window.innerWidth * 0.6; // 80% of the window width
+        width = window.innerWidth * 0.6; // 60% of the window width
         height = window.innerHeight * 0.4; // 40% of the window height
 
         defaultX = 120; 
@@ -119,7 +120,7 @@ function jointJS(){
         canvas = document.getElementById("smallCanvas")
 
     } else if ($("body").attr("id") === "editCallFlowView"){
-        width = window.innerWidth * 0.7; // 80% of the window width      
+        width = window.innerWidth * 0.7; // 70% of the window width      
         height = window.innerHeight * 0.4; // 40% of the window height
         
         defaultX = 200; 
@@ -498,7 +499,6 @@ function downloadCallMetrics(){
     });
 }
 
-
 function downloadDiagramAsPNG(){
 
     $.ajax({ // get the department json data 
@@ -506,60 +506,117 @@ function downloadDiagramAsPNG(){
         method: "POST", // fetch type
         success: function(data){
 
-            // grab the call flow canvas
-            const paperElement = document.querySelector("#smallCanvas svg");
-
-            // clone it to not modify the orginal
-            const clonedSvg = paperElement.cloneNode(true);
-            clonedSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-
-            // convert SVG into a String representation
-            const serializer = new XMLSerializer();
-            const svgString = serializer.serializeToString(clonedSvg);
-
-            const img = new Image();
-
-            img.onload = function (){
-                
-                // setups up area to draw the SVG into na image
-                const canvas = document.createElement("canvas");
-                const ctx = canvas.getContext("2d");
-
-                // get the dimensions of the SVG
-                const bbox = paperElement.getBBox();
-                const width = bbox.width || 800;
-                const height = bbox.height || 600;
-
-                // increases the image resolution and scales accordingly
-                const scaleFactor = 20; 
-                canvas.width = width * scaleFactor;
-                canvas.height = height * scaleFactor;
-                ctx.scale(scaleFactor, scaleFactor);
-
-                ctx.drawImage(img, 0, 0);
-
-                // convert the canvas to png
-                const pngData = canvas.toDataURL("image/png");
-
-                // triggering a dynamic temporary file download 
+            // triggering a dynamic temporary file download 
+            getCanvasData(function(pngData){
                 const link = document.createElement("a");
                 link.href = pngData;
-                link.download = data.name + "_CallFlow_Diagram.png";
+                link.download = data.name + "_CallFlow_Diagram.png";  
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
-            };
+            });
 
-            const encodedData = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svgString)));
-            img.src = encodedData;
         },
         error: function(err){
             console.error("Error fetching data:", err); // logs any errors
         }
     });
-
 }
 
+function getCanvasData(callback){
+
+    // grab the call flow canvas
+    const paperElement = document.querySelector("#smallCanvas svg");
+
+    // clone it to not modify the orginal
+    const clonedSvg = paperElement.cloneNode(true);
+    clonedSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+
+    // convert SVG into a String representation
+    const serializer = new XMLSerializer();
+    const svgString = serializer.serializeToString(clonedSvg);
+
+    const img = new Image();
+
+    let pngData = "";
+
+    img.onload = function (){
+        
+        // setups up area to draw the SVG into na image
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        // get the dimensions of the SVG
+        const bbox = paperElement.getBBox();
+        const width = bbox.width || 800;
+        const height = bbox.height || 600;
+
+        // increases the image resolution and scales accordingly
+        const scaleFactor = 20; 
+        canvas.width = width * scaleFactor;
+        canvas.height = height * scaleFactor;
+        ctx.scale(scaleFactor, scaleFactor);
+
+        ctx.drawImage(img, 0, 0);
+
+        // convert the canvas to png
+        pngData = canvas.toDataURL("image/png");
+
+        callback(pngData);
+    };
+
+    const encodedData = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svgString)));
+    img.src = encodedData;
+}
+
+
+
+function checkIfCallFlowWasChanged(){
+    $.ajax({ // get the department json data 
+        url: "fetchCallFlowEditedBoolean.php", // specificying which php file
+        method: "POST", // fetch type
+        success: function(boolean){
+
+            if (boolean == true){
+                processCallFlowChange() // store the new image on the database
+            }
+        },
+        error: function(err){
+            console.error("Error saving image:", err);
+        }
+    });
+}
+
+function processCallFlowChange(){
+
+    getCanvasData(function(pngData){ // gets the png data from the canvas element
+
+        $.ajax({ // sends the png data to be stored into the database and then resets flag
+            url: "saveCanvasData.php",
+            method: "POST",
+            data: {image: pngData},
+            success: function(){
+                unsetSessionFlag(); // resets flag
+            },
+            error: function(err){
+                console.error("Error saving image:", err);
+            }
+        });
+    });
+}
+
+function unsetSessionFlag(){ // sets the $_SESSION["callFlowEdited"] flag to false 
+    $.ajax({
+        url: "unsetCallFlowEditedBoolean.php",
+        method: "POST",
+        success: function(response){
+            console.log("boolean set to false");
+        },
+        error: function(err){
+            console.error("Error unsetting session:", err);
+        }
+    });
+}
 
 
 function closeBigCanvas(){
@@ -635,5 +692,3 @@ function updatePasswordValidation(){
         return true;
     }
 }
-
-

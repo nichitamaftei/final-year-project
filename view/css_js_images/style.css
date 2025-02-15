@@ -59,6 +59,8 @@ body{
     padding: 10px 30px 10px 30px;
 }
 
+topBarTitleHistoricalCallFlows
+
 /* burger button container */
 #hamburgerContainer{
     position: absolute; 
@@ -1263,4 +1265,28 @@ body{
     align-items: center;
     gap: 30px; 
     padding: 10px 0;
+}
+
+/* historicalCallFlowsView styling */
+
+#topBarTitleHistoricalCallFlows{
+    margin: 0;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    background-color: #18435AB3;
+    padding: 10px 30px 10px 30px;
+}
+
+#historicalCallFlowGoBackButton{
+    background: transparent;
+    border: none;
+    margin-right: 30px; 
+    position: absolute; 
+    right: 10px; 
+    transform: translateY(-50%); 
+}
+
+#historicalCallFlowDownloadLink{
+    color: lightblue;
 }

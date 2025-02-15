@@ -170,7 +170,7 @@
                 </div>
                     
                 <div id="buttons">
-                    <button class="button"> View Historical Call Flows </button>
+                    <a href="../controller/historicalCallFlows.php"> <button class="button"> View Historical Call Flows </button>  </a>
                     <button class="button" onclick="downloadDiagramAsPNG()"> Download Call Diagram </button>
                     <button class="button" onclick="downloadCallMetrics()"> Download Metrics </button>
                     <?php if ($_SESSION["loggedInEmployee"]->isAdmin == 1): ?>
