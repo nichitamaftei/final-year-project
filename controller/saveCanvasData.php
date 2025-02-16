@@ -33,9 +33,10 @@ if (isset($_POST["image"])){ // if the admin removes a role from an employee
 
     $employeeID = $_SESSION["loggedInEmployee"]->EmployeeID;
 
+    date_default_timezone_set("Europe/London"); 
+
     $date = date("Y-m-d");
     $time = date("H:i:s");
-
 
     $pdoSingleton->addDiagram($departmentID, $employeeID, $pngData, $date, $time);
 }

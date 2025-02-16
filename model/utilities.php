@@ -2,7 +2,6 @@
 
 function doLogicAndCallLoginView(){
 
-
     if (!isset($_SESSION["loggedInEmployee"])){ // if no one's logged in before
         $_SESSION["loggedInEmployee"] = null;
         $_SESSION["updatedPassword"] = false;
