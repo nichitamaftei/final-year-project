@@ -14,13 +14,22 @@
 
     <body id="indexView">
         <!-- top bar of the screen -->
-        <section id='topBar'>
+        <section id="topBar">
 
             <div id="hamburgerContainer">
                 <button class="hamburger" onclick="showMenu()">
                     <img id="menuIcon"src="../view/css_js_images/burgerMenuIcon.png" alt="">
                 </button>
             </div>
+
+            <div id="helpIconContainer">
+                <form method="post" action="../controller/helpPage.php">
+                    <button type="submit" id="helpPageButton">
+                        <img id="helpIcon" src="../view/css_js_images/helpIcon.png" alt="Help">
+                    </button>
+                </form>
+            </div>
+            
 
             <div id="topBarTitleContainer">
                 <h1 id="topBarTitle"><?= $departmentName ?> </h1>
@@ -133,7 +142,7 @@
                         </div>
                     </div>
 
-                    <canvas id="myChart" style="max-width:500px"></canvas>
+                    <canvas id="callMetricsBarChart" style="max-width:500px"></canvas>
 
                     <div class="callMetricsSubContainer">
                         <div class="metricBox">
@@ -170,10 +179,10 @@
                 </div>
                     
                 <div id="buttons">
-                    <button class="button"> View Historical Call Flows </button>
-                    <button class="button"> Download Call Diagram </button>
-                    <button class="button"> Download Metrics </button>
-                    <?php if ($_SESSION['loggedInEmployee']->isAdmin == 1): ?>
+                    <a href="../controller/historicalCallFlows.php"> <button class="button"> View Historical Call Flows </button>  </a>
+                    <button class="button" onclick="downloadDiagramAsPNG()"> Download Call Diagram </button>
+                    <button class="button" onclick="downloadCallMetrics()"> Download Metrics </button>
+                    <?php if ($_SESSION["loggedInEmployee"]->isAdmin == 1): ?>
                         <div>   
                             <a href="../controller/editCallFlow.php"> <button id="editButton"> Edit Call Flow </button> </a>
                         </div>

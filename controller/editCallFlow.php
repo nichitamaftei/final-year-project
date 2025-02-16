@@ -10,6 +10,10 @@ require_once("../model/utilities.php");
 
 session_start();
 
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
+
 if (isset($_POST["cancel"])){
         
     doLogicAndCallIndexView();
@@ -24,6 +28,8 @@ if (isset($_POST["cancel"])){
 
     $arrayOfDepartments = $jsonData["company"]["departments"]; // puts the array of departments into a variable
     $departmentName = $_SESSION["department"]["name"]; // sets the departments name in a variable
+
+    // --- Logic to handle the Call Queue Selection --- 
 
     $arrayOfCurrentCallQueues = $_SESSION["department"]["auto_attendant"]["call_queues"]; // sets the departments call queue's array in a variable
     
@@ -43,6 +49,7 @@ if (isset($_POST["cancel"])){
     }
 
     // if a selection has already been initialised, display that selection
+
     if(isset($_SESSION["currentCallQueue"])){
         $_SESSION["currentCallQueue"] =  $arrayOfCurrentCallQueues[$_SESSION["callQueueIndex"]];
 
@@ -58,7 +65,7 @@ if (isset($_POST["cancel"])){
         $maxCallsAmount = $arrayOfCurrentCallQueues[0]["max_calls"];
     }
 
-
+    // --- Logic to handle the Business Hours Selection --- 
 
     $arrayOfBusinessHoursDays = $_SESSION["department"]["auto_attendant"]["business_hours"]["days"]; // sets the array of business days info to a variable
    
@@ -87,6 +94,7 @@ if (isset($_POST["cancel"])){
         $dayStartTime = $arrayOfBusinessHoursDays[0]["from_time_start"]; 
         $dayEndTime = $arrayOfBusinessHoursDays[0]["from_time_end"];
     }
+
 
     // setting the auto attendant details
 
@@ -194,13 +202,14 @@ if (isset($_POST["cancel"])){
         $auditLogID = $pdoSingleton->addNewAuditLog($auditLog);
         $auditLog->AuditLogID = $auditLogID;
 
+        $_SESSION["callFlowEdited"] = true;
+
         doLogicAndCallIndexView();
         require_once("../view/indexView.php");
 
     } else if (!isset($_POST["save"])){ // if they havn't clicked save
         
         require_once("../view/editCallFlowView.php");
-
     }
 }
 ?>

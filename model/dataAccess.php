@@ -228,6 +228,30 @@ class pdoSingleton{
         $statement->execute([$auditLog->EmployeeID, $auditLog->Date, $auditLog->Time, $auditLog->ActionPerformed, $auditLog->Details]);
         return $pdo->lastInsertId();
     }
+
+    // Historical Call Flows Images access
+
+    public function addDiagram($departmentID, $employeeID, $pngData, $date, $time){
+
+        $imageData = str_replace("data:image/png;base64,", "", $pngData);
+        $imageData = str_replace(" ", "+", $imageData);
+        $decodedImage = base64_decode($imageData);
+
+        $pdo = $this->pdo;
+        $statement = $pdo->prepare("INSERT INTO `Historical Call Flow Images` (RoleID, EmployeeID, image, dateModified, timeModified) VALUES (?,?,?,?,?)");
+        $statement->execute([$departmentID, $employeeID, $decodedImage, $date, $time]);
+        return $pdo->lastInsertId();
+    }
+
+
+    public function getDiagramsByDepartmentID($departmentID){
+
+        $pdo = $this->pdo;
+        $statement = $pdo->prepare("SELECT * FROM `Historical Call Flow Images` WHERE RoleID = ?");
+        $statement->execute([$departmentID]);
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, "image");
+        return $results;
+    }
 }
 
 ?>
