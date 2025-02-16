@@ -5,6 +5,7 @@ $(document).ready(function(){
 });
 
 let graph = new joint.dia.Graph(); // 'graph' holds the data
+let departmentName = ""
 
 function jointJS(){
 
@@ -148,11 +149,14 @@ function jointJS(){
     $.ajax({ // get the department json data 
         url: "fetchDepartmentData.php", // specificying which php file
         method: "POST", // fetch type
+        data: {request: "department"},
         success: function(data){
             
             console.log(data); // debugging department data
 
             console.log(data["name"]);
+
+            departmentName = data.name;
 
             // --- creating and adding the shapes and links to the view ---
 
@@ -343,14 +347,14 @@ function barChart(){
         method: "POST", // fetch type
         success: function(data){
 
-            var xValues = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+            var xValues = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]; // week day values for the x axis
     
-            var barColors = ["#2A628F", "#18435A","#2A628F","#18435A","#2A628F", "#18435A", "#2A628F"];
+            var barColors = ["#2A628F", "#18435A","#2A628F","#18435A","#2A628F", "#18435A", "#2A628F"]; // colours taken from the house style
 
-            var yValues = [data.Monday, data.Tuesday, data.Wednesday, data.Thursday, data.Friday, data.Saturday, data.Sunday];
+            var yValues = [data.Monday, data.Tuesday, data.Wednesday, data.Thursday, data.Friday, data.Saturday, data.Sunday]; // y values holding data corresponding to the weekday
 
 
-            new Chart("callMetricsBarChart",{
+            new Chart("callMetricsBarChart",{ // creating the chart based on the previous variables
                 type: "bar",
                 data:{
                     labels: xValues,
@@ -369,7 +373,7 @@ function barChart(){
                 }
             });
 
-            Chart.defaults.global.defaultFontColor = "#fff";
+            Chart.defaults.global.defaultFontColor = "#fff"; // setting the text fonts to white for readability
 
         },
         error: function(error){  
@@ -456,38 +460,58 @@ function fullView() { // when the smallCanvas is clicked:
 }
 
 function downloadCallMetrics(){
-
     $.ajax({ // get the department json data 
-        url: "fetchDepartmentData.php", // specificying which php file
+        url: "fetchDepartmentData.php", // specifying which php file
         method: "POST", // fetch type
+        data: {request: "callMetrics"}, // used to know which data to send from the server side
         success: function(data){
 
-            callMetrics = data.call_metrics; // grabbing the callMetrics from the current department
-
+            callMetrics = data; // grabbing the callMetrics from the current department
             let csv = "";
+            const headers = Object.keys(callMetrics[0]);  // putting the key names as the headers
 
-            // putting the key names as the headers
-            const headers = Object.keys(callMetrics[0]);
+            // splitting the "timestamp" header
+            
+            if (headers.includes("timestamp")){
+                const timestampIndex = headers.indexOf("timestamp");
+                headers.splice(timestampIndex, 1, "Date", "Time"); // replacing the "timestamp" header with "Date" and "Time"
+            }
+
             csv += headers.join(",") + "\n";
 
-            // mapping the each value to the headers
+            // mapping each value to the headers
             callMetrics.forEach(obj =>{
-                const values = headers.map(header => obj[header]);
+                const values = headers.map(header =>{
+
+                    // if the header is "Date" or "Time" return the current timestamp value in it's respective format, otherwise just return the current value
+                    if (header == "Date" || header == "Time"){
+
+                        const timestamp = obj["timestamp"]; 
+                        const date = new Date(timestamp);
+
+                        if (header == "Date"){
+                            return date.toLocaleDateString();
+                        } else if (header == "Time"){
+                            return date.toLocaleTimeString(); 
+                        }
+                    }
+                    return obj[header];
+                });
                 csv += values.join(",") + "\n";
             });
 
             // setting up variables to host the data to be downloaded using blob
-            const filename = data.name + "_Department_call_metrics.csv";
+            const filename = departmentName + "_Department_call_metrics.csv";
             const blob = new Blob([csv], {type: "text/csv"});
             const url = URL.createObjectURL(blob);
             
             // setting up a temporary a tag in order to download files dynamically for any department, this frees up memory
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
 
             // removing the temporary url to free up memory
             URL.revokeObjectURL(url);
@@ -499,21 +523,26 @@ function downloadCallMetrics(){
     });
 }
 
+
 function downloadDiagramAsPNG(){
 
     $.ajax({ // get the department json data 
         url: "fetchDepartmentData.php", // specificying which php file
         method: "POST", // fetch type
+        data: {request: "departmentName"},
         success: function(data){
 
             // triggering a dynamic temporary file download 
             getCanvasData(function(pngData){
                 const link = document.createElement("a");
                 link.href = pngData;
-                link.download = data.name + "_CallFlow_Diagram.png";  
+                link.download = departmentName + "_CallFlow_Diagram.png";  
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
+
+                // removing the temporary url to free up memory
+                URL.revokeObjectURL(pngData);
             });
 
         },
