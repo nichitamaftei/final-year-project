@@ -23,8 +23,8 @@ if (isset($_POST["historicalCallFlowGoBackButton"])){ // if the back button is p
 
     if(!isset($_SESSION["historicalFlowFilter"])){
         $_SESSION["historicalFlowFilter"] = [
-            "historicalFlowDate" => "not set",
-            "historicalFlowTime" => "not set",
+            "historicalFlowDate" => "desc",
+            "historicalFlowTime" => "desc",
             "historicalFlowModifiedBy" => "not set",  
         ];
     }

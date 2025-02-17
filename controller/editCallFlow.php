@@ -194,15 +194,7 @@ if (isset($_POST["cancel"])){
 
         $pdoSingleton = pdoSingleton::getInstance();
 
-        $auditLog = new AuditLog(); // create a new audit log relfecting this new department change
-        $auditLog->EmployeeID = $_SESSION["loggedInEmployee"]->EmployeeID;
-        $auditLog->Date = date("Y-m-d");
-        $auditLog->Time = date("H:i:s");
-        $auditLog->ActionPerformed = $departmentName . "Call Flow Updated";
-        $auditLog->Details = "Admin updated " . $departmentName . "'s Call Flow";
-
-        $auditLogID = $pdoSingleton->addNewAuditLog($auditLog);
-        $auditLog->AuditLogID = $auditLogID;
+        createNewAuditLog($_SESSION["loggedInEmployee"]->EmployeeID, date("Y-m-d"), date("H:i:s"), $departmentName . "Call Flow Updated", "Admin updated " . $departmentName . "'s Call Flow");
 
         $_SESSION["callFlowEdited"] = true;
 

@@ -29,27 +29,19 @@ function doLogicAndCallLoginView(){
                     $_SESSION["updatedPassword"] = true;
                     $pdoSingleton->updateLastLogInByID($_SESSION["loggedInEmployee"]->EmployeeID);
 
-                    $auditLog = new AuditLog(); // create a new autit log reflecting this login
-                    $auditLog->EmployeeID = $_SESSION["loggedInEmployee"]->EmployeeID;
-                    $auditLog->Date = date("Y-m-d");
-                    $auditLog->Time = date("H:i:s");
-
                     if ($_SESSION["loggedInEmployee"]->isAdmin == 0){
 
-                        $auditLog->ActionPerformed = "User Logged in";
-                        $auditLog->Details = "User Logged in";
+                        $actionPerformed = "User Logged in";
+                        $details = "User Logged in";
 
                     } else{
 
-                        $auditLog->ActionPerformed = "Admin Logged in";
-                        $auditLog->Details = "Admin Logged in";
+                        $actionPerformed = "Admin Logged in";
+                        $details = "Admin Logged in";
 
                     }
 
-                    $auditLogID = $pdoSingleton->addNewAuditLog($auditLog);
-                    $auditLog->AuditLogID = $auditLogID;
-
-                    break;
+                    createNewAuditLog($_SESSION["loggedInEmployee"]->EmployeeID, date("Y-m-d"), date("H:i:s"), $actionPerformed, $details);
                 }
             }
         endforeach;
@@ -106,24 +98,19 @@ function doLogicAndCallUpdatePasswordView(){
 
                 $pdoSingleton->updateLastLogInByID($_SESSION["loggedInEmployee"]->EmployeeID);
 
-                $auditLog = new AuditLog(); // create an audit log reflecting this login
-                $auditLog->EmployeeID = $_SESSION["loggedInEmployee"]->EmployeeID;
-                $auditLog->Date = date("Y-m-d");
-                $auditLog->Time = date("H:i:s");
-
                 if ($_SESSION["loggedInEmployee"]->isAdmin == 0){
 
-                    $auditLog->ActionPerformed = "User Logged in";
-                    $auditLog->Details = "User Logged in";
+                    $actionPerformed = "User Logged in";
+                    $details = "User Logged in";
 
                 } else{
 
-                    $auditLog->ActionPerformed = "Admin Logged in";
-                    $auditLog->Details = "Admin Logged in";
+                    $actionPerformed = "Admin Logged in";
+                    $details = "Admin Logged in";
 
                 }
-                $auditLogID = $pdoSingleton->addNewAuditLog($auditLog);
-                $auditLog->AuditLogID = $auditLogID;
+                
+                createNewAuditLog($_SESSION["loggedInEmployee"]->EmployeeID, date("Y-m-d"), date("H:i:s"), $actionPerformed, $details);
             } 
         } 
     }
@@ -377,6 +364,24 @@ function toggleFilterState($filterTab, $filterKey){
     } else{
         $_SESSION[$filterTab][$filterKey] = "not set";
     }
+}
+
+function createNewAuditLog($employeeID, $date, $time, $actionPerformed, $details){
+
+    date_default_timezone_set("Europe/London"); 
+
+    $pdoSingleton = pdoSingleton::getInstance();
+
+    $auditLog = new AuditLog(); // intantiate an object from the AuditLog class
+    $auditLog->EmployeeID = $employeeID;
+    $auditLog->Date = $date;
+    $auditLog->Time = $time;
+    $auditLog->ActionPerformed = $actionPerformed;
+    $auditLog->Details = $details;
+
+    $auditLogID = $pdoSingleton->addNewAuditLog($auditLog);
+    $auditLog->AuditLogID = $auditLogID;
+
 }
 
 
