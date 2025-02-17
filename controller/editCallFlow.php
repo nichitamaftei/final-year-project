@@ -146,8 +146,9 @@ if (isset($_POST["cancel"])){
 
         // replacing the voicemail members with the new input
         $voicemailMembers = htmlentities($_REQUEST["voicemailMember"]);
-        $voicemailMembers = preg_replace('/\s+/', ' ', trim($voicemailMembers));
-        $voicemailMembersArray = explode(' ', $voicemailMembers);
+        $voicemailMembersArray = explode("\n", $voicemailMembers);
+        $voicemailMembersArray = array_map('trim', $voicemailMembersArray);
+
 
         $jsonData["company"]["departments"][$index]["auto_attendant"]["voicemail"]["members"] = $voicemailMembersArray;
 
@@ -164,8 +165,9 @@ if (isset($_POST["cancel"])){
 
         // replacing the call queue members with the new members
         $callQueueMembers = htmlentities($_REQUEST["callQueueMembers"]);
-        $callQueueMembers = preg_replace('/\s+/', ' ', trim($callQueueMembers));
-        $callQueueMembersArray = explode(' ', $callQueueMembers);
+        $callQueueMembers = explode("\n", $callQueueMembers);
+        $callQueueMembersArray = array_map('trim', $callQueueMembers);
+
         $jsonData["company"]["departments"][$index]["auto_attendant"]["call_queues"][$callQueueIndex]["group"]["members"] = $callQueueMembersArray;
 
         // replacing the waiting time amount with the new time
