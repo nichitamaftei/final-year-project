@@ -2508,16 +2508,17 @@
                         {
                             "queue_name": "HR Support",
                             "routing_type": "Longest Idle",
-                            "max_calls": 12,
+                            "max_calls": "12",
                             "max_calls_exceeeded": "disconnect",
-                            "answer_timeout_seconds": 18,
+                            "answer_timeout_seconds": "18",
                             "answer_timeout_seconds_exceeded": "Compensation Queries",
                             "group": {
                                 "group_name": "HR Team",
                                 "group_owner": "Daniel",
                                 "members": [
                                     "Isabella",
-                                    "Daniel"
+                                    "Daniel",
+                                    "Thomas"
                                 ]
                             }
                         },

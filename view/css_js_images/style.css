@@ -21,6 +21,14 @@ body{
 
 /* indexView Page styling */
 
+#container{
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    width: 93%;
+}
+
 #topBar{
     background-color: #16324FB3;
     display: flex;
@@ -132,9 +140,8 @@ topBarTitleHistoricalCallFlows
 
 #topRowContainer{
     display: flex;
-    width: 93%;
-    margin-left: auto;
-    margin-right: auto;
+
+    
     margin-bottom: 30px;
 }
 
@@ -173,7 +180,7 @@ topBarTitleHistoricalCallFlows
 #topCallersContainer{
     text-align: center;
     gap: 10px;
-    margin-left: 175px;
+    margin-left: 12%;
 }
 
 #topCallerTitleContainer{
@@ -212,9 +219,6 @@ topBarTitleHistoricalCallFlows
 
 #bottomRowContainer{
     display: flex;
-    width: 95%;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 #callMetricsContainer{
@@ -829,14 +833,22 @@ topBarTitleHistoricalCallFlows
     text-align: center; 
     background-color: #2A628FB3;
     border-radius: 8px;
+    min-width: 267px;
 }
 
 .placeHolderTextRole{
     background-color: #2A628FB3;
     padding: 20px !important;
-    margin-left: 20px;
-    max-width: 270px;
     border-radius: 8px;
+    text-align: center;
+}
+
+.placeHolderTextRoleContainer{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+    gap: 10px;  
 }
 
 #addARoleLabel{
@@ -849,6 +861,10 @@ topBarTitleHistoricalCallFlows
     margin: 5px;
     padding: 3px;
     font-size: 15px;
+}
+
+#roleSelect{
+    min-width: 143px;
 }
 
 #assignRoleButton{

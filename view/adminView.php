@@ -121,8 +121,11 @@
                                     <th class="addRoleButtonTH"> 
                                         <div>
                                             <?php if ($employee['employee']->isAdmin == 1): ?>
-                                                <div class="placeHolderTextRole">
-                                                    (Remove Admin to Add a Role)
+                                                <div class="placeHolderTextRoleContainer">
+                                                    <div class="placeHolderTextRole">
+                                                        <p id="removeAdminToAddRoleText"> (Remove Admin to Add a Role) </p>
+                                                    </div>
+
                                                 </div>
                                                
                                             <?php else: ?>

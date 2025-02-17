@@ -68,134 +68,138 @@
                 </ul>
             </div>    
         </section>   
-        
-        <div id="topRowContainer">
 
-            <div id="smallCanvasContainer">
-                <div id="callFlowTitleContainer">
-                    <h3 id="callFlowDiagramTitle"> <?= $departmentName . " Call Flow Diagram:" ?> </h3>
-                </div>
-                
-                <div id="smallCanvas" onclick="fullView()"></div>
-            </div>
+        <div id="container">
 
-            <div id="topCallersContainer">
+            <div id="topRowContainer">
 
-                <div id="topCallerTitleContainer">
-                    <h3 id="topCallersTitle"> Top 5 Callers </h3>
-                </div>
-                
-                <div id="topCallersSubContainer">
-                    <table id="topCallersTable">
-                        <thead>
-                            <tr>
-                                <th> <p> Number </p> </th>
-                                <th> <p> Amount </p> </th>
-                            </tr>
-                        </thead>
-                        
-                        <tbody>
-                            <?php foreach ($topNumbers as $number => $totalCalls): ?>
-                                <tr>
-                                    <td> <?= $number ?> </td>
-                                    <td> <?= $totalCalls ?> </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>    
-        </div>
-
-        <div id="bottomRowContainer">
-
-            <div id="callMetricsContainer">
-
-                <div id="callMetricsTitleContainer">
-                    <h3 id="callMetricsTitle"> Call Metrics (All Time) </h3>
-                </div>
-
-                <div id="metricLayout">
-                    <div class="callMetricsSubContainer">
-                        <div class="metricBox">
-                            <p class="metricTitle"> Incoming Calls </p>
-                            <div class="metricItem">
-                                <p>Total</p>
-                                <p class="metricValue"> <?= $totalCallers ?> </p>
-                            </div>
-                            <div class="metricItem">
-                                <p> Avg Wait Time </p>
-                                <p class="metricValue"> <?= round($averageWaitTime) ?> seconds </p>
-                            </div>
-                        </div>
-
-                        <div class="metricBox">
-                            <p class="metricTitle"> Abandoned Calls </p>
-                            <div class="metricItem">
-                                <p>Total</p>
-                                <p class="metricValue"> <?= $totalAbandondedCalls ?> </p>
-                            </div>
-                            <div class="metricItem">
-                                <p>Abandoned Rate</p>
-                                <p class="metricValue"> <?= round($abandondedRate) ?>% </p>
-                            </div>
-                        </div>
+                <div id="smallCanvasContainer">
+                    <div id="callFlowTitleContainer">
+                        <h3 id="callFlowDiagramTitle"> <?= $departmentName . " Call Flow Diagram:" ?> </h3>
                     </div>
-
-                    <canvas id="callMetricsBarChart" style="max-width:500px"></canvas>
-
-                    <div class="callMetricsSubContainer">
-                        <div class="metricBox">
-                            <p class="metricTitle"> Service Target Level </p>
-                            <div class="metricItem">
-                                <p>Target</p>
-                                <p class="metricValue" id="smallFont"> 80%</p>
-                            </div>
-                            <div class="metricItem">
-                                <p> Actual </p>
-                                <p class="metricValue"> <?= $actualServiceLevelPercentage ?>% </p>
-                            </div>
-                        </div>
-
-                        <div class="metricBox">
-                            <p class="metricTitle"> Extra Metrics </p>
-                            <div class="metricItem">
-                                <p>Answered Calls</p>
-                                <p class="metricValue"> <?= $totalAnsweredCalls ?> </p>
-                            </div>
-                            <div class="metricItem">
-                                <p> Longest Waiting Time </p>
-                                <p class="metricValue"> <?= $longestWaitTime ?> sec </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="additionalFuncContainer">
-
-                <div id="additionalFuncTitleContainer">
-                    <h3 id="addtionalFuncTitle"> Additional Functionality </h3>
-                </div>
                     
-                <div id="buttons">
-                    <a href="../controller/historicalCallFlows.php"> <button class="button"> View Historical Call Flows </button>  </a>
-                    <button class="button" onclick="downloadDiagramAsPNG()"> Download Call Diagram </button>
-                    <button class="button" onclick="downloadCallMetrics()"> Download Metrics </button>
-                    <?php if ($_SESSION["loggedInEmployee"]->isAdmin == 1): ?>
-                        <div>   
-                            <a href="../controller/editCallFlow.php"> <button id="editButton"> Edit Call Flow </button> </a>
+                    <div id="smallCanvas" onclick="fullView()"></div>
+                </div>
+
+                <div id="topCallersContainer">
+
+                    <div id="topCallerTitleContainer">
+                        <h3 id="topCallersTitle"> Top 5 Callers </h3>
+                    </div>
+                    
+                    <div id="topCallersSubContainer">
+                        <table id="topCallersTable">
+                            <thead>
+                                <tr>
+                                    <th> <p> Number </p> </th>
+                                    <th> <p> Amount </p> </th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                <?php foreach ($topNumbers as $number => $totalCalls): ?>
+                                    <tr>
+                                        <td> <?= $number ?> </td>
+                                        <td> <?= $totalCalls ?> </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>    
+            </div>
+
+            <div id="bottomRowContainer">
+
+                <div id="callMetricsContainer">
+
+                    <div id="callMetricsTitleContainer">
+                        <h3 id="callMetricsTitle"> Call Metrics (All Time) </h3>
+                    </div>
+
+                    <div id="metricLayout">
+                        <div class="callMetricsSubContainer">
+                            <div class="metricBox">
+                                <p class="metricTitle"> Incoming Calls </p>
+                                <div class="metricItem">
+                                    <p>Total</p>
+                                    <p class="metricValue"> <?= $totalCallers ?> calls </p>
+                                </div>
+                                <div class="metricItem">
+                                    <p> Avg Wait Time </p>
+                                    <p class="metricValue"> <?= round($averageWaitTime) ?> seconds </p>
+                                </div>
+                            </div>
+
+                            <div class="metricBox">
+                                <p class="metricTitle"> Abandoned Calls </p>
+                                <div class="metricItem">
+                                    <p>Total</p>
+                                    <p class="metricValue"> <?= $totalAbandondedCalls ?> calls </p>
+                                </div>
+                                <div class="metricItem">
+                                    <p>Abandoned Rate</p>
+                                    <p class="metricValue"> <?= round($abandondedRate) ?>% </p>
+                                </div>
+                            </div>
                         </div>
-                    <?php endif; ?>  
+
+                        <canvas id="callMetricsBarChart" style="max-width:500px"></canvas>
+
+                        <div class="callMetricsSubContainer">
+                            <div class="metricBox">
+                                <p class="metricTitle"> Service Target Level </p>
+                                <div class="metricItem">
+                                    <p>Target</p>
+                                    <p class="metricValue" id="smallFont"> 80%</p>
+                                </div>
+                                <div class="metricItem">
+                                    <p> Actual </p>
+                                    <p class="metricValue"> <?= $actualServiceLevelPercentage ?>% </p>
+                                </div>
+                            </div>
+
+                            <div class="metricBox">
+                                <p class="metricTitle"> Extra Metrics </p>
+                                <div class="metricItem">
+                                    <p>Answered Calls</p>
+                                    <p class="metricValue"> <?= $totalAnsweredCalls ?> </p>
+                                </div>
+                                <div class="metricItem">
+                                    <p> Longest Waiting Time </p>
+                                    <p class="metricValue"> <?= $longestWaitTime ?> sec </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="additionalFuncContainer">
+
+                    <div id="additionalFuncTitleContainer">
+                        <h3 id="addtionalFuncTitle"> Additional Functionality </h3>
+                    </div>
+                        
+                    <div id="buttons">
+                        <a href="../controller/historicalCallFlows.php"> <button class="button"> View Historical Call Flows </button>  </a>
+                        <button class="button" onclick="downloadDiagramAsPNG()"> Download Call Diagram </button>
+                        <button class="button" onclick="downloadCallMetrics()"> Download Metrics </button>
+                        <?php if ($_SESSION["loggedInEmployee"]->isAdmin == 1): ?>
+                            <div>   
+                                <a href="../controller/editCallFlow.php"> <button id="editButton"> Edit Call Flow </button> </a>
+                            </div>
+                        <?php endif; ?>  
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div id="canvasModal"> <!-- initially hidden -->
-            <div id="bigCanvas">
+            <div id="canvasModal"> <!-- initially hidden -->
+                <div id="bigCanvas">
+                </div>
+                <button id="closeModal" onclick="closeBigCanvas()"> Close </button>
+                <button id="resetModal" onclick="resetModal()" > Reset </button>
             </div>
-            <button id="closeModal" onclick="closeBigCanvas()"> Close </button>
-            <button id="resetModal" onclick="resetModal()" > Reset </button>
+
         </div>
     </body>
 </html>

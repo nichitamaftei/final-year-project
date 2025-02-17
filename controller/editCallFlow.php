@@ -29,7 +29,7 @@ if (isset($_POST["cancel"])){
     $arrayOfDepartments = $jsonData["company"]["departments"]; // puts the array of departments into a variable
     $departmentName = $_SESSION["department"]["name"]; // sets the departments name in a variable
 
-    // --- Logic to handle the Call Queue Selection --- 
+    // --- logic to handle the Call Queue Selection --- 
 
     $arrayOfCurrentCallQueues = $_SESSION["department"]["auto_attendant"]["call_queues"]; // sets the departments call queue's array in a variable
     
@@ -65,7 +65,7 @@ if (isset($_POST["cancel"])){
         $maxCallsAmount = $arrayOfCurrentCallQueues[0]["max_calls"];
     }
 
-    // --- Logic to handle the Business Hours Selection --- 
+    // --- logic to handle the Business Hours Selection --- 
 
     $arrayOfBusinessHoursDays = $_SESSION["department"]["auto_attendant"]["business_hours"]["days"]; // sets the array of business days info to a variable
    
