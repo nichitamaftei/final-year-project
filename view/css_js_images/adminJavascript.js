@@ -65,8 +65,9 @@ function updateFilterIcons(field, value){
 function initialiseFiltering(){
 
     $.ajax({ // get the user tab filtering values json data 
-        url: "fetchUserFilteringState.php", // specificying which php file
+        url: "fetchFilteringState.php", // specificying which php file
         method: "POST", // fetch type
+        data: {request: "user"},
         success: function(data){
 
             updateFilterIcons("name", data.name);
@@ -79,11 +80,10 @@ function initialiseFiltering(){
     });
 
     $.ajax({ // get the logs tab filtering values json data 
-        url: "fetchLogFilteringState.php", // specificying which php file
+        url: "fetchFilteringState.php", // specificying which php file
         method: "POST", // fetch type
+        data: {request: "logs"},
         success: function(data){
-
-            console.log(data)
 
             updateFilterIcons("date", data.date);
             updateFilterIcons("time", data.time);

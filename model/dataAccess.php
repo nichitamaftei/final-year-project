@@ -176,8 +176,8 @@ class pdoSingleton{
     public function getAllAuditLogsWithEmployeeNames($filterOptions){
 
         $baseQuery = "SELECT AuditLogs.*, Employees.FirstName, Employees.LastName 
-                        FROM AuditLogs 
-                        JOIN Employees ON AuditLogs.EmployeeID = Employees.EmployeeID";
+                    FROM AuditLogs 
+                    JOIN Employees ON AuditLogs.EmployeeID = Employees.EmployeeID";
 
         $orderByStatements = [];
 
@@ -193,10 +193,10 @@ class pdoSingleton{
             $orderByStatements[] = " Time DESC ";
         }
 
-        if($filterOptions["name"] == "asc"){
-            $orderByStatements[] = " FirstName ASC ";
-        }else if($filterOptions["name"] == "desc"){
-            $orderByStatements[] = " FirstName DESC ";
+        if($filterOptions["nameLog"] == "asc"){
+            $orderByStatements[] = " Employees.FirstName ASC ";
+        }else if($filterOptions["nameLog"] == "desc"){
+            $orderByStatements[] = " Employees.FirstName DESC ";
         }
 
         if($filterOptions["eventType"] == "asc"){
@@ -218,7 +218,7 @@ class pdoSingleton{
         $pdo = $this->pdo;        
         $statement = $pdo->prepare($baseQuery);
         $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_OBJ);
+        return $statement->fetchAll(PDO::FETCH_CLASS, "AuditLog");
     }
     
 
