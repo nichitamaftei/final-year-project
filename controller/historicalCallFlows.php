@@ -17,8 +17,26 @@ ini_set("display_errors", 1);
 if (isset($_POST["historicalCallFlowGoBackButton"])){ // if the back button is pressed
 
     doLogicAndCallIndexView(); // kick them to the home view
-    
+
 } else{
+
+
+    if(!isset($_SESSION["historicalFlowFilter"])){
+        $_SESSION["historicalFlowFilter"] = [
+            "historicalFlowDate" => "not set",
+            "historicalFlowTime" => "not set",
+            "historicalFlowModifiedBy" => "not set",  
+        ];
+    }
+
+    $filterUserKeys = ["historicalFlowDate", "historicalFlowTime", "historicalFlowModifiedBy"];
+
+    foreach ($filterUserKeys as $filter){
+        if (isset($_REQUEST[$filter . "FilterForm"])){
+            toggleFilterState("historicalFlowFilter", $filter);
+        }
+    }
+
 
     $pdoSingleton = pdoSingleton::getInstance();
 
@@ -36,7 +54,7 @@ if (isset($_POST["historicalCallFlowGoBackButton"])){ // if the back button is p
     $departmentName = $_SESSION["department"]["name"];
 
 
-    $images = $pdoSingleton->getDiagramsByDepartmentID($departmentID);
+    $images = $pdoSingleton->getDiagramsByDepartmentID($_SESSION["historicalFlowFilter"], $departmentID);
 
 
     require_once("../view/historicalCallFlowsView.php");

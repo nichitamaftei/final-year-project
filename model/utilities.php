@@ -136,17 +136,6 @@ function doLogicAndCallUpdatePasswordView(){
     }
 }
 
-function toggleFilterState($filterTab, $filterKey){
-    
-    if ($_SESSION[$filterTab][$filterKey] == "not set"){
-        $_SESSION[$filterTab][$filterKey] = "asc";
-    } elseif ($_SESSION[$filterTab][$filterKey] == "asc"){
-        $_SESSION[$filterTab][$filterKey] = "desc";
-    } else{
-        $_SESSION[$filterTab][$filterKey] = "not set";
-    }
-}
-
 function doLogicAndCallIndexView() {
 
     if (!isset($_SESSION["callFlowEdited"])){
@@ -375,6 +364,18 @@ function doLogicAndCallIndexView() {
             require_once("../view/indexView.php");
 
         }
+    }
+}
+
+
+function toggleFilterState($filterTab, $filterKey){
+    
+    if ($_SESSION[$filterTab][$filterKey] == "not set"){
+        $_SESSION[$filterTab][$filterKey] = "asc";
+    } elseif ($_SESSION[$filterTab][$filterKey] == "asc"){
+        $_SESSION[$filterTab][$filterKey] = "desc";
+    } else{
+        $_SESSION[$filterTab][$filterKey] = "not set";
     }
 }
 

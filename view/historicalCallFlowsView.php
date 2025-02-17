@@ -25,16 +25,43 @@
             <thead>
                 <tr class="tableRow">
                     <th> 
-                        <p> Date </p> 
+                        <form method="post" id="historicalFlowDateFilteringForm" action="../controller/historicalCallFlows.php">
+                            <input type="hidden" name="historicalFlowDateFilterForm" value="toggle">
+                            <div id="historicalFlowDateFilteringContainer" onclick="submitHistoricalFlowDateFilterForm()">
+                                <p> Date </p> 
+                                <img src="../view/css_js_images/filterOffIcon.png" id="historicalFlowDateFilterOffIcon" class="filterIcon" alt="">
+                                <img src="../view/css_js_images/filterIcon.png" id="historicalFlowDateFilterIcon" class="filterIcon" alt="">
+                                <img src="../view/css_js_images/upArrowIcon.png" id="historicalFlowDateUpIcon" class="filterIcon" alt="">
+                                <img src="../view/css_js_images/downArrowIcon.png" id="historicalFlowDateDownIcon" class="filterIcon" alt="">
+                            </div>
+                        </form>
                     </th>
                     <th> 
-                        <p> Time </p> 
+                        <form method="post" id="historicalFlowTimeFilteringForm" action="../controller/historicalCallFlows.php">
+                            <input type="hidden" name="historicalFlowTimeFilterForm" value="toggle">
+                            <div id="historicalFlowTimeFilteringContainer" onclick="submitHistoricalFlowTimeFilterForm()">
+                                <p> Time </p> 
+                                <img src="../view/css_js_images/filterOffIcon.png" id="historicalFlowTimeFilterOffIcon" class="filterIcon" alt="">
+                                <img src="../view/css_js_images/filterIcon.png" id="historicalFlowTimeFilterIcon" class="filterIcon" alt="">
+                                <img src="../view/css_js_images/upArrowIcon.png" id="historicalFlowTimeUpIcon" class="filterIcon" alt="">
+                                <img src="../view/css_js_images/downArrowIcon.png" id="historicalFlowTimeDownIcon" class="filterIcon" alt="">
+                            </div>
+                        </form>
                     </th>
                     <th> 
                         <p> File Name (Download Image) </p> 
                     </th>
                     <th> 
-                        <p> Modified By </p> 
+                        <form method="post" id="historicalFlowModifiedByFilteringForm" action="../controller/historicalCallFlows.php">
+                            <input type="hidden" name="historicalFlowModifiedByFilterForm" value="toggle">
+                            <div id="historicalFlowModifiedByFilteringContainer" onclick="submitHistoricalFlowModifiedByFilterForm()">
+                                <p> ModifiedBy </p> 
+                                <img src="../view/css_js_images/filterOffIcon.png" id="historicalFlowModifiedByFilterOffIcon" class="filterIcon" alt="">
+                                <img src="../view/css_js_images/filterIcon.png" id="historicalFlowModifiedByFilterIcon" class="filterIcon" alt="">
+                                <img src="../view/css_js_images/upArrowIcon.png" id="historicalFlowModifiedByUpIcon" class="filterIcon" alt="">
+                                <img src="../view/css_js_images/downArrowIcon.png" id="historicalFlowModifiedByDownIcon" class="filterIcon" alt="">
+                            </div>
+                        </form>
                     </th>
                 </tr>
             </thead>

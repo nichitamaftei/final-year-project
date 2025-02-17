@@ -2,6 +2,7 @@ $(document).ready(function(){
     jointJS();
     barChart();
     checkIfCallFlowWasChanged();
+    initialiseFiltering();
 });
 
 let graph = new joint.dia.Graph(); // 'graph' holds the data
@@ -681,8 +682,8 @@ function logInValidation(){
 function updatePasswordValidation(){
     var specialChars = /[`!@#$%^&*()_\-+=\[\]{};':"\\|,.<>\/?~ ]/;
     var capitalLetters = /[A-Z]/;
-    var password = document.getElementById('password').value;
-    var confirmPassword = document.getElementById('confirmPassword').value;
+    var password = document.getElementById("password").value;
+    var confirmPassword = document.getElementById("confirmPassword").value;
     
     if(password == "" || confirmPassword == ""){
         alert("Please fill in the empty fields");
@@ -697,18 +698,78 @@ function updatePasswordValidation(){
         return false;
     }
     else if(!specialChars.test(password) && !capitalLetters.test(password)){
-        alert("Your password must atleast 1 Uppercase character and 1 Complex Symbol");
+        alert("Your password must have atleast 1 Uppercase character and 1 Complex Symbol");
         return false;
     } 
     else if(!specialChars.test(password)){
-        alert("Your password must atleast 1 Complex Symbol");
+        alert("Your password must have atleast 1 Complex Symbol");
         return false;
     }
     else if(!capitalLetters.test(password)){
-        alert("Your password must atleast 1 Uppercase character");
+        alert("Your password must have atleast 1 Uppercase character");
         return false;
     }
     else{
         return true;
     }
+}
+
+
+function updateFilterIcons(field, value){
+    let offIcon = document.getElementById(field + "FilterOffIcon");
+    let filterIcon = document.getElementById(field + "FilterIcon");
+    let upIcon = document.getElementById(field + "UpIcon");
+    let downIcon = document.getElementById(field + "DownIcon");
+
+    if (value == "not set"){
+        offIcon.style.display = "block";
+        filterIcon.style.display = "none";
+        upIcon.style.display = "none";
+        downIcon.style.display = "none";
+    } else if (value == "asc"){
+        offIcon.style.display = "none";
+        filterIcon.style.display = "inline";
+        upIcon.style.display = "inline";
+        downIcon.style.display = "none";
+    } else if (value == "desc"){
+        offIcon.style.display = "none";
+        filterIcon.style.display = "inline";
+        upIcon.style.display = "none";
+        downIcon.style.display = "inline";
+    }
+}
+
+
+
+function initialiseFiltering(){
+
+    $.ajax({ // get the logs tab filtering values json data 
+        url: "fetchFilteringState.php", // specificying which php file
+        method: "POST", // fetch type
+        data: {request: "historicalFlow"},
+        success: function(data){
+
+            updateFilterIcons("historicalFlowDate", data.historicalFlowDate);
+            console.log(data.historicalFlowDate);
+            updateFilterIcons("historicalFlowTime", data.historicalFlowTime);
+            updateFilterIcons("historicalFlowModifiedBy", data.historicalFlowModifiedBy);
+        },
+        error: function(error){  
+            console.error("Error fetching data:", error);
+        }
+    });
+}
+
+
+
+function submitHistoricalFlowDateFilterForm(){
+    $("#historicalFlowDateFilteringForm").submit();
+}
+
+function submitHistoricalFlowTimeFilterForm(){
+    $("#historicalFlowTimeFilteringForm").submit();
+}
+
+function submitHistoricalFlowModifiedByFilterForm(){
+    $("#historicalFlowModifiedByFilteringForm").submit();
 }

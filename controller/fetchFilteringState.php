@@ -20,6 +20,12 @@ if (isset($_POST["request"])){
             echo json_encode($_SESSION["logsFilter"]); // return the current session department to javascript in json
         } 
 
+    } else if ($request == "historicalFlow"){
+
+        if (isset($_SESSION["historicalFlowFilter"])){
+            echo json_encode($_SESSION["historicalFlowFilter"]); // return the current session department to javascript in json
+        } 
+
     }
 }
 

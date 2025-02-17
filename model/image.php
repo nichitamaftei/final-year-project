@@ -8,6 +8,8 @@ class image {
     private $dateModified;
     private $timeModified;
     private $base64Image;
+    private $FirstName;
+    private $LastName;
 
     function __get($name) {
         return $this->$name;

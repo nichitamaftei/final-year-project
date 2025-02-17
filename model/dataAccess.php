@@ -244,13 +244,41 @@ class pdoSingleton{
     }
 
 
-    public function getDiagramsByDepartmentID($departmentID){
+    public function getDiagramsByDepartmentID($filterOptions, $departmentID){
 
-        $pdo = $this->pdo;
-        $statement = $pdo->prepare("SELECT * FROM `Historical Call Flow Images` WHERE RoleID = ?");
+        $baseQuery = "SELECT `Historical Call Flow Images`.*, Employees.FirstName, Employees.LastName 
+                    FROM `Historical Call Flow Images` 
+                    JOIN Employees ON `Historical Call Flow Images`.EmployeeID = Employees.EmployeeID 
+                    WHERE `Historical Call Flow Images`.RoleID = ?";
+
+        $orderByStatements = [];
+
+        if($filterOptions["historicalFlowDate"] == "asc"){
+            $orderByStatements[] = " dateModified ASC ";
+        }else if($filterOptions["historicalFlowDate"] == "desc"){
+            $orderByStatements[] = " dateModified DESC ";
+        }
+
+        if($filterOptions["historicalFlowTime"] == "asc"){
+            $orderByStatements[] = " timeModified ASC ";
+        }else if($filterOptions["historicalFlowTime"] == "desc"){
+            $orderByStatements[] = " timeModified DESC ";
+        }
+
+        if($filterOptions["historicalFlowModifiedBy"] == "asc"){
+            $orderByStatements[] = " Employees.FirstName ASC ";
+        }else if($filterOptions["historicalFlowModifiedBy"] == "desc"){
+            $orderByStatements[] = "Employees.FirstName DESC ";
+        }
+
+        if(!empty($orderByStatements)){
+            $baseQuery .= " ORDER BY " . implode(", ", $orderByStatements);
+        }
+
+        $pdo = $this->pdo;        
+        $statement = $pdo->prepare($baseQuery);
         $statement->execute([$departmentID]);
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, "image");
-        return $results;
+        return $statement->fetchAll(PDO::FETCH_CLASS, "image");
     }
 }
 
