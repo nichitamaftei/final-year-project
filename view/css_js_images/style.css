@@ -1470,3 +1470,14 @@ topBarTitleHistoricalCallFlows
 #historicalFlowModifiedByDownIcon{
     display: none
 }
+
+#historicalCallFlowsTable{
+    background-color: #13293DB3;
+    padding: 10px 40px 10px 40px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+#addingMarginToBottom{
+    padding: 10px;
+}

@@ -21,7 +21,7 @@
             </form>
         </section>   
 
-        <table class="table">
+        <table class="table" id="historicalCallFlowsTable">
             <thead>
                 <tr class="tableRow">
                     <th> 
@@ -77,5 +77,9 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
+
+        <div id="addingMarginToBottom">
+
+        </div>
     </body>
 </html>
