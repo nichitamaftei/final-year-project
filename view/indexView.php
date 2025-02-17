@@ -196,10 +196,15 @@
             <div id="canvasModal"> <!-- initially hidden -->
                 <div id="bigCanvas">
                 </div>
+                <button id="zoomIn">
+                    <img id="zoomInImg" src="../view/css_js_images/zoomInIcon.png">
+                </button>
+                <button id="zoomOut">
+                    <img id="zoomOutImg" src="../view/css_js_images/zoomOuticon.png">
+                </button>
                 <button id="closeModal" onclick="closeBigCanvas()"> Close </button>
                 <button id="resetModal" onclick="resetModal()" > Reset </button>
             </div>
-
         </div>
     </body>
 </html>

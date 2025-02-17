@@ -404,6 +404,22 @@ function fullView() { // when the smallCanvas is clicked:
     let initialScale = 0.43;
     fullPaper.scale(initialScale, initialScale); // apply default scale
 
+
+    // zooming in buttons logic
+
+    $("#zoomIn").on("click", function(){
+        initialScale += 0.1; 
+        fullPaper.scale(initialScale);
+    });
+
+    $("#zoomOut").on("click", function(){
+        if (initialScale > 0.2){ // preventing zooming in too far
+            initialScale -= 0.1;
+            fullPaper.scale(initialScale);
+        }
+    });
+
+
     let initialX = 30;
     let initialY = 200;
     fullPaper.translate(initialX, initialY); // apply default position

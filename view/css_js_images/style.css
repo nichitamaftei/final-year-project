@@ -138,6 +138,31 @@ topBarTitleHistoricalCallFlows
     cursor: pointer;
 }
 
+#zoomInImg, #zoomOutImg{
+    width: 50px;
+    height: 50px;
+    
+}
+
+#zoomIn, #zoomOut{
+    background: none;
+    border: none;
+}
+
+#zoomInImg{
+    position: absolute;
+    top: 6px;
+    right: 400px;
+    cursor: pointer;
+}
+
+#zoomOutImg{
+    position: absolute;
+    top: 6px;
+    right: 500px;
+    cursor: pointer;
+}
+
 #topRowContainer{
     display: flex;
 
