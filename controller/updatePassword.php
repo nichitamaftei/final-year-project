@@ -9,6 +9,6 @@ require_once("../model/utilities.php");
 
 session_start();
 
-doLogicAndCallUpdatePasswordView();
+doLogicAndCallUpdatePasswordView(); // call the update password view function from the "utilities.php" file
 
 ?>

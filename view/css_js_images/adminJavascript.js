@@ -1,7 +1,7 @@
-$(document).ready(function(){
+$(document).ready(function(){  // when the DOM loads call the initialiseTab() and initialiseFiltering() functions
     initialiseTab();
     initialiseFiltering();
-}); // when the DOM loads call the initialise() function
+});
 
 function initialiseTab(){
 
@@ -12,12 +12,12 @@ function initialiseTab(){
 
             console.log(data)
 
-            if (data == "users"){
+            if (data == "users"){ // making the Users Tab visible
                 $("#users").addClass("active");
                 $("#logs").removeClass("active");
                 $("#usersTabButton").addClass("active");
                 $("#logsTabButton").removeClass("active");
-            } else if (data == "logs"){
+            } else if (data == "logs"){ // making the Logs Tab visible
                 $("#logs").addClass("active");
                 $("#users").removeClass("active");
                 $("#logsTabButton").addClass("active");
@@ -36,30 +36,6 @@ function openAddUserModal(){
 
 function closeAddUserModal(){
     $("#modalContainer").css("display", "none");
-}
-
-function updateFilterIcons(field, value){
-    let offIcon = document.getElementById(field + "FilterOffIcon");
-    let filterIcon = document.getElementById(field + "FilterIcon");
-    let upIcon = document.getElementById(field + "UpIcon");
-    let downIcon = document.getElementById(field + "DownIcon");
-
-    if (value === "not set"){
-        offIcon.style.display = "block";
-        filterIcon.style.display = "none";
-        upIcon.style.display = "none";
-        downIcon.style.display = "none";
-    } else if (value === "asc"){
-        offIcon.style.display = "none";
-        filterIcon.style.display = "inline";
-        upIcon.style.display = "inline";
-        downIcon.style.display = "none";
-    } else if (value === "desc"){
-        offIcon.style.display = "none";
-        filterIcon.style.display = "inline";
-        upIcon.style.display = "none";
-        downIcon.style.display = "inline";
-    }
 }
 
 function initialiseFiltering(){
@@ -97,6 +73,32 @@ function initialiseFiltering(){
     });
 }
 
+function updateFilterIcons(field, value){
+    let offIcon = document.getElementById(field + "FilterOffIcon");
+    let filterIcon = document.getElementById(field + "FilterIcon");
+    let upIcon = document.getElementById(field + "UpIcon");
+    let downIcon = document.getElementById(field + "DownIcon");
+
+    // cycling through which icon is displayed depending on what the current filter is set on
+
+    if (value === "not set"){
+        offIcon.style.display = "block";
+        filterIcon.style.display = "none";
+        upIcon.style.display = "none";
+        downIcon.style.display = "none";
+    } else if (value === "asc"){
+        offIcon.style.display = "none";
+        filterIcon.style.display = "inline";
+        upIcon.style.display = "inline";
+        downIcon.style.display = "none";
+    } else if (value === "desc"){
+        offIcon.style.display = "none";
+        filterIcon.style.display = "inline";
+        upIcon.style.display = "none";
+        downIcon.style.display = "inline";
+    }
+}
+
 function submitNameFilterForm(){
     $("#nameFilteringForm").submit();
 }
@@ -108,7 +110,6 @@ function submitEmailFilterForm(){
 function submitLogInFilterForm(){
     $("#logInFilteringForm").submit();
 }
-
 
 
 function submitDateFilterForm(){

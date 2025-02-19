@@ -11,10 +11,6 @@ require_once("../model/fetchJsonData.php");
 
 session_start();
 
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
-
 if (isset($_POST["helpPageGoBackButton"])){ // if the back button is pressed
 
     doLogicAndCallIndexView(); // kick them to the home view

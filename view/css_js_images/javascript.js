@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function(){ // when the DOM loads call the jointJS(), barChart(), checkIfCallFlowWasChanged() and initialiseFiltering() functions
     jointJS();
     barChart();
     checkIfCallFlowWasChanged();
@@ -42,7 +42,7 @@ function jointJS(){
         shape.position(x, y); // set the position of the shape
         shape.resize(width, height);  // set the size of the shape
 
-        if (!text & (type != "Circle")){
+        if (!text & (type != "Circle")){ // if no text is provided and the shape type isn't a circle
             text = "Not implemented"
         }
 
@@ -78,13 +78,12 @@ function jointJS(){
         return decision;
     }
 
-
     function createTextBlock(text, x, y, width, height, fontsize){
         const textBlock = new joint.shapes.standard.TextBlock(); // instantiate the specified text
         textBlock.position(x, y); // set the position of the text 
         textBlock.resize(width, height);  // set the size of the text
 
-        if (!text){
+        if (!text){ // if no text is provided
             text = "Not implemented"
         }
 
@@ -179,25 +178,25 @@ function jointJS(){
                 height: 150
             });
             const aa_greeting_square = createShape("Rectangle", "Greeting: \n \n" + greeting_wrapped_text, 520, 150, 150, 150, 14);
-            aa_greeting_square.addTo(graph);
+            aa_greeting_square.addTo(graph); // display in the view
 
             const aa_to_greeting = createLink(aa_name_ellipse, aa_greeting_square, null);
             aa_to_greeting.addTo(graph); // display in the view
 
             const businesshours_decision = createDecision(800, 160, 130, 130);
-            businesshours_decision.addTo(graph);
+            businesshours_decision.addTo(graph); // display in the view
 
             const bussinesshours_text = createTextBlock("During Business \n hours?", 815, 182, 100, 80, 18);
-            bussinesshours_text.addTo(graph);
+            bussinesshours_text.addTo(graph); // display in the view
 
             const greeting_to_businesshours = createLink(aa_greeting_square, businesshours_decision, null);
             greeting_to_businesshours.addTo(graph); // display in the view
 
             const bankholiday_decision = createDecision(1100, 160, 130, 130);
-            bankholiday_decision.addTo(graph);
+            bankholiday_decision.addTo(graph); // display in the view
 
             const bankholiday_text = createTextBlock("During Bank \n Holiday?", 1115, 182, 100, 80, 18);
-            bankholiday_text.addTo(graph);
+            bankholiday_text.addTo(graph); // display in the view
 
             const businesshours_to_bankholiday = createLink(businesshours_decision, bankholiday_decision, "Yes", 25);
             businesshours_to_bankholiday.addTo(graph); // display in the view
@@ -207,7 +206,7 @@ function jointJS(){
                 height: 180
             });
             const options_square = createShape("Rectangle", "Greeting: \n \n" + options_wrapped_text, 1400, 140, 170, 170, 14);
-            options_square.addTo(graph);
+            options_square.addTo(graph); // display in the view
 
             const bankholidays_to_options_square = createLink(bankholiday_decision, options_square, "No", 25);
             bankholidays_to_options_square.addTo(graph); // display in the view
@@ -218,7 +217,7 @@ function jointJS(){
             });
 
             const businesshours_greeting_square = createShape("Rectangle", "Greeting: \n \n" + business_hoursgreeting_wrapped_text, 785, 400, 150, 150, 14);
-            businesshours_greeting_square.addTo(graph);
+            businesshours_greeting_square.addTo(graph); // display in the view
 
 
             const businesshours_decision_to_businesshours_greeting_square = createLink(businesshours_decision, businesshours_greeting_square, "No", 22);
@@ -230,7 +229,7 @@ function jointJS(){
                 height: 150
             });
             const bankholiday_greeting_square = createShape("Rectangle", "Greeting: \n \n" + bankholiday_greeting_wrapped_text, 1085, 400, 150, 150, 14);
-            bankholiday_greeting_square.addTo(graph);
+            bankholiday_greeting_square.addTo(graph); // display in the view
 
             const bankholiday_decision_to_businesshours_greeting_square = createLink(bankholiday_decision, bankholiday_greeting_square, "Yes", 22);
             bankholiday_decision_to_businesshours_greeting_square.addTo(graph); // display in the view
@@ -238,7 +237,7 @@ function jointJS(){
 
             const membersText = data.auto_attendant.voicemail.members.join("\n");
             const voicemail_group = createShape("Rectangle", "Voicemail \n \n Owner \n \n" + data.auto_attendant.voicemail.group_name + "\n  \n \n" + "Members \n \n" + membersText, 935, 652, 170, 270, 10);
-            voicemail_group.addTo(graph);
+            voicemail_group.addTo(graph); // display in the view
 
             const businesshours_greeting_square_to_voicemail_group = createLink(businesshours_greeting_square, voicemail_group, null, 22);
             businesshours_greeting_square_to_voicemail_group.addTo(graph); // display in the view
@@ -259,34 +258,34 @@ function jointJS(){
                 }
 
                 const callqueue_name = createShape("Rectangle", data.auto_attendant.call_queues[index].queue_name, 1685, (190 + valueYtoAdd), 150, 70, "red", 14);
-                callqueue_name.addTo(graph);
+                callqueue_name.addTo(graph); // display in the view
 
                 const options_square_to_call_queue_name = createLink(options_square, callqueue_name, index+1, 30);
                 options_square_to_call_queue_name.addTo(graph); // display in the view
 
 
                 const routing_type = createShape("Rectangle", data.auto_attendant.call_queues[index].routing_type, 1985, (188 + valueYtoAdd), 150, 70, 'black', 14);
-                routing_type.addTo(graph);
+                routing_type.addTo(graph); // display in the view
 
                 const call_queue_name_to_routing_type = createLink(callqueue_name, routing_type, null);
                 call_queue_name_to_routing_type.addTo(graph); // display in the view
 
 
                 const maximum_decision = createDecision(2250, (170 + valueYtoAdd), 120, 120);
-                maximum_decision.addTo(graph);
+                maximum_decision.addTo(graph); // display in the view
 
                 const maximum_text = createTextBlock("Has the call queue reached its maximum (" + data.auto_attendant.call_queues[index].max_calls +") ?", 2260, (195 + valueYtoAdd), 100, 70, 11);
-                maximum_text.addTo(graph);
+                maximum_text.addTo(graph); // display in the view
 
                 const routing_type_to_maximum_decision = createLink(routing_type, maximum_decision, null);
                 routing_type_to_maximum_decision.addTo(graph); // display in the view
 
 
                 const answertime_decision = createDecision(2520, (170 + valueYtoAdd), 120, 120);
-                answertime_decision.addTo(graph);
+                answertime_decision.addTo(graph); // display in the view
 
                 const answertime_text = createTextBlock("Did someone answer in " + data.auto_attendant.call_queues[index].answer_timeout_seconds + " seconds?", 2530, (195 + valueYtoAdd), 100, 70, 11);
-                answertime_text.addTo(graph);
+                answertime_text.addTo(graph); // display in the view
 
                 const maximum_decisione_to_answertime_decision = createLink(maximum_decision, answertime_decision, "No", 20);
                 maximum_decisione_to_answertime_decision.addTo(graph); // display in the view
@@ -294,14 +293,14 @@ function jointJS(){
 
                 if (data.auto_attendant.call_queues[index].max_calls_exceeeded  === "disconnect"){
                     const disconnect_ellipse = createShape("Ellipse", "Disconnect", 2217, (375 + valueYtoAdd), 180, 80, 14);
-                    disconnect_ellipse.addTo(graph);
+                    disconnect_ellipse.addTo(graph); // display in the view
 
                     const maximum_decision_to_disconnect_ellipse = createLink(maximum_decision, disconnect_ellipse, "Yes", 24);
                     maximum_decision_to_disconnect_ellipse.addTo(graph); // display in the view
 
                 } else{
                     const callqueue_name_max = createShape("Rectangle", data.auto_attendant.call_queues[index].max_calls_exceeeded, 2217, (375 + valueYtoAdd), 180, 80, "red", 14);
-                    callqueue_name_max.addTo(graph);
+                    callqueue_name_max.addTo(graph); // display in the view
 
                     const maximum_decision_to_callqueue_name_max = createLink(maximum_decision, callqueue_name_max, "Yes", 24);
                     maximum_decision_to_callqueue_name_max.addTo(graph); // display in the view
@@ -310,14 +309,14 @@ function jointJS(){
 
                 if (data.auto_attendant.call_queues[index].answer_timeout_seconds_exceeded  === "disconnect"){
                     const disconnect_ellipse = createShape("Ellipse", "Disconnect", 2490, (365 + valueYtoAdd), 180, 80, 14);
-                    disconnect_ellipse.addTo(graph);
+                    disconnect_ellipse.addTo(graph); // display in the view
 
                     const answertime_decision_to_disconnect_ellipse = createLink(answertime_decision, disconnect_ellipse, "No", 24);
                     answertime_decision_to_disconnect_ellipse.addTo(graph); // display in the view
 
                 } else{
                     const answertime_callqueue_name = createShape("Rectangle", data.auto_attendant.call_queues[index].answer_timeout_seconds_exceeded, 2490, (365 + valueYtoAdd), 180, 80, "red", 14);
-                    answertime_callqueue_name.addTo(graph);
+                    answertime_callqueue_name.addTo(graph); // display in the view
 
                     const answertime_decision_to_callqueue_name_max = createLink(answertime_decision, answertime_callqueue_name, "No", 24);
                     answertime_decision_to_callqueue_name_max.addTo(graph); // display in the view
@@ -325,15 +324,14 @@ function jointJS(){
 
                 const callQueueMembersText = data.auto_attendant.call_queues[index].group.members.join("\n");
                 const callQueue_group = createShape("Rectangle", data.auto_attendant.call_queues[index].group.group_name + "\n \n \n" + "Owner \n \n" + data.auto_attendant.call_queues[index].group.group_owner + " \n \nMembers \n \n" + callQueueMembersText, 2790, (100 + valueYtoAdd), 170, 270, 10);
-                callQueue_group.addTo(graph);
+                callQueue_group.addTo(graph); // display in the view
 
                 const answertime_decision_to_callQueue_group = createLink(answertime_decision, callQueue_group, "Yes", 24);
                 answertime_decision_to_callQueue_group.addTo(graph); // display in the view
 
-                valueYtoAdd = valueYtoAdd + 500 // continue offsetting future call queues
+                valueYtoAdd = valueYtoAdd + 500 // continue offsetting potential future call queues
 
             })
-
         },
         error: function(err){
             console.error("Error fetching data:", err); // logs any errors
@@ -343,7 +341,7 @@ function jointJS(){
 
 function barChart(){
 
-    $.ajax({ // get the department json data 
+    $.ajax({ // fetcht the data to set up the bar chart 
         url: "fetchBarChartData.php", // specificying which php file
         method: "POST", // fetch type
         success: function(data){
@@ -353,7 +351,6 @@ function barChart(){
             var barColors = ["#2A628F", "#18435A","#2A628F","#18435A","#2A628F", "#18435A", "#2A628F"]; // colours taken from the house style
 
             var yValues = [data.Monday, data.Tuesday, data.Wednesday, data.Thursday, data.Friday, data.Saturday, data.Sunday]; // y values holding data corresponding to the weekday
-
 
             new Chart("callMetricsBarChart",{ // creating the chart based on the previous variables
                 type: "bar",
@@ -403,8 +400,7 @@ function fullView() { // when the smallCanvas is clicked:
     // setting and applying the default scale and position for the bigCanvas
     let initialScale = 0.43;
     fullPaper.scale(initialScale, initialScale); // apply default scale
-
-
+    
     // zooming in buttons logic
 
     $("#zoomIn").on("click", function(){
@@ -418,7 +414,6 @@ function fullView() { // when the smallCanvas is clicked:
             fullPaper.scale(initialScale);
         }
     });
-
 
     let initialX = 30;
     let initialY = 200;
@@ -440,7 +435,7 @@ function fullView() { // when the smallCanvas is clicked:
         fullPaper.scale(initialScale, initialScale); // apply scale
     });
 
-    // handle panning
+    // handle the panning
     let isPanning = false;
     let lastX = 0;
     let lastY = 0;
@@ -477,7 +472,7 @@ function fullView() { // when the smallCanvas is clicked:
 }
 
 function downloadCallMetrics(){
-    $.ajax({ // get the department json data 
+    $.ajax({ // get the call metrics json data 
         url: "fetchDepartmentData.php", // specifying which php file
         method: "POST", // fetch type
         data: {request: "callMetrics"}, // used to know which data to send from the server side
@@ -677,7 +672,6 @@ function hideMenu(){
 }
 
 
-
 function logInValidation(){
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
@@ -730,33 +724,6 @@ function updatePasswordValidation(){
     }
 }
 
-
-function updateFilterIcons(field, value){
-    let offIcon = document.getElementById(field + "FilterOffIcon");
-    let filterIcon = document.getElementById(field + "FilterIcon");
-    let upIcon = document.getElementById(field + "UpIcon");
-    let downIcon = document.getElementById(field + "DownIcon");
-
-    if (value == "not set"){
-        offIcon.style.display = "block";
-        filterIcon.style.display = "none";
-        upIcon.style.display = "none";
-        downIcon.style.display = "none";
-    } else if (value == "asc"){
-        offIcon.style.display = "none";
-        filterIcon.style.display = "inline";
-        upIcon.style.display = "inline";
-        downIcon.style.display = "none";
-    } else if (value == "desc"){
-        offIcon.style.display = "none";
-        filterIcon.style.display = "inline";
-        upIcon.style.display = "none";
-        downIcon.style.display = "inline";
-    }
-}
-
-
-
 function initialiseFiltering(){
 
     $.ajax({ // get the logs tab filtering values json data 
@@ -776,7 +743,31 @@ function initialiseFiltering(){
     });
 }
 
+function updateFilterIcons(field, value){
+    let offIcon = document.getElementById(field + "FilterOffIcon");
+    let filterIcon = document.getElementById(field + "FilterIcon");
+    let upIcon = document.getElementById(field + "UpIcon");
+    let downIcon = document.getElementById(field + "DownIcon");
 
+    // cycling through which icon is displayed depending on what the current filter is set on
+
+    if (value == "not set"){
+        offIcon.style.display = "block";
+        filterIcon.style.display = "none";
+        upIcon.style.display = "none";
+        downIcon.style.display = "none";
+    } else if (value == "asc"){
+        offIcon.style.display = "none";
+        filterIcon.style.display = "inline";
+        upIcon.style.display = "inline";
+        downIcon.style.display = "none";
+    } else if (value == "desc"){
+        offIcon.style.display = "none";
+        filterIcon.style.display = "inline";
+        upIcon.style.display = "none";
+        downIcon.style.display = "inline";
+    }
+}
 
 function submitHistoricalFlowDateFilterForm(){
     $("#historicalFlowDateFilteringForm").submit();

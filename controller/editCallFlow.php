@@ -10,15 +10,12 @@ require_once("../model/utilities.php");
 
 session_start();
 
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
-
-if (isset($_POST["cancel"])){
+if (isset($_POST["cancel"])){ // if the user presses the cancel button
         
-    doLogicAndCallIndexView();
+    doLogicAndCallIndexView(); // kick them back to the home view
     require_once("../view/indexView.php");
-} elseif (!isset($_SESSION["loggedInEmployee"]) || $_SESSION["updatedPassword"] == false){
+
+} elseif (!isset($_SESSION["loggedInEmployee"]) || $_SESSION["updatedPassword"] == false){ // if a user isn't logged in or hasn't updated their password
 
     doLogicAndCallLoginView(); // kick them to the log in view
     
@@ -149,7 +146,6 @@ if (isset($_POST["cancel"])){
         $voicemailMembersArray = explode("\n", $voicemailMembers);
         $voicemailMembersArray = array_map('trim', $voicemailMembersArray);
 
-
         $jsonData["company"]["departments"][$index]["auto_attendant"]["voicemail"]["members"] = $voicemailMembersArray;
 
         // replacing the auto attendant greeting with the new input
@@ -191,8 +187,6 @@ if (isset($_POST["cancel"])){
         // converts back to JSON and puts it back into the file
         $toPutInFile = json_encode($jsonData, JSON_PRETTY_PRINT);
         file_put_contents($filePath, $toPutInFile);
-
-        $pdoSingleton = pdoSingleton::getInstance();
 
         createNewAuditLog($_SESSION["loggedInEmployee"]->EmployeeID, date("Y-m-d"), date("H:i:s"), $departmentName . "Call Flow Updated", "Admin updated " . $departmentName . "'s Call Flow");
 

@@ -16,8 +16,8 @@ function doLogicAndCallLoginView(){
     else if ($_REQUEST["logInEmail"] != "" && $_REQUEST["logInPassword"] != ""){ // if all forms have been entered
 
         $employees = $pdoSingleton->getAllEmployees($_SESSION["userFilter"]); // get an array of all employees from the database
-        $found = false;
 
+        // searching and comparing emails and password to facilitate a login
         foreach ($employees as $employee): 
             if ($employee->Email == $_REQUEST["logInEmail"] && $employee->Password == $_REQUEST["logInPassword"]){ // checking if a user in the database has the same email and password which was inputted
 
@@ -29,6 +29,7 @@ function doLogicAndCallLoginView(){
                     $_SESSION["updatedPassword"] = true;
                     $pdoSingleton->updateLastLogInByID($_SESSION["loggedInEmployee"]->EmployeeID);
 
+                    // changing audit log details based on if the employee is an admin or not
                     if ($_SESSION["loggedInEmployee"]->isAdmin == 0){
 
                         $actionPerformed = "User Logged in";
@@ -38,9 +39,9 @@ function doLogicAndCallLoginView(){
 
                         $actionPerformed = "Admin Logged in";
                         $details = "Admin Logged in";
-
                     }
 
+                    // create the log with the relevant details
                     createNewAuditLog($_SESSION["loggedInEmployee"]->EmployeeID, date("Y-m-d"), date("H:i:s"), $actionPerformed, $details);
                 }
             }
@@ -49,9 +50,9 @@ function doLogicAndCallLoginView(){
 
     if (isset($_SESSION["loggedInEmployee"]) && $_SESSION["updatedPassword"] == true){ // if a match was found and they have an updated password
 
-        doLogicAndCallIndexView();
+        doLogicAndCallIndexView(); // the log in was successfull show them to the index view
     }
-    elseif (!isset($_SESSION["loggedInEmployee"])){ // if no match was found
+    elseif (!isset($_SESSION["loggedInEmployee"])){ // if email/password was incorrect
 
         $_SESSION["department"] = null;
         $_SESSION["deptIndex"] = null;
@@ -59,7 +60,8 @@ function doLogicAndCallLoginView(){
         require_once("../view/loginView.php");
 
     } else{ // if a match was found but they didn't update their password
-        doLogicAndCallUpdatePasswordView();
+
+        doLogicAndCallUpdatePasswordView(); // kick them to the update password view
     }
 }
 
@@ -98,6 +100,7 @@ function doLogicAndCallUpdatePasswordView(){
 
                 $pdoSingleton->updateLastLogInByID($_SESSION["loggedInEmployee"]->EmployeeID);
 
+                // changing audit log details based on if the employee is an admin or not
                 if ($_SESSION["loggedInEmployee"]->isAdmin == 0){
 
                     $actionPerformed = "User Logged in";
@@ -110,22 +113,23 @@ function doLogicAndCallUpdatePasswordView(){
 
                 }
                 
+                // create the log with the relevant details
                 createNewAuditLog($_SESSION["loggedInEmployee"]->EmployeeID, date("Y-m-d"), date("H:i:s"), $actionPerformed, $details);
             } 
         } 
     }
 
-    if ($_SESSION["updatedPassword"] == true){
-        doLogicAndCallIndexView();
+    if ($_SESSION["updatedPassword"] == true){ // if the password matches
 
-    } else{
+        doLogicAndCallIndexView(); // show them to the index view
+    } else{ // otherwise let them try again
         require_once("../view/updatePasswordView.php");
     }
 }
 
 function doLogicAndCallIndexView() {
 
-    if (!isset($_SESSION["callFlowEdited"])){
+    if (!isset($_SESSION["callFlowEdited"])){ // if the session hasn't been set, set it to false (this is used to check if a call flow was edited)
         $_SESSION["callFlowEdited"] = false;
     }
 
@@ -144,27 +148,29 @@ function doLogicAndCallIndexView() {
     
     if ($_SESSION["loggedInEmployee"] == null){ // if the session variable 'loggedInEmployee' is null
 
-        doLogicAndCallLoginView(); // go to the log in view
+        doLogicAndCallLoginView(); // kick them to the log in view
         require_once("../view/loginView.php");
     
     } else if (isset($_POST["signOut"])) { // if the employee clicked the 'sign out' button
 
         $_SESSION["loggedInEmployee"] = null;
 
-        doLogicAndCallLoginView(); // go to the log in view
+        doLogicAndCallLoginView(); // kick them to the log in view
         require_once("../view/loginView.php");
     
     } elseif ($_SESSION["updatedPassword"] == false){ // if the employee didn't update thier password
 
         doLogicAndCallUpdatePasswordView(); // kick them to the update password view
         
-    } else{ // otherwise
+    } else{ // if passed the previous checks
 
         $pdoSingleton = pdoSingleton::getInstance();
 
         $jsonData = getCallData();
 
         $arrayOfDepartments = $jsonData["company"]["departments"]; // puts the array of departments into a variable
+
+        // --- logic to dynamically create or delete Roles based on the data ---
 
         // if a role exists in the JSON file but not the database, add the role to the database
 
@@ -208,7 +214,7 @@ function doLogicAndCallIndexView() {
 
         if ($_SESSION["loggedInEmployee"]->isAdmin == 0){ // if the logged in employee isn't an admin
 
-            // get a list of the department names the loggedin employee has access to
+            // get an array of the department names the loggedin employee has access to
 
             $arrayOfEmployeeRole = $pdoSingleton->getAllEmployeeRole(); 
 
@@ -219,13 +225,14 @@ function doLogicAndCallIndexView() {
                 if ($_SESSION["loggedInEmployee"]->EmployeeID == $allowed->EmployeeID){
                     $allowedRole = $pdoSingleton->getRoleByID($allowed->RoleID); 
 
+                    // if the role exists add it to the array
                     if ($allowedRole) {
                         $allowedToViewDepartments[] = $allowedRole->RoleName;
                     }
                 }
             }
 
-            // in the arrayOfDepartments, remove departments which are not on the list
+            // in the arrayOfDepartments, remove departments which are not on the array - this facilitates which departments the employee has access to 
 
             foreach ($arrayOfDepartments as $key => $department){
 
@@ -270,7 +277,7 @@ function doLogicAndCallIndexView() {
             $departmentName = $_SESSION["department"]["name"]; // displays the currently selected department for debugging purposes
 
 
-            // beginning of setting call metrics
+            // -- beginning of calculating and setting up the call metrics --
 
             $arrayOfCallMetrics = $_SESSION["department"]["call_metrics"]; // gets an array of all the metrics for the current department
 
@@ -300,8 +307,6 @@ function doLogicAndCallIndexView() {
             } else {
                 $averageWaitTime = 0;
             }
-
-            
 
             // sets up the varirables for the Abandonded Today info
 
@@ -349,13 +354,12 @@ function doLogicAndCallIndexView() {
 
 
             require_once("../view/indexView.php");
-
         }
     }
 }
 
 
-function toggleFilterState($filterTab, $filterKey){
+function toggleFilterState($filterTab, $filterKey){ // cycling through the filterable options
     
     if ($_SESSION[$filterTab][$filterKey] == "not set"){
         $_SESSION[$filterTab][$filterKey] = "asc";
@@ -366,7 +370,7 @@ function toggleFilterState($filterTab, $filterKey){
     }
 }
 
-function createNewAuditLog($employeeID, $date, $time, $actionPerformed, $details){
+function createNewAuditLog($employeeID, $date, $time, $actionPerformed, $details){ // function to create an audit log and put it in the database
 
     date_default_timezone_set("Europe/London"); 
 
@@ -383,6 +387,4 @@ function createNewAuditLog($employeeID, $date, $time, $actionPerformed, $details
     $auditLog->AuditLogID = $auditLogID;
 
 }
-
-
 ?>

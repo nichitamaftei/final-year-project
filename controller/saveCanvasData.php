@@ -11,19 +11,16 @@ require_once("../model/utilities.php");
 
 session_start();
 
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
 $pdoSingleton = pdoSingleton::getInstance();
 
-if (isset($_POST["image"])){ // if the admin removes a role from an employee
+if (isset($_POST["image"])){ // if the client side sends image data
 
-    $pngData = $_POST["image"];
+    $pngData = $_POST["image"]; // set the $pngData variable with the incoming data
 
     $databaseRoles = $pdoSingleton->getAllRoles();
-
     $departmentID;
 
+    // gathering which role relates to the currently viewed department
     foreach ($databaseRoles as $databaseRole){
 
         if ($_SESSION["department"]["name"] == $databaseRole->RoleName){
@@ -33,11 +30,12 @@ if (isset($_POST["image"])){ // if the admin removes a role from an employee
 
     $employeeID = $_SESSION["loggedInEmployee"]->EmployeeID;
 
-    date_default_timezone_set("Europe/London"); 
+    date_default_timezone_set("Europe/London"); // making sure the time is correct
 
     $date = date("Y-m-d");
     $time = date("H:i:s");
 
+    // add the image data along with the relvant info to the database
     $pdoSingleton->addDiagram($departmentID, $employeeID, $pngData, $date, $time);
 }
 ?>

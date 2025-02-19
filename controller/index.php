@@ -7,11 +7,8 @@ require_once("../model/dataAccess.php");
 require_once("../model/fetchJsonData.php");
 require_once("../model/utilities.php");
 
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
 session_start();
 
-doLogicAndCallIndexView();
+doLogicAndCallIndexView(); // call the index view function from the "utilities.php" file
 
 ?>

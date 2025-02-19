@@ -8,9 +8,8 @@ require_once("../model/dataAccess.php");
 require_once("../model/fetchJsonData.php"); 
 require_once("../model/utilities.php");
 
-
 session_start();
 
-doLogicAndCallLoginView()
+doLogicAndCallLoginView() // call the login view function from the "utilities.php" file
 
 ?>

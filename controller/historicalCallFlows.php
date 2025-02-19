@@ -11,17 +11,15 @@ require_once("../model/utilities.php");
 
 session_start();
 
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
 if (isset($_POST["historicalCallFlowGoBackButton"])){ // if the back button is pressed
 
     doLogicAndCallIndexView(); // kick them to the home view
 
 } else{
+    
+    // --- logic to set and handle the filtering for the "historicalCallFlowsView" ---
 
-
-    if(!isset($_SESSION["historicalFlowFilter"])){
+    if(!isset($_SESSION["historicalFlowFilter"])){ // if the default values for historical call flows havn't been set yet, set them
         $_SESSION["historicalFlowFilter"] = [
             "historicalFlowDate" => "desc",
             "historicalFlowTime" => "desc",
@@ -29,21 +27,21 @@ if (isset($_POST["historicalCallFlowGoBackButton"])){ // if the back button is p
         ];
     }
 
-    $filterUserKeys = ["historicalFlowDate", "historicalFlowTime", "historicalFlowModifiedBy"];
+    $filterUserKeys = ["historicalFlowDate", "historicalFlowTime", "historicalFlowModifiedBy"]; // filterable historical call flows columns
 
     foreach ($filterUserKeys as $filter){
-        if (isset($_REQUEST[$filter . "FilterForm"])){
-            toggleFilterState("historicalFlowFilter", $filter);
+        if (isset($_REQUEST[$filter . "FilterForm"])){ // if the user clicked a column icon
+            toggleFilterState("historicalFlowFilter", $filter); // cycle the value to the next (e.g not set -> asc)
         }
     }
 
-
-    $pdoSingleton = pdoSingleton::getInstance();
+    $pdoSingleton = pdoSingleton::getInstance(); 
 
     $databaseRoles = $pdoSingleton->getAllRoles();
 
     $departmentID;
 
+    // gathering which role relates to the currently viewed department
     foreach ($databaseRoles as $databaseRole){
 
         if ($_SESSION["department"]["name"] == $databaseRole->RoleName){
@@ -53,12 +51,9 @@ if (isset($_POST["historicalCallFlowGoBackButton"])){ // if the back button is p
 
     $departmentName = $_SESSION["department"]["name"];
 
-
+    // fetch all the image data associated with the current department
     $images = $pdoSingleton->getDiagramsByDepartmentID($_SESSION["historicalFlowFilter"], $departmentID);
 
-
     require_once("../view/historicalCallFlowsView.php");
-
 }
-
 ?>
