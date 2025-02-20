@@ -3,6 +3,7 @@
 
     <head>
         <meta charset="UTF-8">
+        <link rel="icon" href="../view/css_js_images/Phone_icon.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../view/css_js_images/style.css"> <!-- linking to style sheet -->
         <script src="../@joint/core/dist/joint.js"></script> <!-- linking to JointJS library -->
